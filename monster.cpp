@@ -17,7 +17,7 @@ using namespace std;
 	
 /*********************************************************************
 This is the base class for all enemies. It include title, skills, hp,
-exp. Item drops haven't been implemented.
+exp. Item drops and skills haven't been implemented. 
 *********************************************************************/
 class Enemy{
 	protected:
