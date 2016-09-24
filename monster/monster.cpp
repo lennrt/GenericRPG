@@ -3,8 +3,7 @@ File name: monster.cpp
 Written by: Daniel Nguyen
 Written on 08/27/2016
 Purpose: This is a c++ file containing classes for all monsters
-Credits: All these monsters are taken from Ragnarok Online. All credit goes to Gravity
-		Co., Ltd.
+
 Class: CPSC 362
 *********************************************************************************/
 
@@ -17,10 +16,11 @@ using namespace std;
 	
 /*********************************************************************
 This is the base class for all enemies. It include title, skills, hp,
-exp. Item drops and skills haven't been implemented. 
+exp. Item drops haven't been implemented.
 *********************************************************************/
 class Enemy{
 	protected:
+        string name;
 		int hp;
 		int exp;
 		int min_atk;
@@ -42,14 +42,26 @@ class Enemy{
 		
 		
 		//Function for attacks that randomize number between minimum atk and maximum atk
+        //The function also ouputs the attack command
 		int attack(){
 			//Use time function to get a "seed" value for srand
 			unsigned seed = time(0);
 			srand(seed);
 			//Generate and return a random number between min_atk and max_atk
 			int range = max_atk - min_atk;
-			return rand() % range + min_atk;
+            int atk_damage = rand() % range + min_atk;
+            cout << name << " deals " << atk_damage << " damage." << endl;
+            return atk_damage;
 		}
+    
+        //Function that takes an int as argument and subtract it from the monster's hp
+        void take_damage(int damage){
+            hp = hp - damage;
+            cout << name << " takes " << damage <<" damage." << endl;
+            cout << name << "'s HP: " << hp << endl;
+        }
+
+    
 
 };
 
@@ -57,23 +69,24 @@ class Enemy{
 The following classes contain information about different monster.
 Again, skills haven't been implemented.
 *************************************************************************/
-class Poring : public Enemy
+class Hedgehog : public Enemy
 {
 	public:
-		Poring(){
+		Hedgehog(){
+            this->name= "Hedgehog";
 			this->hp = 50;
 			this->exp = 2;
 			this->min_atk = 7;
 			this->max_atk = 10;
-			this->description = "Small, pink, monsters that are made of a living "
-							"gelatinous substance";
+			this->description = "Small, spiny monster that shoots spiens at enemies";
 		}
 };
 
-class Willow: public Enemy
+class Dead_Tree: public Enemy
 {
 	public:
-		Willow(){
+		Dead_Tree(){
+            this->name = "Dead_Tree";
 			this->hp = 95;
 			this->exp = 5;
 			this->min_atk =9;
@@ -83,36 +96,39 @@ class Willow: public Enemy
 			}
 };
 
-class Roda_Frog :public Enemy
+class Giant_Frog :public Enemy
 {
 	public:
-		Roda_Frog(){
+		Giant_Frog(){
+            this->name = "Giant Frog";
 			this->hp = 133;
 			this->exp = 6;
 			this->min_atk = 11;
 			this->max_atk =14;
-			this->description="A mutant frog usually living in the forest or "
-							"the grassland. It has an annoying croak";
+			this->description="A mutant frog that is 5 times the size of normal frog."
+                            " It makes annoying sounds.";
 		}
 };
 
-class Thief_Bug_Egg : public Enemy
+class Roach_Egg : public Enemy
 {
 	public:
-		Thief_Bug_Egg(){
+		Roach_Egg(){
+            this->name = "Roach Egg";
 			this->hp = 48;
 			this->exp =8;
 			this->min_atk = 0;
 			this->max_atk = 0;
-			this->description="It hatches into several Thief Bugs. It makes "
+			this->description="It hatches into several Roaches It makes "
 							"horrible omelette.";
 		}
 };
 
-class Thief_Bug : public Enemy
+class CockRoach : public Enemy
 {
 	public:
-		Thief_Bug(){
+		CockRoach(){
+            this->name = "Cockroach";
 			this->hp=126;
 			this->exp = 17;
 			this->min_atk = 18;
@@ -125,6 +141,7 @@ class Skeleton : public Enemy
 {
 	public:
 		Skeleton(){
+            this->name = "Skeleton";
 			this->hp = 234;
 			this->exp =18;
 			this->min_atk = 39;
@@ -134,10 +151,11 @@ class Skeleton : public Enemy
 		}
 };
 
-class Rocker : public Enemy
+class Violinist : public Enemy
 {
 	public:
-		Rocker(){
+		Violinist(){
+            this->name = "Violinist";
 			this->hp =198;
 			this->exp =20;
 			this->min_atk = 24;
@@ -148,10 +166,11 @@ class Rocker : public Enemy
 		}
 };
 
-class Familiar: public Enemy
+class GruBat: public Enemy
 {
 	public:
-		Familiar(){
+		GruBat(){
+            this->name="GruBat";
 			this->hp=155;
 			this->exp =28;
 			this->min_atk = 20;
@@ -161,10 +180,11 @@ class Familiar: public Enemy
 		}
 };
 
-class Kukre : public Enemy
+class Arthropod : public Enemy
 {
 	public:
-		Kukre(){
+		Arthropod(){
+            this->name="Arthropod";
 			this->hp = 507;
 			this->exp =38;
 			this->min_atk = 28;
@@ -177,6 +197,7 @@ class Zombie : public Enemy
 {
 	public:
 		Zombie(){
+            this->name="Zombie";
 			this->hp = 534;
 			this->exp =50;
 			this->min_atk = 67;
@@ -187,36 +208,39 @@ class Zombie : public Enemy
 };
 
 
-class Worm_Tail : public Enemy
+class Roddent_Tail : public Enemy
 {
 	public:
-		Worm_Tail(){
+		Roddent_Tail(){
+            this->name ="Roddent Tail";
 			this->hp = 426;
 			this->exp =59;
 			this->min_atk = 42;
 			this->max_atk = 51;
-			this->description = "A strange monster that uses whipping attacks with a "
+			this->description = "A roddent that uses whipping attacks with a "
 								"tail that looks like a blade of grass.";
 		}
 };
 
-class Poporing : public Enemy
+class Poison_Hedgehog : public Enemy
 {
 	public:
-		Poporing(){
+		Poison_Hedgehog(){
+            this->name = "Poison Hedgehog";
 			this->hp = 344;
 			this->exp =81;
 			this->min_atk = 59;
 			this->max_atk = 72;
-			this->description = "A kind of Poring living in the swarm. It is covered "
+			this->description = "A kind of Hedgehog living in the swarm. It is covered "
 								"with poisonous elastic skins all around the body.";
 		}
 };
 
-class Steel_Chonchon : public Enemy
+class Steel_Fly : public Enemy
 {
 	public:
-		Steel_Chonchon(){
+		Steel_Fly(){
+            this->name="Steel Fly";
 			this->hp = 530;
 			this->exp =109;
 			this->min_atk = 54;
@@ -225,10 +249,11 @@ class Steel_Chonchon : public Enemy
 		}
 };
 
-class Coco : public Enemy
+class Crazy_Squirrel : public Enemy
 {
 	public:
-		Coco(){
+		Crazy_Squirrel(){
+            this->name="Crazy Squrirrel";
 			this->hp = 817;
 			this->exp =120;
 			this->min_atk = 56;
@@ -242,6 +267,7 @@ class Horn : public Enemy
 {
 	public:
 		Horn(){
+            this->name="Horn";
 			this->hp = 659;
 			this->exp =134;
 			this->min_atk = 58;
@@ -252,10 +278,11 @@ class Horn : public Enemy
 		}
 };
 
-class Deniro : public Enemy
+class Fire_Ant : public Enemy
 {
 	public:
-		Deniro(){
+		Fire_Ant(){
+            this->name="Fire Ant";
 			this->hp = 760;
 			this->exp =135;
 			this->min_atk = 68;
@@ -266,9 +293,10 @@ class Deniro : public Enemy
 };
 
 int main(){
-	Poring po1;
-	cout << "Poring attack for: " << po1.attack();
-	return 0;
+    Horn newHorn;
+    newHorn.attack();
+    newHorn.take_damage(200);
+    return 0;
 }
 
 
