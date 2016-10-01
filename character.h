@@ -1,11 +1,8 @@
-#include <string>
+
 #include <vector>
+#include "enums.h"
 //#include "items.h"
 //#include "spells.h"
-
-enum Races {"Elf", "Dwarf", "Human", "Hobbit"};
-enum Classes {"Fighter", "Mage", "Ranger", "Thief"};
-enum Stats {"Mana", "Health", "Intelligence", "Strength", "Agility"};
 
 class Character{
     public:
@@ -36,12 +33,6 @@ class Character{
 	int _Gold;
 	int _Level;
 	int StatTable[5][2];
-	
-	const int Mana = 0;
-	const int Health = 1;
-	const int Intelligence = 2;
-	const int Strength = 3;
-	const int Agility = 4;
 	
 	const int Current = 0;
 	const int Maximum = 1;
