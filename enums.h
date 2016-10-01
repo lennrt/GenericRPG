@@ -6,3 +6,4 @@ enum Monster_Stats{"Name", "HP", "Exp", "Minimum Attack", "Maximum Attack", "Des
 enum Monster{"Hedgehog","Dead Tree", "Giant Frog","Roach Egg", "Cockroach", "Skeleton", 
              "Violinist","Gru Bat","Anthropod","Zombie","Roddent Tail","Poison Hedgehog",
              "Crazy Squirrle","Horn","Fire Ant"};
+enum Tile_Types {"Arid", "Forest", "Water"};
