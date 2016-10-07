@@ -6,8 +6,8 @@
 //  Copyright © 2016 Nhat Nguyen. All rights reserved.
 //
 
-#ifndef tile_hpp
-#define tile_hpp
+#ifndef tile_h
+#define tile_h
 
 #include <stdio.h>
 #include <iostream>
@@ -101,4 +101,4 @@ Iter select_randomly(Iter start, Iter end) {
 }
 
 
-#endif /* tile_hpp */
+#endif /* tile_hp */
