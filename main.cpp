@@ -11,7 +11,7 @@
 #include <iterator>
 #include <random>
 
-#include "tile.hpp"
+#include "tile.h"
 
 using namespace std;
 
