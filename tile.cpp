@@ -16,7 +16,7 @@
  Climate
  */
 
-#include "tile.hpp"
+#include "tile.h"
 
 /* Tile Class Constructors */
 
