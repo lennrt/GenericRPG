@@ -1,43 +1,44 @@
 #include <string>
 #include <vector>
 #include "character.h"
+#include "enums.h"
 
 
-Character::AlterExp (int Amount){
+void Character::AlterExp (int Amount){
     _Exp += Amount;    
     SetLevel(_Exp);
 }
 
-Character::GetExp(){
+int Character::GetExp(){
     return _Exp;    
 }
 
-Character::GetLevel(){
+int Character::GetLevel(){
     return _Level;    
 }
 
-Character::AlterGold (int Amount){
+void Character::AlterGold (int Amount){
     _Gold += Amount;    
 }
 
-Character::GetGold(){
+int Character::GetGold(){
     return _Gold;    
 }
 	
-Character::GetStat(Stats Stat, bool Max){
+int Character::GetStat(Stats Stat, bool Max){
     return StatTable[Max ? Maximum : Current][(int) Stat];    
 }
 
-Character::AlterStat (Stats Stat, bool Max, int Amount){
+void Character::AlterStat (Stats Stat, bool Max, int Amount){
     StatTable[Max ? Maximum : Current][(int) Stat] += Amount;
 }
 
-Character::SetStatToMax (Stats Stat){
-    StatTable[Current][(int) Stat] = StatTable[Maximum][(int) Stat]
+void Character::SetStatToMax (Stats Stat){
+    StatTable[Current][(int) Stat] = StatTable[Maximum][(int) Stat];
     
 }
 
-Character::SetLevel(int tExp){
+int Character::SetLevel(int tExp){
     int RetVal;
     int Prior;
     int Base = 100;
