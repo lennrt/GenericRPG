@@ -7,12 +7,10 @@ Purpose: This is a c++ file containing classes for all monsters
 Class: CPSC 362
 *********************************************************************************/
 
-#include <stdio.h>
 #include <string>
-#include <iostream>
 #include <cstdlib>
 #include <ctime>
-using namespace std;
+#include<iostream>
 	
 /*********************************************************************
 This is the base class for all enemies. It include title, skills, hp,
@@ -20,12 +18,12 @@ exp. Item drops haven't been implemented.
 *********************************************************************/
 class Enemy{
 	protected:
-        string name;
+        std::string name;
 		int hp;
 		int exp;
 		int min_atk;
 		int max_atk;
-		string description;
+        std::string description;
 	public:
 		//Accessor functions for hp
 		void set_hp(int num){ hp = num;}
@@ -50,19 +48,75 @@ class Enemy{
 			//Generate and return a random number between min_atk and max_atk
 			int range = max_atk - min_atk;
             int atk_damage = rand() % range + min_atk;
-            cout << name << " deals " << atk_damage << " damage." << endl;
             return atk_damage;
 		}
     
         //Function that takes an int as argument and subtract it from the monster's hp
         void take_damage(int damage){
             hp = hp - damage;
-            cout << name << " takes " << damage <<" damage." << endl;
-            cout << name << "'s HP: " << hp << endl;
         }
-
     
+        //Stores length of name and name, hp, exp, min atk, max atk, length of description
+        //and description
+        void pack(std::ostream & str)
+        {
+            //Write length and data for name
+            int name_length = name.length();
+            str.write(reinterpret_cast<char *>(&name_length),sizeof(int));
+            str.write(name.data(), name_length);
+            
+            //Write hp
+            str.write(reinterpret_cast<char *>(&hp),sizeof(hp));
+            
+            //Write exp
+            str.write(reinterpret_cast<char *>(&exp),sizeof(exp));
+            
+            //write min_atk
+            str.write(reinterpret_cast<char *>(&min_atk),sizeof(min_atk));
+            
+            //write max atk
+            str.write(reinterpret_cast<char *>(&max_atk),sizeof(max_atk));
+            
+            //write length and data for description
+            int description_length = description.length();
+            str.write(reinterpret_cast<char *>(&description_length),sizeof(int));
+            str.write(description.data(), description_length);
+        }
+    
+        //Reads the data in the format written by Monster::pack
+        void unpack(std::istream & str)
+        {
+            const int BUFFER_SIZE = 256;
+            static char buffer[256];
+            
+            //Getting name's length, read the data into a local buffer and assign to name
+            int name_length;
+            str.read(reinterpret_cast<char *>(&name_length),sizeof(int));
+            str.read(buffer, name_length);
+            buffer[name_length] = '\0';
+            name = buffer;
+            
+            //Getting hp
+            str.read(reinterpret_cast<char *>(&hp),sizeof(hp));
+            
+            //Getting exp
+            str.read(reinterpret_cast<char *> (&exp),sizeof(exp));
+            
+            //Getting min_atk
+            str.read(reinterpret_cast<char *> (&min_atk),sizeof(min_atk));
+            
+            //Getting max atk
+            str.read(reinterpret_cast<char *> (&max_atk),sizeof(max_atk));
 
+            //Getting description's length, read the data into a local buffer and assign
+            //to description
+            int description_length;
+            str.read(reinterpret_cast<char *>(&description_length),sizeof(int));
+            str.read(buffer, description_length);
+            buffer[description_length] = '\0';
+            description = buffer;
+            
+        }
 };
 
 /************************************************************************
