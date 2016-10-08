@@ -32,7 +32,7 @@ class Character{
 	int _Exp;
 	int _Gold;
 	int _Level;
-	int StatTable[5][2];
+	int StatTable[2][9];
 	
 	const int Current = 0;
 	const int Maximum = 1;
