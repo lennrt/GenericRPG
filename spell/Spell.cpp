@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
+#include "enums.h"
 using namespace std;
 
 //Basic class for castable spells in the game
@@ -12,7 +13,7 @@ protected:
 	int value;
 	int mana_cost;
 	int range;
-	
+	stats target_stat;
 
 public:
 	//get functions
@@ -31,8 +32,12 @@ public:
 	int get_range() {
 		return range;
 	}
+	void cast_spell(obj *casting_char, obj *target)	{
+		target -> AlterStat(target_stat, value);
+	}
 
 };
+
 
 //example spell
 class fireball : public Spell
