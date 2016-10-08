@@ -37,5 +37,5 @@ class Character{
 	const int Current = 0;
 	const int Maximum = 1;
 	
-	void SetLevel(int tExp);
+	int SetLevel(int tExp);
 };
