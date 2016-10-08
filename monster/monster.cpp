@@ -6,7 +6,7 @@ Purpose: This is a c++ file containing classes for all monsters
 
 Class: CPSC 362
 *********************************************************************************/
-
+#include <sstream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
@@ -58,7 +58,7 @@ class Enemy{
     
         //Stores length of name and name, hp, exp, min atk, max atk, length of description
         //and description
-        void pack(std::ostream & str)
+        void write_to_stream(std::ostream & str)
         {
             //Write length and data for name
             int name_length = name.length();
@@ -84,7 +84,7 @@ class Enemy{
         }
     
         //Reads the data in the format written by Monster::pack
-        void unpack(std::istream & str)
+        void read_to_file(std::istream & str)
         {
             const int BUFFER_SIZE = 256;
             static char buffer[256];
@@ -117,6 +117,76 @@ class Enemy{
             description = buffer;
             
         }
+    	template<typename T> std::string convert_to_string(T data){
+    		std::stringstream stream;
+    		std::string str;
+    		stream << data;
+    		stream >> str;
+    		str += '/';
+    		return str;
+    	}
+    	
+        std::string pack(){
+            std::string retVal = "";
+            //Add name and '/' following it to retVal string
+            retVal += name;
+            retVal += '/';
+        
+            //Convert hp to string, add hp string and '/' to reVal
+            retVal+= convert_to_string(hp);
+        	
+            //Convert exp to string, add exp string and '/' to retVal
+            retVal += convert_to_string(exp);
+        
+            //Convert min_atk to string, add min_atk string and '/' to retVal
+           	retVal += convert_to_string(min_atk);
+        
+            //Convert max_atk to string, add max_atk string and '/' to retVal
+            retVal += convert_to_string(max_atk);
+        
+            //Add description to retVal string
+            retVal+= description;
+            retVal+='/';
+        
+            return retVal;
+        }
+    
+        void unpack(std::string str)
+        {
+            std::string token;
+            std::istringstream ss(str);
+            int mem_var = 1;
+            while(std::getline(ss, token, '/'))
+            {
+                std::istringstream stream(token);
+                switch(mem_var){
+                    case 1:
+                        stream >> name;
+                        mem_var++;
+                        break;
+                    case 2:
+                        stream >> hp;
+                        mem_var++;
+                        break;
+                    case 3:
+                        stream >> exp;
+                        mem_var++;
+                        break;
+                    case 4:
+                        stream >> min_atk;
+                        mem_var++;
+                        break;
+                    case 5:
+                        stream >> max_atk;
+                        mem_var++;
+                        break;
+                    case 6:
+                        stream >> description;
+                        break;
+                        
+                }
+            }
+    	}
 };
 
 /************************************************************************
@@ -348,13 +418,12 @@ class Fire_Ant : public Enemy
 
 int main(){
     Horn newHorn;
-    newHorn.attack();
-    newHorn.take_damage(200);
-    return 0;
+    std::string testString = newHorn.pack();
+    std::cout << testString << std::endl;
+    std::string testInput= "ahah/23/34/45/65/I am crazy.";
+    newHorn.unpack(testInput);
+    std::cout << newHorn.get_exp() << " " << newHorn.get_hp() << std::endl;
 }
-
-
-		
 		
 		
 		
