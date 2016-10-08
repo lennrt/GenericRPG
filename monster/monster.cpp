@@ -84,7 +84,7 @@ class Enemy{
         }
     
         //Reads the data in the format written by Monster::pack
-        void read_to_file(std::istream & str)
+        void read_from_file(std::istream & str)
         {
             const int BUFFER_SIZE = 256;
             static char buffer[256];
@@ -117,6 +117,9 @@ class Enemy{
             description = buffer;
             
         }
+        
+        //This function converts a template data type to a string and add 
+        //a '/' to end of string as delimiter.
     	template<typename T> std::string convert_to_string(T data){
     		std::stringstream stream;
     		std::string str;
@@ -126,6 +129,9 @@ class Enemy{
     		return str;
     	}
     	
+    	//Pack() function packs every single member variable using the
+    	//convert_to_string function and return a string containing all
+    	//the stats
         std::string pack(){
             std::string retVal = "";
             //Add name and '/' following it to retVal string
@@ -150,7 +156,9 @@ class Enemy{
         
             return retVal;
         }
-    
+    	
+    	//Unpack() function converts str to corresponding data type. It uses mem_var
+    	//as a counter in the switch statemen
         void unpack(std::string str)
         {
             std::string token;
