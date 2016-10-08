@@ -44,6 +44,10 @@ private:
     vector<int> climateDesc;
     
 public:
+    int x;
+    int y;
+    // X & Y coordinates for the 2D Array
+    
     // Tile class constructors
     Tile();
     Tile(string customTitle);
