@@ -1,9 +1,7 @@
 
 enum Races {Elf, Dwarf, Human, Hobbit};
 enum Classes {Fighter, Mage, Ranger, Thief};
-enum Stats {Mana, Health, Intelligence, Strength, Agility};
-enum Monster_Stats {Name, HP, Exp, MinimumAttack, MaximumAttack, Description};
-enum Monsters {Hedgehog, DeadTree, GiantFrog, RoachEgg, Cockroach, Skeleton, 
-             Violinist, GruBat, Anthropod, Zombie, RodentTail, PoisonHedgehog,
-             CrazySquirrle, Horn, FireAnt};
+enum Stats {Mana, Health, Intelligence, Strength, Agility, Attack, Defense};
+enum Monster_Stats {Health, Exp, Intelligence, Strength, Agility, Attack, Defense};
 enum Tile_Types {Arid, Forest, Water};
+enum Target_Types {Enemy, Friendly, Both};
