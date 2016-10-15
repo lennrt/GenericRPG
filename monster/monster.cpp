@@ -12,10 +12,10 @@
 
 /*********************************************************************
  This is the monster class. It only uses Health, Experience, Attack,
- Defense, ActionCoo
+ Defense, ActionCoolDown
  *********************************************************************/
 class Enemy{
-protected:
+private:
     std::string name;
     int StatTable[2][9];
     const int Current = 0;
@@ -40,67 +40,6 @@ public:
     //Accessor function for description
     std::string get_description(){ return description;}
     
-    //Stores length of name and name, hp, exp, min atk, max atk, length of description
-    //and description
-    void write_to_stream(std::ostream & str)
-    {
-        //Write length and data for name
-        int name_length = name.length();
-        str.write(reinterpret_cast<char *>(&name_length),sizeof(int));
-        str.write(name.data(), name_length);
-        
-        //Write hp
-        str.write(reinterpret_cast<char *>(&hp),sizeof(hp));
-        
-        //Write exp
-        str.write(reinterpret_cast<char *>(&exp),sizeof(exp));
-        
-        //write min_atk
-        str.write(reinterpret_cast<char *>(&min_atk),sizeof(min_atk));
-        
-        //write max atk
-        str.write(reinterpret_cast<char *>(&max_atk),sizeof(max_atk));
-        
-        //write length and data for description
-        int description_length = description.length();
-        str.write(reinterpret_cast<char *>(&description_length),sizeof(int));
-        str.write(description.data(), description_length);
-    }
-    
-    //Reads the data in the format written by Monster::pack
-    void read_from_file(std::istream & str)
-    {
-        const int BUFFER_SIZE = 256;
-        static char buffer[256];
-        
-        //Getting name's length, read the data into a local buffer and assign to name
-        int name_length;
-        str.read(reinterpret_cast<char *>(&name_length),sizeof(int));
-        str.read(buffer, name_length);
-        buffer[name_length] = '\0';
-        name = buffer;
-        
-        //Getting hp
-        str.read(reinterpret_cast<char *>(&hp),sizeof(hp));
-        
-        //Getting exp
-        str.read(reinterpret_cast<char *> (&exp),sizeof(exp));
-        
-        //Getting min_atk
-        str.read(reinterpret_cast<char *> (&min_atk),sizeof(min_atk));
-        
-        //Getting max atk
-        str.read(reinterpret_cast<char *> (&max_atk),sizeof(max_atk));
-        
-        //Getting description's length, read the data into a local buffer and assign
-        //to description
-        int description_length;
-        str.read(reinterpret_cast<char *>(&description_length),sizeof(int));
-        str.read(buffer, description_length);
-        buffer[description_length] = '\0';
-        description = buffer;
-        
-    }
     
     //This function converts a template data type to a string and add
     //a '/' to end of string as delimiter.
