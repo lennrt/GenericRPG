@@ -203,3 +203,14 @@ void Tile::setClimateDesc(vector<int> customClimate) {
 void Tile::generateClimateDesc() {
     
 }
+
+/* Pack & Unpack Functions */
+
+string Tile::pack() {
+    string packedString;
+    return packedString;
+}
+
+void Tile::unpack(string packedString) {
+    
+}
