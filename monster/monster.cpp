@@ -17,16 +17,18 @@
 class Enemy{
 private:
     std::string name;
-    int StatTable[2][5] = {};
+    int StatTable[2][5];
     const int Current = 0;
     const int Maximum = 1;
     std::string description;
 public:
     //Constructor
-    void Enemy();
+    Enemy(std::string str){
+        unpack(str);
+    };
     
     //Destructor
-    void ~Enemy();
+    ~Enemy();
     
     //Function to get stat
     int GetStat (Monster_Stats Stat, bool Max){
@@ -99,9 +101,9 @@ public:
                 stream >> name;
                 count ++;
             }
-            else if (count =2){
+            else if (count == 2){
                 stream >> StatTable[row][col++];
-                if (col = 5){
+                if (col == 5){
                     if ( row == 0 ){
                         row++;
                         col = 0;
