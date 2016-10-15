@@ -21,12 +21,14 @@
 /* Tile Class Constructors */
 
 Tile::Tile(){
-    setTitle("Some random title.");
-    setDescription("Some random description.");
-    // No static loot
-    staticLoot = false;
-    // Generic tile type
-    tileType = false;
+    // Empty Constructor will randomly generate a Tile.
+    generateTitle();
+    generateDescription();
+    generateClimate();
+    generateTileType();
+    generatePossibleEnemies();
+    generateLoot();
+    generatePossibleDirections();
 }
 
 Tile::Tile(string customTitle) {
@@ -98,8 +100,8 @@ void Tile::setTitle(string customTitle) {
     title = customTitle;
 }
 
-void Tile::generateTitle(){
-    
+void Tile::generateTitle() {
+
 }
 
 /* Description Modifiers */
