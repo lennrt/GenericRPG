@@ -12,26 +12,34 @@
 
 /*********************************************************************
  This is the monster class. It only uses Health, Experience, Attack,
- Defense, ActionCoolDown
+ Defense, ActionCoolDown.
  *********************************************************************/
 class Enemy{
 private:
     std::string name;
-    int StatTable[2][9];
+    int StatTable[2][5] = {};
     const int Current = 0;
     const int Maximum = 1;
     std::string description;
 public:
-    //Accessor functions for hp
-    int GetStat (Stats Stat, bool Max){
+    //Constructor
+    void Enemy();
+    
+    //Destructor
+    void ~Enemy();
+    
+    //Function to get stat
+    int GetStat (Monster_Stats Stat, bool Max){
         return StatTable[Max ? Maximum : Current][(int) Stat];
     }
     
-    void AlterStat (Stats Stat, bool Max, int Amount){
+    //Function to modify stat
+    void AlterStat (Monster_Stats Stat, bool Max, int Amount){
         StatTable[Max ? Maximum : Current][(int) Stat] += Amount;
     }
     
-    void SetStatToMax (Stats Stat){
+    //Function to set stat to max
+    void SetStatToMax (Monster_Stats Stat){
         StatTable[Current][(int) Stat] = StatTable[Maximum][(int)Stat];
     }
     //Accessor function for name
@@ -79,8 +87,8 @@ public:
     //as a counter to store the correct member variable
     void unpack(std::string str)
     {
-        int row;
-        int col;
+        int row = 0 ;
+        int col = 0;
         std::string token;
         std::istringstream ss(str);
         int count = 1;
@@ -93,20 +101,17 @@ public:
             }
             else if (count =2){
                 stream >> StatTable[row][col++];
-                if (col = 8){
-                    count++;
-                    row++;
-                    col = 0;
-                }
-            }
-            else if(count == 3){
-                stream >> StatTable[row][col++];
-                if(col = 8){
-                    count++;
+                if (col = 5){
+                    if ( row == 0 ){
+                        row++;
+                        col = 0;
+                    }
+                    else
+                        count++;
                 }
             }
             
-            else if( count ==4){
+            else if( count == 3){
                 stream >> description;
                 break;
             }
