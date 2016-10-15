@@ -20,7 +20,7 @@
 
 /* Tile Class Constructors */
 
-Tile::Tile(){
+Tile::Tile() {
     // Empty Constructor will randomly generate a Tile.
     generateTitle();
     generateDescription();

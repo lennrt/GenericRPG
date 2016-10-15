@@ -15,6 +15,8 @@
 #include <random>
 #include <vector>
 
+#include "enums.h"
+
 using namespace std;
 
 class Tile {
