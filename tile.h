@@ -39,8 +39,11 @@ private:
     // Tile type (generic or quest) with default as false = generic
     bool tileType;
     
-    // Possible movement directions {1=forward, 2=back, 3=left, 4=right}
+    // Possible movement directions {0=forward, 1=back, 2=left, 3=right}
     vector<int> possibleDirections;
+    
+    // Climate type
+    int climateType;
     
     // Climate description will be generated randomly based on library of strings
     vector<int> climateDesc;
@@ -91,10 +94,15 @@ public:
     void setPossibleDirections(vector<int> customDirections);
     void generatePossibleDirections();
     
-    // Climate field modifiers
-    vector<int> getClimate();
-    void setClimate(vector<int> customClimate);
-    void generateClimate();
+    // Climate Type field modifiers
+    int getClimateType();
+    void setClimateType(int customClimateType);
+    void generateClimateType();
+    
+    // Climate Description field modifiers
+    vector<int> getClimateDesc();
+    void setClimateDesc(vector<int> customClimateDesc);
+    void generateClimateDesc();
 };
 
 

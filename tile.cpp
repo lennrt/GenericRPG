@@ -22,10 +22,11 @@
 
 Tile::Tile() {
     // Empty Constructor will randomly generate a Tile.
+    generateTileType();
+    generateClimateType();
     generateTitle();
     generateDescription();
-    generateClimate();
-    generateTileType();
+    generateClimateDesc();
     generatePossibleEnemies();
     generateLoot();
     generatePossibleDirections();
@@ -33,6 +34,7 @@ Tile::Tile() {
 
 Tile::Tile(string customTitle) {
     setTitle(customTitle);
+    generateTileType();
     setDescription("Default description.");
     staticLoot = false;
     tileType = false;
@@ -79,7 +81,7 @@ Tile::Tile(string customTitle, string customDescription, vector<int> customEnemi
     setPossibleDirections(customDirections);
 }
 
-Tile::Tile(string customTitle, string customDescription, vector<int> customEnemies, bool loot, vector<int> customLoot, bool customTileType, vector<int> customDirections, vector<int> customClimate) {
+Tile::Tile(string customTitle, string customDescription, vector<int> customEnemies, bool loot, vector<int> customLoot, bool customTileType, vector<int> customDirections, vector<int> customClimateDesc) {
     setTitle(customTitle);
     setDescription(customDescription);
     setPossibleEnemies(customEnemies);
@@ -87,7 +89,7 @@ Tile::Tile(string customTitle, string customDescription, vector<int> customEnemi
     setLoot(customLoot);
     tileType = customTileType;
     setPossibleDirections(customDirections);
-    setClimate(customClimate);
+    setClimateDesc(customClimateDesc);
 }
 
 /* Title Modifiers */
@@ -174,16 +176,30 @@ void Tile::generatePossibleDirections() {
     
 }
 
-/* Climate Modifiers */
+/* Climate Type Modififers */
 
-vector<int> Tile::getClimate() {
+int Tile::getClimateType() {
+    return climateType;
+}
+
+void Tile::setClimateType(int customClimateType) {
+    climateType = customClimateType;
+}
+
+void Tile::generateClimateType() {
+    
+}
+
+/* Climate Description Modifiers */
+
+vector<int> Tile::getClimateDesc() {
     return climateDesc;
 }
 
-void Tile::setClimate(vector<int> customClimate) {
+void Tile::setClimateDesc(vector<int> customClimate) {
     climateDesc = customClimate;
 }
 
-void Tile::generateClimate() {
+void Tile::generateClimateDesc() {
     
 }
