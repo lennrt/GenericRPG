@@ -58,30 +58,38 @@ public:
     Tile(string customTitle, string customDescription, vector<int> customEnemies, bool loot, vector<int> customLoot, bool customTileType, vector<int> customDirections);
     Tile(string customTitle, string customDescription, vector<int> customEnemies, bool loot, vector<int> customLoot, bool customTileType, vector<int> customDirections, vector<int> customClimate);
     
+    // Title field modifiers
     string getTitle();
     void setTitle(string customTitle);
     void generateTitle();
     
+    // Description field modifiers
     string getDescription();
     void setDescription(string customDescription);
     void generateDescription();
     
+    
+    // Possible Enemy  Vector modifiers
     vector<int> getPossibleEnemies();
     void setPossibleEnemies(vector<int> customEnemies);
     void generatePossibleEnemies();
     
+    // Loot modifiers
     vector<int> getLoot();
     void setLoot(vector<int> customLoot);
     void generateLoot();
     
+    // Tile Type modifiers
     bool getTileType();
     void setTileType(bool customTileType);
     void generateTileType();
     
+    // Tile possible directions modifiers
     vector<int> getPossibleDirections();
     void setPossibleDirections(vector<int> customDirections);
     void generatePossibleDirections();
     
+    // Climate field modifiers
     vector<int> getClimate();
     void setClimate(vector<int> customClimate);
     void generateClimate();
