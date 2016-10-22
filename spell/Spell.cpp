@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "enums.h"
+#include "entity.h"
 using namespace std;
 
 //Basic class for castable spells in the game
@@ -32,9 +33,10 @@ public:
 	int get_range() {
 		return range;
 	}
-	void cast_spell(obj *casting_char, obj *target)	{
+	void cast_spell(Entity *casting_char, Entity *target)	{
 		target -> AlterStat(target_stat, value);
 	}
+	//todo: value dependent on casting character stats
 
 };
 

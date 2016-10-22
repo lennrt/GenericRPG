@@ -9,17 +9,15 @@
 #include <sstream>
 #include <string>
 #include "enum.h"
+#include "entity.h"
 
 /*********************************************************************
  This is the monster class. It only uses Health, Experience, Attack,
  Defense, ActionCoolDown.
  *********************************************************************/
-class Enemy{
+class Enemy : public Entity{
 private:
     std::string name;
-    int StatTable[2][5];
-    const int Current = 0;
-    const int Maximum = 1;
     std::string description;
 public:
     //Constructor
@@ -30,20 +28,12 @@ public:
     //Destructor
     ~Enemy();
     
-    //Function to get stat
-    int GetStat (Monster_Stats Stat, bool Max){
-        return StatTable[Max ? Maximum : Current][(int) Stat];
+    //Set the level of the monster
+    void setLevel(int amount)
+    {
+        _Level = amount;
     }
     
-    //Function to modify stat
-    void AlterStat (Monster_Stats Stat, bool Max, int Amount){
-        StatTable[Max ? Maximum : Current][(int) Stat] += Amount;
-    }
-    
-    //Function to set stat to max
-    void SetStatToMax (Monster_Stats Stat){
-        StatTable[Current][(int) Stat] = StatTable[Maximum][(int)Stat];
-    }
     //Accessor function for name
     std::string get_name(){return name;}
     
@@ -52,13 +42,13 @@ public:
     
     
     //This function converts a template data type to a string and add
-    //a '/' to end of string as delimiter.
+    //a '|' to end of string as delimiter.
     template<typename T> std::string convert_to_string(T data){
         std::stringstream stream;
         std::string str;
         stream << data;
         stream >> str;
-        str += '/';
+        str += '|';
         return str;
     }
     
@@ -69,18 +59,18 @@ public:
         std::string retVal = "";
         //Add name and '/' following it to retVal string
         retVal += name;
-        retVal += '/';
+        retVal += '|';
         
         //Convert Stat Table to String
         for(int row = 0; row < 2; row ++){
-            for(int col = 0; col < 2; col++){
+            for(int col = 0; col < 14; col++){
                 retVal += convert_to_string(StatTable[row][col]);
             }
         }
         
         //Add description to retVal string
         retVal+= description;
-        retVal+='/';
+        retVal+='|';
         
         return retVal;
     }
@@ -94,7 +84,7 @@ public:
         std::string token;
         std::istringstream ss(str);
         int count = 1;
-        while(std::getline(ss, token, '/'))
+        while(std::getline(ss, token, '|'))
         {
             std::istringstream stream(token);
             if (count == 1){
@@ -103,7 +93,7 @@ public:
             }
             else if (count == 2){
                 stream >> StatTable[row][col++];
-                if (col == 5){
+                if (col == 14){
                     if ( row == 0 ){
                         row++;
                         col = 0;

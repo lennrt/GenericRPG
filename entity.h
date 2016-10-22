@@ -23,7 +23,7 @@ class Entity{
 	int _Exp;
 	int _Gold;
 	int _Level;
-	int StatTable[2][14];
+    int StatTable[2][14] = {0};
 	
 	const int Current = 0;
 	const int Maximum = 1;
