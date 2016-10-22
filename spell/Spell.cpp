@@ -36,6 +36,7 @@ public:
 	void cast_spell(Entity *casting_char, Entity *target)	{
 		target -> AlterStat(target_stat, value);
 	}
+	//todo: value dependent on casting character stats
 
 };
 
