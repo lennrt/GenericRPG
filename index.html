@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CPSC 362 Generic RPG</title>
+	<style type="text/css">
+		select		{position:absolute}
+		input		{position:absolute}
+		span		{position: absolute}
+		div.clear	{position: absolute;
+				 cursor: default;
+				 border-style: none;
+				 border-width: 0px;
+				 border-color: black} 
+		div.box		{position: absolute;
+				 cursor: default;
+				 border-style: solid;
+				 border-width: 2px;
+				 border-color: black}
+	</style>
+	<script>
+		<!--
+		var Tabs = ["Main", "Splash", "AccountView"];
+		var Query = "";
+		var Operation = "";
+		var SelectedChar = 0;
+		var MaxChar = 5;
+		var SiteURL="http://www.ctr-online.com/~grpg/cgi-bin/accman.cgi";
+		
+		function Setup(){
+			SetDiv("AccountView");
+		}         
+		
+		function SubmitQuery() {
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					Update(xhttp);
+				}
+			};
+			xhttp.open("POST", SiteURL, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(Operation + Query);
+		}
+		
+		function Update(xhttp){
+			//document.getElementById("QueryResults").innerHTML = xhttp.responseText;
+			var List = xhttp.responseText.split("&");
+			var KV;
+			for (var i = 0; i < List.length; i++){
+				KV[i] = List[i].split("=");
+				if (KV[i][0] == "Status") {
+					alert(KV[i][1]);
+				}
+			}
+			
+		}
+			
+		function SetDiv(WhichDiv){
+			for (var i = 0, len = Tabs.length; i < len; i++) {
+				document.getElementById(Tabs[i]).style.visibility = 'hidden';
+			}
+			document.getElementById(WhichDiv).style.visibility = 'visible';
+		}
+		
+		function Toggle(Div1,Div2){
+			ResetQuery();
+			document.getElementById(Div1).style.visibility = 'visible';
+			document.getElementById(Div2).style.visibility = 'hidden';
+		}
+		
+		function Login(Op){
+			var User = document.getElementById("u").value;
+			var Pass = document.getElementById("p").value;
+			if (User.length < 4) {alert("Username too short"); return;}
+			if (Pass.length < 4) {alert("Password too short"); return;}
+			
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					LoginResponse(xhttp);
+				}
+			};
+			
+			Operation = "?Op=" + Op;
+			Query = "&u=" + User + "&p=" + Pass;
+			xhttp.open("POST", SiteURL, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(Operation + Query);
+		}
+		
+		function LoginResponse(xhttp){
+			//First letter of response S = Success or F = Fail
+			if (xhttp.responseText[0] == "F"){alert("Login Failed.  Try again.");return;}
+			
+			//If login is successful set up the logged in name at the top of the page.
+			document.getElementById("LoginStatus").innerText = document.getElementById("u").value;
+			
+			//Switch to the character management page.
+			SetDiv("AccountView");
+			
+			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
+			var CharacterCount = parseInt(xhttp.responseText[1]);
+			var Start = 2;
+			
+			for (var i = 0; i < CharacterCount; i++){
+			
+			}
+		}
+		
+		function SetChar(num){
+			for (var i = 1; i < 6; i++){
+				document.getElementById("char" + i).style.backgroundColor = "transparent";
+			}
+			document.getElementById("char" + num).style.backgroundColor = "#dcd6ff";
+			SelectedChar = num;
+		}
+		
+		function Play(){
+		}
+		
+		function NewCharacter(){
+			document.getElementById("NewChar").style.visibility = "visible";
+		}
+		
+		function DeleteCharacter(){
+			if (SelectedChar == 0) {alert("No character selected."); return;}
+			var conf = confirm("Are you sure you want to delete this character?");
+			if (conf === false) {return;}		
+		}
+		
+		function Logout(){
+			var conf = confirm("Are you sure you want to logout?");
+			if (conf === true) {SetDiv("Splash");}
+		}
+		
+		function Cancel(){
+			document.getElementById("NewChar").style.visibility = "hidden";
+		}
+		
+		function Rand(High, Low){
+			return parseInt((Math.random() * High % (High - Low + 1) + Low));
+		}
+		
+		function RollStats(){
+			var Int = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Str = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Agi = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Con = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Spd = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Cha = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var End = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			
+			document.getElementById("charInt").value = Int;
+			document.getElementById("charStr").value = Str;
+			document.getElementById("charAgi").value = Agi;
+			document.getElementById("charCon").value = Con;
+			document.getElementById("charSpd").value = Spd;
+			document.getElementById("charCha").value = Cha;
+			document.getElementById("charEnd").value = End;
+			
+			document.getElementById("charHealth").value = parseInt(10 + (Con * 0.8) + (End * 0.7) + (Str * 0.3));
+			document.getElementById("charMana").value = parseInt(10 + (Int * 0.8) + (End * 0.5));
+			document.getElementById("charAttack").value = parseInt(10 + (Str * 0.9) + (Agi * 0.3) + (Spd * 0.5) + (End * 0.4));
+			document.getElementById("charDefense").value = parseInt(10 + (Con * 0.8) + (Agi * 0.5) + (Spd * 0.3) + (End * 0.5));
+			document.getElementById("charACD").value = parseInt(100 - (100 * (Spd/60)) - (100 * (End/90)) - (100 * (Agi/60)));
+			document.getElementById("charMCD").value = parseInt(100 -  (100 * (Spd/60)) - (100 * (Int/90)));
+		}
+		-->
+	</script>
+</head>
+
+
+<body onload="Setup();">
+	<div class="clear" style = "top:0%;left:0%;width:100%;height:100%">
+		<div id = "Header" class = "clear" style = "top:3%;left:10%;width:80%;height:4%">
+			<span style = "top:5%;left:5%;width:50%;height:90%;font-size:2em">Generic RPG</span>
+			<div id = "LoginStatus" class = "clear" style = "top:30%;left:75%;width:35%;height:90%">Not Logged In</div>
+		</div>
+
+		<div id = "Main" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			Main
+		</div>
+
+		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			<div class = "clear" style = "top:40%;left:35%;width:20%;height:5%">
+				Username:&nbsp; <input id="u" type = "text">
+			</div>
+			<div class = "clear" style = "top:45%;left:35%;width:20%;height:5%">
+				Password:&nbsp;&nbsp; <input id="p" type = "password">
+			</div>
+			
+			<input onClick = "Login('New')" type = "button" value="New Account" style = "top:50%;left:40%;width:15%">
+			<input onClick = "Login('Login')" type = "button" value="Login" style = "top:50%;left:55%;width:15%">
+		</div>
+
+		<div id = "AccountView" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			<div id = "NewChar" class = "box" style = "top:10%;left:10%;height:60%;width:60%;font-size:1em;visibility:hidden;background-color:#c0e5cd;z-index:100">
+				<!--Input Traits-->
+				<div class="clear"  class="clear" style="top:1%;left:10%">Name <input id="charName" type="text"></div>
+				<div class="clear"  style="top:9%;left:10%">Class 	
+					<select id="charClass">
+						<option value="Fighter">Fighter</option>
+						<option value="Mage">Mage</option>
+						<option value="Ranger">Ranger</option>
+						<option value="Thief">Thief</option>
+					</select>
+				</div>
+				<div class="clear"  style="top:9%;left:50%">Race
+					<select id="charRace">
+						<option value="Elf">Elf</option>
+						<option value="Dwarf">Dwarf</option>
+						<option value="Human">Human</option>
+						<option value="Hobbit">Hobbit</option>
+					</select>
+				</div>
+				<div class="clear"  style="top:1%;left:70%">Sex
+					<select id="charSex">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+					
+				<!--Roll Traits-->
+				<div class="clear"  style="top:20%;left:10%;width:80%"><b>Base Traits</b></div>
+				<div class="clear"  style="top:24%;left:10%;width:80%">Intelligence <input id="charInt" type="text" style="width:20%;left:50%;height:70%;height:70%" disabled></div>
+				<div class="clear"  style="top:28%;left:10%;width:80%">Strength <input id="charStr" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:32%;left:10%;width:80%">Agility <input id="charAgi" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:36%;left:10%;width:80%">Constitution <input id="charCon" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:40%;left:10%;width:80%">Speed <input id="charSpd" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:44%;left:10%;width:80%">Charisma <input id="charCha" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:48%;left:10%;width:80%">Endurance <input id="charEnd" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				
+				<!--Derived Traits-->
+				<div class="clear"  style="top:55%;left:10%;width:80%"><b>Derived Traits</b></div>
+				<div class="clear"  style="top:59%;left:10%;width:80%">Health <input id="charHealth" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:63%;left:10%;width:80%">Mana <input id="charMana" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:67%;left:10%;width:80%">Attack <input id="charAttack" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:71%;left:10%;width:80%">Defense <input id="charDefense" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:75%;left:10%;width:80%">Action Cooldown <input id="charACD" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:79%;left:10%;width:80%">Magic Cooldown <input id="charMCD" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				
+				<!--Control Buttons-->
+				
+				<input onClick = "RollStats();" type = "button" value="Roll Stats" style = "top:90%;left:12%;width:25%">
+				<input onClick = "Cancel();" type = "button" value="Cancel" style = "top:90%;left:40%;width:25%">
+				<input onClick = "Create();" type = "button" value="Create" style = "top:90%;left:68%;width:25%">
+
+				
+			</div>
+			<div id = "CharacterBox" class = "clear" style = "top:10%;left:10%;height:60%;width:60%;font-size:1.5em">
+				<div id = "char1" onClick = "SetChar(1);" class = "box" style = "top:2%;left:5%;width:90%;height:16%">
+					<div id = "name1" class = "clear" style="top:5%;left:5%;width:50%;height:45%">Character</div>
+					<div id = "level1" class = "clear" style="top:5%;left:60%;width:35%;height:45%">Level 88</div>
+					<div id = "race1" class = "clear" style="top:50%;left:5%;width:45%;height:45%">Race</div>
+					<div id = "class1" class = "clear" style="top:50%;left:50%;width:45%;height:45%">Class</div>
+				</div>
+				<div id = "char2" onClick = "SetChar(2);" class = "box" style = "top:22%;left:5%;width:90%;height:16%">
+					<div id = "name2" class = "clear" style="top:5%;left:5%;width:50%;height:45%">Character</div>
+					<div id = "level2" class = "clear" style="top:5%;left:60%;width:35%;height:45%">Level 88</div>
+					<div id = "race2" class = "clear" style="top:50%;left:5%;width:45%;height:45%">Race</div>
+					<div id = "class2" class = "clear" style="top:50%;left:50%;width:45%;height:45%">Class</div>
+				</div>				
+				<div id = "char3" onClick = "SetChar(3);" class = "box" style = "top:42%;left:5%;width:90%;height:16%">
+					<div id = "name3" class = "clear" style="top:5%;left:5%;width:50%;height:45%">Character</div>
+					<div id = "level3" class = "clear" style="top:5%;left:60%;width:35%;height:45%">Level 88</div>
+					<div id = "race3" class = "clear" style="top:50%;left:5%;width:45%;height:45%">Race</div>
+					<div id = "class3" class = "clear" style="top:50%;left:50%;width:45%;height:45%">Class</div>
+				</div>				
+				<div id = "char4" onClick = "SetChar(4);" class = "box" style = "top:62%;left:5%;width:90%;height:16%">
+					<div id = "name4" class = "clear" style="top:5%;left:5%;width:50%;height:45%">Character</div>
+					<div id = "level4" class = "clear" style="top:5%;left:60%;width:35%;height:45%">Level 88</div>
+					<div id = "race4" class = "clear" style="top:50%;left:5%;width:45%;height:45%">Race</div>
+					<div id = "class4" class = "clear" style="top:50%;left:50%;width:45%;height:45%">Class</div>
+				</div>				
+				<div id = "char5" onClick = "SetChar(5);" class = "box" style = "top:82%;left:5%;width:90%;height:16%">
+					<div id = "name5" class = "clear" style="top:5%;left:5%;width:50%;height:45%">Character</div>
+					<div id = "level5" class = "clear" style="top:5%;left:60%;width:35%;height:45%">Level 88</div>
+					<div id = "race5" class = "clear" style="top:50%;left:5%;width:45%;height:45%">Race</div>
+					<div id = "class5" class = "clear" style="top:50%;left:50%;width:45%;height:45%">Class</div>
+				</div>
+			</div>
+			<input onClick = "Play();" type = "button" value="Play" style = "top:75%;left:12%;width:16%">
+			<input onClick = "NewCharacter();" type = "button" value="New Character" style = "top:75%;left:32%;width:16%">
+			<input onClick = "DeleteCharacter();" type = "button" value="Delete Character" style = "top:75%;left:52%;width:16%">
+			<input onClick = "Logout();" type = "button" value="Logout" style = "top:75%;left:72%;width:16%">
+			
+
+		</div>
+	</div>
+</body>
+
+</html>
