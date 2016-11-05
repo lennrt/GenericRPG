@@ -1,0 +1,81 @@
+"""Wood sword""",1,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Iron sword""",2,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Steel sword""",3,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Mithril sword""",4,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Rune sword""",5,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Gold sword""",6,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Diamond sword""",7,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Obsidian sword""",8,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Glass sword""",9,25,1,"""Here is a test description.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Wood shield""",10,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Iron shield""",11,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Steel shield""",12,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Mithril shield""",13,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Rune shield""",14,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Gold shield""",15,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Diamond shield""",16,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Obsidian shield""",17,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Glass shield""",18,25,1,"""Here is a test description.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Wood shoulders""",19,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Iron shoulders""",20,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Steel shoulders""",21,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Mithril shoulders""",22,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Rune shoulders""",23,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Gold shoulders""",24,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Diamond shoulders""",25,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Obsidian shoulders""",26,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Glass shoulders""",27,25,1,"""Here is a test description.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
+"""Wood chestplate""",28,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Iron chestplate""",29,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Steel chestplate""",30,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Mithril chestplate""",31,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Rune chestplate""",32,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Gold chestplate""",33,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Diamond chestplate""",34,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Obsidian chestplate""",35,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Glass chestplate""",36,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Wood leg guards""",37,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Iron leg guards""",38,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Steel leg guards""",39,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Mithril leg guards""",40,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Rune leg guards""",41,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Gold leg guards""",42,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Diamond leg guards""",43,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Obsidian leg guards""",44,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Glass leg guards""",45,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Wood gauntlets""",46,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Iron gauntlets""",47,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Steel gauntlets""",48,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Mithril gauntlets""",49,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Rune gauntlets""",50,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Gold gauntlets""",51,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Diamond gauntlets""",52,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Obsidian gauntlets""",53,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Glass gauntlets""",54,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Wood boots""",55,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Iron boots""",56,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Steel boots""",57,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Mithril boots""",58,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Rune boots""",59,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Gold boots""",60,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Diamond boots""",61,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Obsidian boots""",62,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Glass boots""",63,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Wood helm""",64,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Iron helm""",65,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Steel helm""",66,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Mithril helm""",67,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Rune helm""",68,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Gold helm""",69,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Diamond helm""",70,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Obsidian helm""",71,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Glass helm""",72,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Wood dagger""",73,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Iron dagger""",74,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Steel dagger""",75,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Mithril dagger""",76,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Rune dagger""",77,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Gold dagger""",78,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Diamond dagger""",79,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Obsidian dagger""",80,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Glass dagger""",81,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
