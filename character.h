@@ -1,12 +1,12 @@
-
+#include <string>
 #include <vector>
 #include "enums.h"
+#include "entity.h"
 //#include "items.h"
 //#include "spells.h"
 
-class Character{
+class Character : public Entity{
     public:
-	std::string Name;
 	Races Race;
 	Classes Class;
 	//vector <Items> Inventory;
@@ -14,28 +14,7 @@ class Character{
 	
         Character();
         ~Character();
-	
-	void AlterExp (int Amount);
-	int GetExp();
-	int GetLevel();
-	void AlterGold (int Amount);
-	int GetGold();
-	
-	int GetStat(Stats Stat, bool Max);
-	void AlterStat (Stats Stat, bool Max, int Amount);
-	void SetStatToMax (Stats Stat);
-	
-	
-	
 
     private:
-	int _Exp;
-	int _Gold;
-	int _Level;
-	int StatTable[2][9];
-	
-	const int Current = 0;
-	const int Maximum = 1;
-	
-	int SetLevel(int tExp);
+
 };
