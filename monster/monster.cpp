@@ -18,7 +18,6 @@
 class Enemy : public Entity{
 private:
     std::string name;
-    std::string description;
 public:
     //Constructor
     Enemy(std::string str){
@@ -36,78 +35,28 @@ public:
     
     //Accessor function for name
     std::string get_name(){return name;}
-    
-    //Accessor function for description
-    std::string get_description(){ return description;}
-    
-    
-    //This function converts a template data type to a string and add
-    //a '|' to end of string as delimiter.
-    template<typename T> std::string convert_to_string(T data){
-        std::stringstream stream;
-        std::string str;
-        stream << data;
-        stream >> str;
-        str += '|';
-        return str;
-    }
-    
-    //Pack() function packs every single member variable using the
-    //convert_to_string function and return a string containing all
-    //the stats
+
+    //Pack name then call Entity::pack() to pack the rest
     std::string pack(){
-        std::string retVal = "";
-        //Add name and '/' following it to retVal string
-        retVal += name;
-        retVal += '|';
-        
-        //Convert Stat Table to String
-        for(int row = 0; row < 2; row ++){
-            for(int col = 0; col < 14; col++){
-                retVal += convert_to_string(StatTable[row][col]);
-            }
-        }
-        
-        //Add description to retVal string
-        retVal+= description;
-        retVal+='|';
-        
-        return retVal;
+        this->_retVal += name;
+        this->retVal += '|';
+        Entity::pack();
+        return _retVal;
     }
     
     //Unpack() function converts str to corresponding data type. It uses count
     //as a counter to store the correct member variable
     void unpack(std::string str)
     {
-        int row = 0 ;
-        int col = 0;
+        //Unpack name
         std::string token;
         std::istringstream ss(str);
-        int count = 1;
-        while(std::getline(ss, token, '|'))
-        {
-            std::istringstream stream(token);
-            if (count == 1){
-                stream >> name;
-                count ++;
-            }
-            else if (count == 2){
-                stream >> StatTable[row][col++];
-                if (col == 14){
-                    if ( row == 0 ){
-                        row++;
-                        col = 0;
-                    }
-                    else
-                        count++;
-                }
-            }
-            
-            else if( count == 3){
-                stream >> description;
-                break;
-            }
-        }
+        std::getline(ss, token, '|')
+        std::istringstream stream(token);
+        stream >> name;
+        
+        //Calling Entity::unpack() to unpack the rest
+        Entity::pack();
     }
 };
 
