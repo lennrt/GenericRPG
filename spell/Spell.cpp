@@ -42,6 +42,8 @@ public:
 
 
 //example spell
+
+/* old; spells are in the table instead
 class fireball : public Spell
 {
 public:
@@ -53,3 +55,4 @@ public:
 		this->description = "Basic fireball";
 	}
 };
+*/
