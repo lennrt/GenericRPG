@@ -15,17 +15,17 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
 		// without knowing anything about the item stats.
 
 		// Getter function for description
-    	std::string Item::Get_description() { 
+    	std::string Item::GetDescription() { 
     		return description;
     	}
     	
     	// Getter function for rarity
-    	std::string Item::Get_rarity() { 
+    	std::string Item::GetRarity() { 
     		return rarity;
     	}
     	
     	// Getter function for itemType
-    	std::string Item::Get_itemType() { 
+    	std::string Item::GetItemType() { 
     		return itemType;
     	}    
 
@@ -45,38 +45,38 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
     	}	
 							
 		// Getter for value
-		int Item::Get_value() {
+		int Item::GetValue() {
 			return value;
 		}
 
 		// Setter for value
-		void Item::Set_value(int newValue) {
+		void Item::SetValue(int newValue) {
 			value = newValue;
 		}
 
 		// Getter for max_range
-		int Item::Get_max_range() {
+		int Item::GetMaxRange() {
 			return max_range;
 		}
 
 		// Setter for max_range
-		void Item::Set_max_range(int newRange) {
+		void Item::SetMaxRange(int newRange) {
 			max_range = newRange;
 		}
 
 		// Getter for condition
-		bool Item::Get_condition() { 
+		bool Item::GetCondition() { 
 			return isBroken;
 		}
 
 		// Setter for condition
-		void Item::Set_condition(bool condition) { 
+		void Item::SetCondition(bool condition) { 
 			isBroken = condition;
 		}
 
 		// Stores value, max_range, length of rarity, rarity, length of description,
         // description, length of type, type, and isBroken 
-        void Item::Write_to_stream(std::ostream & str) {          
+        void Item::WriteToStream(std::ostream & str) {          
             // Write value
             str.write(reinterpret_cast<char *>(&value),sizeof(value));
             
@@ -104,7 +104,7 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         }
 
  		// Reads the data in the format written by Item::pack
-        void Item::Read_from_file(std::istream & str) {
+        void Item::ReadFromFile(std::istream & str) {
             const int BUFFER_SIZE = 256;
             static char buffer[256];
             
@@ -141,7 +141,7 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         
         // This function converts a template data type to a string and adds 
         // a '/' to end of string as a delimiter.
-    	template<typename T> std::string Item::Convert_to_string(T data){
+    	template<typename T> std::string Item::ConvertToString(T data){
     		std::stringstream stream;
     		std::string str;
     		stream << data;
