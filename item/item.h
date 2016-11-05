@@ -1,7 +1,5 @@
 class Item {
     public:
-	    
-	std::string Name;
 	
     Item();
     ~Item();
