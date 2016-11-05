@@ -4,40 +4,39 @@ class Item {
     Item();
     ~Item();
 	
-	std::string Get_description();  
+    std::string GetDescription();  
 
-	std::string Get_rarity();  
+    std::string GetRarity();  
 
-	std::string Get_itemType();  
+    std::string GetItemType();  
 
-	int GetStat (Stats stat, bool Max); 
+    int GetStat (Stats stat, bool Max); 
 
-	void AlterStat (Stats Stat, bool Max, int Amount);
+    void AlterStat (Stats Stat, bool Max, int Amount);
 
-	void SetStatToMax (Stats Stat); 
+    void SetStatToMax (Stats Stat); 
 
-	int Get_value(); 
+    int GetValue(); 
 
-	void Set_value(int newValue); 
+    void SetValue(int newValue); 
 
-	int Get_max_range(); 
+    int GetMaxRange(); 
 
-	void Set_max_range(int newRange); 
+    void SetMaxRange(int newRange); 
 
-	bool Get_condition();  
+    bool GetCondition();  
 
-	void Set_condition(bool condition);  
+    void SetCondition(bool condition);  
 
-    void Write_to_stream(std::ostream & str);          
+    void WriteToStream(std::ostream & str);          
 
-    void Read_from_file(std::istream & str); 
+    void ReadFromFile(std::istream & str); 
 
-	template<typename T> std::string Convert_to_string(T data);
+    template<typename T> std::string ConvertToString(T data);
 
     std::string Pack(); 
 
     void Unpack(std::string str); 
-
 
 	private:
 	int value;
