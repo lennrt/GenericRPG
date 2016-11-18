@@ -20,9 +20,7 @@ private:
     std::string name;
 public:
     //Constructor
-    Enemy(std::string str){
-        unpack(str);
-    };
+    Enemy();
     
     //Destructor
     ~Enemy();
@@ -35,29 +33,6 @@ public:
     
     //Accessor function for name
     std::string get_name(){return name;}
-
-    //Pack name then call Entity::pack() to pack the rest
-    std::string pack(){
-        this->_retVal += name;
-        this->retVal += '|';
-        Entity::pack();
-        return _retVal;
-    }
-    
-    //Unpack() function converts str to corresponding data type. It uses count
-    //as a counter to store the correct member variable
-    void unpack(std::string str)
-    {
-        //Unpack name
-        std::string token;
-        std::istringstream ss(str);
-        std::getline(ss, token, '|')
-        std::istringstream stream(token);
-        stream >> name;
-        
-        //Calling Entity::unpack() to unpack the rest
-        Entity::pack();
-    }
 };
 
 
