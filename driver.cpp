@@ -38,15 +38,8 @@ void getFormData();
 
 int main(){
 
-	//Redirect Error messages to stdout - This will cause them to appear on the web page
-	dup2(STDOUT_FILENO, STDERR_FILENO);
-	exit(at_quick_exit());
-	
-	//Set HTTP Header
-	cout << "Content-type: text/plain\n\r\n\r";
-
 	//Process incoming POST data
-	getFormData();
+	//getFormData();  --->  Setup Mailbox
 
 	//Load system state from shared memory
 	setupMemory();
@@ -63,6 +56,7 @@ int main(){
 
 		//Perform a character action
 
+	string RetVal;	
 		//Perform an inventory action
 
 		//Perform a world action
@@ -76,10 +70,6 @@ int main(){
     
 }
 
-void setupMemory(){
-
-	
-}
 
 string GetValueFromKey(string FindKey){
 	for (int i = 0; i < FormData.size(); i++){
@@ -116,43 +106,5 @@ void getFormData(){
 			Start = i + 1;
 		}
 	}
-}
-
-
-string StringToHex(string Data){
-    string ReturnValue;
-    string Hex("0123456789ABCDEF");
-    unsigned char Hex1;
-    unsigned char Hex2;
-    unsigned char Char;
-
-    for (int i = 0; i < Data.length(); i++){
-        Char = Data[i];
-        Hex1 = Hex[((int)Char) / 16];
-        Hex2 = Hex[((int)Char) % 16];
-        ReturnValue += Hex1;
-        ReturnValue += Hex2;
-    }
-    return ReturnValue;
-}
-
-string HexToString(string Data){
-    string ReturnValue = "";
-    char Temp;
-
-    for (int i = 0; i < Data.length(); i+=2){
-        Temp = HexToInt(Data[i])*16 + HexToInt(Data[i+1]);
-        ReturnValue += Temp;
-    }
-    return ReturnValue;
-}
-
-int HexToInt(char Convert){
-    string Hex("0123456789ABCDEF");
-
-    for (int i = 0; i < 16; i++){
-        if (Convert == Hex[i]) return i;
-    }
-    return -1;
 }
 

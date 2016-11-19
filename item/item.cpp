@@ -1,26 +1,13 @@
 #include <sstream>
 #include <string>
 #include "../enums.h"
+#include "item.h"
 	
 /************************************************************************************
 This is the base class for all items. It includes a description, affected stats,
 value, range, type, and rarity. Item drops and skills haven't been implemented yet. 
 *************************************************************************************/
-class Item {
-	protected:
-		int value;
-		int max_range;
-		// This StatTable holds a row  for Current item stats and a row for Maximum item stats.
-		// See enums.h for the ItemStats enum. 
-		int StatTable[2][6]; 
-		std::string description;
-		std::string rarity;
-		std::string itemType;
-		bool isBroken; // true indicates that the item is broken
-		const int Current = 0; // temporarily affects the stat
-    	const int Maximum = 1; // permanently affects the stat
 
-	public:
 		// Setters/getters for affected stats. We should assume that the presence of an
 		// equipped item in a character's inventory simply boosts the character's stats.
 		// When combat damage is computed, the item will be modifying the character's base
@@ -28,68 +15,68 @@ class Item {
 		// without knowing anything about the item stats.
 
 		// Getter function for description
-    	std::string get_description() { 
+    	std::string Item::GetDescription() { 
     		return description;
     	}
     	
     	// Getter function for rarity
-    	std::string get_rarity() { 
+    	std::string Item::GetRarity() { 
     		return rarity;
     	}
     	
     	// Getter function for itemType
-    	std::string get_itemType() { 
+    	std::string Item::GetItemType() { 
     		return itemType;
     	}    
 
     	// retrieve the current or max value of the item stat in position "stat" of the ItemStats enum
-    	int GetStat (Stats stat, bool Max) {
+    	int Item::GetStat (Stats stat, bool Max) {
         	return StatTable[Max ? Maximum : Current][(int) stat];
     	}
 
     	// alter the current or max value of the stat by amount
-    	void AlterStat (Stats Stat, bool Max, int Amount){
+    	void Item::AlterStat (Stats Stat, bool Max, int Amount){
         	StatTable[Max ? Maximum : Current][(int) Stat] += Amount;
     	}
     
     	// save the current temporary state of a stat as a permanent state
-    	void SetStatToMax (Stats Stat) {
+    	void Item::SetStatToMax (Stats Stat) {
         	StatTable[Current][(int) Stat] = StatTable[Maximum][(int)Stat];
     	}	
 							
 		// Getter for value
-		int get_value() {
+		int Item::GetValue() {
 			return value;
 		}
 
 		// Setter for value
-		void set_value(int newValue) {
+		void Item::SetValue(int newValue) {
 			value = newValue;
 		}
 
 		// Getter for max_range
-		int get_max_range() {
+		int Item::GetMaxRange() {
 			return max_range;
 		}
 
 		// Setter for max_range
-		void set_max_range(int newRange) {
+		void Item::SetMaxRange(int newRange) {
 			max_range = newRange;
 		}
 
 		// Getter for condition
-		bool get_condition() { 
+		bool Item::GetCondition() { 
 			return isBroken;
 		}
 
 		// Setter for condition
-		void set_condition(bool condition) { 
+		void Item::SetCondition(bool condition) { 
 			isBroken = condition;
 		}
 
 		// Stores value, max_range, length of rarity, rarity, length of description,
         // description, length of type, type, and isBroken 
-        void write_to_stream(std::ostream & str) {          
+        void Item::WriteToStream(std::ostream & str) {          
             // Write value
             str.write(reinterpret_cast<char *>(&value),sizeof(value));
             
@@ -117,7 +104,7 @@ class Item {
         }
 
  		// Reads the data in the format written by Item::pack
-        void read_from_file(std::istream & str) {
+        void Item::ReadFromFile(std::istream & str) {
             const int BUFFER_SIZE = 256;
             static char buffer[256];
             
@@ -154,7 +141,7 @@ class Item {
         
         // This function converts a template data type to a string and adds 
         // a '/' to end of string as a delimiter.
-    	template<typename T> std::string convert_to_string(T data){
+    	template<typename T> std::string Item::ConvertToString(T data){
     		std::stringstream stream;
     		std::string str;
     		stream << data;
@@ -166,14 +153,14 @@ class Item {
     	// Pack() function packs every single member variable using the
     	// convert_to_string function and return a string containing all
     	// the data members
-        std::string pack() {
+        std::string Item::Pack() {
             std::string retVal = "";
             
             // Convert value to string, add value string and '/' to reVal
-            retVal+= convert_to_string(value);
+            retVal+= Convert_to_string(value);
         	
             // Convert max_range to string, add max_range string and '/' to retVal
-            retVal += convert_to_string(max_range);
+            retVal += Convert_to_string(max_range);
             
             // Add description to retVal string
             retVal+= description;
@@ -195,7 +182,7 @@ class Item {
     	
     	// Unpack() function converts str to corresponding data type. It uses mem_var
     	// as a counter in the switch statement
-        void unpack(std::string str) {
+        void Item::Unpack(std::string str) {
 			int row;
         	int col;
         	std::string token;
@@ -247,7 +234,6 @@ class Item {
         	}
 		}
 
-};
 
 int main() {
 	return 0;

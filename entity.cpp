@@ -78,3 +78,74 @@ void Entity::SetLevel(){
 		_Level++;
 	}
 }
+
+//Converts a template data type to a string and add
+//the '|' character to end of string as delimiter.
+template<typename T> std::string convert_to_string(T data){
+    std::stringstream stream;
+    std::string str;
+    stream << data;
+    stream >> str;
+    str += '|';
+    return str;
+}
+
+
+/***************************************************************
+Virtual pack function to pack Exp, Level, and Stat Table using the
+convert_to_string function and return a string containing all
+the stats. Extra data should be packed before calling
+Entity::pack() function.
+ - The Character has to pack Gold and other needed data.
+ - The Monster class has to pack Name.
+***************************************************************/
+virtual std::string pack(){
+    //Convert Exp to String
+    _retVal += convert_to_string(_Exp);
+    
+    //Convert Level to String
+    _retVal += convert_to_string(_Level);
+    
+    //Convert Stat Table to String
+    for(int row = 0; row < 2; row ++){
+        for(int col = 0; col < 13; col++){
+            _retVal += convert_to_string(StatTable[row][col]);
+        }
+    }
+}
+
+/*****************************************************************
+ Virtual unpack() function to unpack exp, level, and stat table.
+ Extra data should be unpack() before calling Entity::unpack()
+  - The character has to unpack gold and other needed data.
+  - The Monster Class has to unpack name.
+ *****************************************************************/
+virtual void unpack(std::string str)
+{
+    int row = 0 ;
+    int col = 0;
+    std::string token;
+    std::istringstream ss(str);
+    int count = 1;
+    while(std::getline(ss, token, '|'))
+    {
+        std::istringstream stream(token);
+        if (count == 1){
+            stream >> _Exp;
+            count++;
+        }
+        
+        else if (count == 2){
+            stream >> _Level;
+            count++;
+        }
+        
+        else{
+            stream >> StatTable[row][col++];
+            if (col == 13){
+                    row++;
+                    col = 0;
+            }
+        }
+    }
+}
