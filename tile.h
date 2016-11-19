@@ -103,10 +103,6 @@ public:
     vector<int> getClimateDesc();
     void setClimateDesc(vector<int> customClimateDesc);
     void generateClimateDesc();
-    
-    // Pack & Unpack Functions
-    string pack();
-    void unpack(string packedString);
 };
 
 
