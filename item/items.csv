@@ -4,7 +4,7 @@
 """Mithril sword""",4,25,1,"""This is a mithril sword. This is slightly less generic!""","""Common""","""Sword""",-1,-1,-1,0,0,0
 """Rune sword""",5,25,1,"""This is a rune sword. This is slightly less generic!""","""Common""","""Sword""",-1,-1,-1,0,0,0
 """Gold sword""",6,5000,1,"""You could sell this and get something more effective...""","""Common""","""Sword""",-1,-1,-1,0,0,0
-"""Diamond sword""",7,9999,1,"""You really should sell this.""","""Common""","""Sword""",-1,-1,-1,0,0,0
+"""Diamond sword""",7,10000,1,"""You really should sell this.""","""Common""","""Sword""",-1,-1,-1,0,0,0
 """Obsidian sword""",8,25,1,"""Where did someone get enough obsidian to make a sword?""","""Lava Forged""","""Sword""",-1,-1,-1,0,0,0
 """Glass sword""",9,25,1,"""What? Why would anyone actually use this?""","""Common""","""Sword""",-1,-1,-1,0,0,0
 """Wood shield""",10,25,1,"""Making a shield out of wood wasn't the smartest idea ever. I hope you don't try to block firebolts...""","""Common""","""Shield""",-1,-1,-1,0,0,0
@@ -12,8 +12,8 @@
 """Steel shield""",12,25,1,"""This is a steel shield. How generic (and heavy)!""","""Common""","""Shield""",-1,-1,-1,0,0,0
 """Mithril shield""",13,25,1,"""This is a mithril shield. This is slightly less generic!""","""Common""","""Shield""",-1,-1,-1,0,0,0
 """Rune shield""",14,25,1,"""This is a rune shield. This is slightly less generic!""","""Common""","""Shield""",-1,-1,-1,0,0,0
-"""Gold shield""",15,25,1,"""This is a giant chunk of gold and you're trying to use it to block attacks. Reevaluate your choices.""","""Common""","""Shield""",-1,-1,-1,0,0,0
-"""Diamond shield""",16,25,1,"""This is a giant chunk of diamond and you're trying to use it to block attacks. Reevaluate your choices.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Gold shield""",15,10000,1,"""This is a giant chunk of gold and you're trying to use it to block attacks. Reevaluate your choices.""","""Common""","""Shield""",-1,-1,-1,0,0,0
+"""Diamond shield""",16,20000,1,"""This is a giant chunk of diamond and you're trying to use it to block attacks. Reevaluate your choices.""","""Common""","""Shield""",-1,-1,-1,0,0,0
 """Obsidian shield""",17,25,1,"""This came straight out of a volcano. Neat.""","""Lava Forged""","""Shield""",-1,-1,-1,0,0,0
 """Glass shield""",18,25,1,"""I don't think you can block more than one attack with this...""","""Common""","""Shield""",-1,-1,-1,0,0,0
 """Wood shoulders""",19,25,1,"""These are more effective at making you look like a wood elf than they are at protecting you.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
@@ -30,8 +30,8 @@
 """Steel chestplate""",30,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
 """Mithril chestplate""",31,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
 """Rune chestplate""",32,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
-"""Gold chestplate""",33,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
-"""Diamond chestplate""",34,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Gold chestplate""",33,8000,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
+"""Diamond chestplate""",34,13000,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
 """Obsidian chestplate""",35,25,1,"""Here is a test description.""","""Lava Forged""","""Chestplate""",-1,-1,-1,0,0,0
 """Glass chestplate""",36,25,1,"""Here is a test description.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
 """Wood leg guards""",37,25,1,"""These are more effective at making you look like a wood elf than they are at protecting you.""","""Common""","""Legs""",-1,-1,-1,0,0,0
@@ -39,8 +39,8 @@
 """Steel leg guards""",39,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
 """Mithril leg guards""",40,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
 """Rune leg guards""",41,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
-"""Gold leg guards""",42,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
-"""Diamond leg guards""",43,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Gold leg guards""",42,5000,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
+"""Diamond leg guards""",43,10000,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
 """Obsidian leg guards""",44,25,1,"""Here is a test description.""","""Lava Forged""","""Legs""",-1,-1,-1,0,0,0
 """Glass leg guards""",45,25,1,"""Here is a test description.""","""Common""","""Legs""",-1,-1,-1,0,0,0
 """Wood gauntlets""",46,25,1,"""You can't move your hands while wearing these.""","""Common""","""Hands""",-1,-1,-1,0,0,0
@@ -48,8 +48,8 @@
 """Steel gauntlets""",48,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
 """Mithril gauntlets""",49,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
 """Rune gauntlets""",50,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
-"""Gold gauntlets""",51,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
-"""Diamond gauntlets""",52,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Gold gauntlets""",51,2000,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
+"""Diamond gauntlets""",52,4000,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
 """Obsidian gauntlets""",53,25,1,"""Here is a test description.""","""Lava Forged""","""Hands""",-1,-1,-1,0,0,0
 """Glass gauntlets""",54,25,1,"""Here is a test description.""","""Common""","""Hands""",-1,-1,-1,0,0,0
 """Wood boots""",55,25,1,"""You'll sound like a horse if you run while wearing these.""","""Common""","""Feet""",-1,-1,-1,0,0,0
@@ -57,8 +57,8 @@
 """Steel boots""",57,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
 """Mithril boots""",58,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
 """Rune boots""",59,25,1,"""Here is a test description.""","""Common""","""Feet""",-1,-1,-1,0,0,0
-"""Gold boots""",60,25,1,"""When you're so rich that you can step on gold.""","""Common""","""Feet""",-1,-1,-1,0,0,0
-"""Diamond boots""",61,25,1,"""When you're so rich that you can step on diamond.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Gold boots""",60,3000,1,"""When you're so rich that you can step on gold.""","""Common""","""Feet""",-1,-1,-1,0,0,0
+"""Diamond boots""",61,5000,1,"""When you're so rich that you can step on diamond.""","""Common""","""Feet""",-1,-1,-1,0,0,0
 """Obsidian boots""",62,25,1,"""Lava walkers""","""Lava Forged""","""Feet""",-1,-1,-1,0,0,0
 """Glass boots""",63,25,1,"""Ouch, tread lightly.""","""Common""","""Feet""",-1,-1,-1,0,0,0
 """Wood helm""",64,25,1,"""Is it a helmet or a bowl? The world may never know.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
@@ -66,8 +66,8 @@
 """Steel helm""",66,25,1,"""Putting this much strain on your neck is probably a bad idea.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
 """Mithril helm""",67,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
 """Rune helm""",68,25,1,"""Here is a test description.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
-"""Gold helm""",69,25,1,"""When you aren't sure if you want a crown or a helmet, get this.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
-"""Diamond helm""",70,25,1,"""If you're wearing a giant chunk of diamond to protect your head, you probably already took a significant blow to the head.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Gold helm""",69,6000,1,"""When you aren't sure if you want a crown or a helmet, get this.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
+"""Diamond helm""",70,9000,1,"""If you're wearing a giant chunk of diamond to protect your head, you probably already took a significant blow to the head.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
 """Obsidian helm""",71,25,1,"""Here is a test description.""","""Lava Forged""","""Helmet""",-1,-1,-1,0,0,0
 """Glass helm""",72,25,1,"""Use this only if you want shards in your eye.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
 """Wood dagger""",73,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
@@ -75,26 +75,26 @@
 """Steel dagger""",75,25,1,"""This is a steel dagger. How generic!""","""Common""","""Dagger""",-1,-1,-1,0,0,0
 """Mithril dagger""",76,25,1,"""This is a mithril dagger. This is slightly less generic!""","""Common""","""Dagger""",-1,-1,-1,0,0,0
 """Rune dagger""",77,25,1,"""This is a rune dagger. This is slightly less generic!""","""Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Gold dagger""",78,25,1,"""If you can afford to stab someone with gold, you could probably just hire someone to do the job...""","""Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Diamond dagger""",79,25,1,"""If you can afford to stab someone with diamond, you could probably just hire someone to do the job...""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Gold dagger""",78,3500,1,"""If you can afford to stab someone with gold, you could probably just hire someone to do the job...""","""Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Diamond dagger""",79,7000,1,"""If you can afford to stab someone with diamond, you could probably just hire someone to do the job...""","""Common""","""Dagger""",-1,-1,-1,0,0,0
 """Obsidian dagger""",80,25,1,"""For when you have a volcanic fury.""","""Lava Forged""","""Dagger""",-1,-1,-1,0,0,0
 """Glass dagger""",81,25,1,"""Single use only.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Fork""",82,25,1,"""This is a shrinkwrapped fork. Wow!""","""Shrinkwrapped Common""","""Dagger""",-1,-1,-1,0,0,0
-"""""",83,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",84,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",85,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",86,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",87,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",88,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",89,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",90,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",91,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",92,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",93,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",94,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",95,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",96,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",97,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",98,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",99,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
-"""""",100,25,1,"""Here is a test description.""","""Common""","""""",-1,-1,-1,0,0,0
+"""Fork""",82,100,1,"""This is a shrinkwrapped fork. Wow!""","""Shrinkwrapped Common""","""Dagger""",-1,-1,-1,0,0,0
+"""Lightsaber""",83,25,1,"""Here is a test description.""","""Common""","""Lightsaber""",-1,-1,-1,0,0,0
+"""Landshark launcher""",84,25,1,"""Here is a test description.""","""Common""","""Launcher""",-1,-1,-1,0,0,0
+"""Flail""",85,25,1,"""Here is a test description.""","""Common""","""Flail""",-1,-1,-1,0,0,0
+"""Oak bow""",86,25,1,"""Here is a test description.""","""Common""","""Bow""",-1,-1,-1,0,0,0
+"""Iron crossbow""",87,25,1,"""Here is a test description.""","""Common""","""Crossbow""",-1,-1,-1,0,0,0
+"""Musket""",88,25,1,"""Here is a test description.""","""Common""","""Musket""",-1,-1,-1,0,0,0
+"""Blunderbuss""",89,25,1,"""Here is a test description.""","""Common""","""Blunderbuss""",-1,-1,-1,0,0,0
+"""Scimitar""",90,25,1,"""Here is a test description.""","""Common""","""Scimitar""",-1,-1,-1,0,0,0
+"""Hatchet""",91,25,1,"""Here is a test description.""","""Common""","""Hatchet""",-1,-1,-1,0,0,0
+"""Wooden stick""",92,25,1,"""You might mistake this for a magical staff, but this is nothing more than a walking stick.""","""Common""","""Stick""",-1,-1,-1,0,0,0
+"""Enchanted staff""",93,25,1,"""Here is a test description.""","""Common""","""Staff""",-1,-1,-1,0,0,0
+"""Shadow katana""",94,25,1,"""Here is a test description.""","""Common""","""Katana""",-1,-1,-1,0,0,0
+"""Scythe""",95,25,1,"""Here is a test description.""","""Common""","""Scythe""",-1,-1,-1,0,0,0
+"""Iron mace""",96,25,1,"""Here is a test description.""","""Common""","""Mace""",-1,-1,-1,0,0,0
+"""Battleaxe""",97,25,1,"""Here is a test description.""","""Common""","""Axe""",-1,-1,-1,0,0,0
+"""Spiked hammer""",98,25,1,"""Here is a test description.""","""Common""","""Hammer""",-1,-1,-1,0,0,0
+"""Brass knuckles""",99,25,1,"""Here is a test description.""","""Common""","""Fist Weapon""",-1,-1,-1,0,0,0
+"""Butter knife""",100,25,1,"""Here is a test description.""","""Common""","""Dagger""",-1,-1,-1,0,0,0
