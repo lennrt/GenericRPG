@@ -3,7 +3,12 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <atomic>
 #include "mailbox.h"
+
+using namespace std;
 
 Mailbox::Mailbox (){
 	//Attempt to create a new memory segment.
@@ -20,76 +25,135 @@ Mailbox::Mailbox (){
 
 Mailbox::~Mailbox (){
 	shmdt(controlPointer);
-	shmdctl(controlID, IPC_RMID);
+	shmctl(controlID, IPC_RMID, NULL);
 }
 
-void Mailbox::CheckForNewUsers(){
-	//Search for an empty comm slot.
-	//Note, I use a simple locking mechanism here that will greatly reduce R/W collisions, but is not actually
-	//completely thread-safe.  That's because between checking a zero bit and setting the bit to one, this process
-	//can be made to sleep or another process on another CPU can intervene.  It's much better than nothing and is
-	//simple enough for now.
-	
-	int NumberofBoxes = controlSize / boxSize;
-	
-	for (int i = 1; i < NumberofBoxes; i++){ 
-		
-		tSlot = i * 32768;
+void Mailbox::OpenUserBox(int Box){
+	OpenBoxes.push_back(Box);
+}
 
-		//The first byte in a segment indicates ownership.  Byte = One if claimed and Zero if unclaimed.
-		if (controlPointer[tSlot] == 0x0){
-			//Claim the slot.
-			controlPointer[tSlot] = 0x1;
-			
-			//Register the slot location.  Wait until the byte-lock is off.
-			while (!Done){
-				if (controlPointer[0] == 0x0){
-					controlPointer[0] = 0x1;
-					Slot = i;
-					Done = true;
-					unsigned char Pos = (unsigned char)controlPointer[1];
-					controlPointer[Pos + 2] = (unsigned char)Slot;
-					Pos++;
-					controlPointer[1] = Pos;
-					controlPointer[0] = 0x0;
-					i = 256;					
-				} else {
-					// Sleep for 3 microseconds and then check again.
-					nanosleep (&req, &rem);
-				}
+void Mailbox::CloseUserBox(int Box){
+	for (int i = 0; i < OpenBoxes.size(); i++){
+		if (OpenBoxes[i] == Box){
+			OpenBoxes.erase(OpenBoxes.begin() + i);
+			for (int j = 0; j < slotCount; j++){
+				ClearSlot(Box, j);
 			}
-		}
-		
+		}		
 	}
 }
 
-void Mailbox::CloseUserBox(){
+bool Mailbox::SetupSuccessful(){
+	return (controlPointer != NULL);
 }
+
 void Mailbox::CheckMessages(){
-}
-string Mailbox::GetNextMessage(){
-}
-
-
-
-	
-	//Wait for a response from the game service.
-	//Response will incluse a session ID, confirmed slot number for message exchange, starting position, 
-	//full character stats, map, nearby enemies...
-	
-	//Mailbox format:  Byte 0 = Taken/Free flag; Byte 1 = Message for server flag; Byte 2 = Message for client flag.  
-	//Byte 3 + 4 = size of message.  Byte 5+ = message.
-	//No thread issues since only one server-client per segment and always only read or write not both.
-	
-	RetVal += "&Slot=" + to_string(Slot);
-	
-	while (controlPointer[Slot * 32768 + 2] == 0x0){
-		// Sleep for 3 microseconds and then check again.
-		nanosleep (&req, &rem);	
+	if (LockInbox()){
+		for (int i = 1; i < inboxCount;i++){
+			if (CheckSlot(0,i)){
+				Inbox.push_back(GetMessage(0,i));
+				ClearSlot(0,i);
+			} else {
+				break;
+			}
+		}	
+		UnlockInbox();
 	}
+}
+
+bool Mailbox::LockInbox(){
+	//Attempt to lock Inbox.  Success = Inbox was not locked.
+	bool* LockLocation = controlPointer + InboxLock;
+	return (!std::atomic_fetch_or(LockLocation, true));
+
+}
+
+void Mailbox::UnlockInbox(){
+	bool* LockLocation = controlPointer + InboxLock;
+	*LockLocation = 0x0;
+}
+
+string Mailbox::GetNextMessage(){
+	string RetVal = "";
 	
-	size_t messageLen = (int)((unsigned char)controlPointer[3]) * 256 + (int)((unsigned char)controlPointer[4]);
+	CheckMessages();
 	
-	string Temp(reinterpret_cast<const char *>(controlPointer[5]), messageLen);
-	RetVal += Temp;
+	if (Inbox.size() > 0){
+		RetVal = Inbox[0];
+		Inbox.erase(Inbox.begin());
+	} 
 	return RetVal;
+}
+void Mailbox::BroadcastMessage(string Message){
+	for (int i = 0; i < OpenBoxes.size(); i++){
+		SendMessageToBox(Message, i);
+	}
+}
+
+void Mailbox::SendMessageToBox(std::string Message, int Box){
+	//Note: a full box results in a dropped message.
+	for (int i = 1; i < slotCount; i++){
+		if (CheckSlot(Box, i)){               
+			SetMessage(Box, i, Message);
+			break;
+		}
+	}
+}
+
+bool Mailbox::CheckSlot(int Box, int Slot){	
+	// For future reference - this is not server-side thread-safe, modify if expanding use to other programs.
+	//To be thread safe, atomically reserve while checking (as we do with locking the Inbox.)
+	char* MemLoc;
+	if (Box == 0 ){
+		MemLoc = controlPointer + (Slot * slotSize);
+	} else {
+		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
+	}
+	return (MemLoc[MessageSetFlag] == 0x0);
+}
+
+string Mailbox::GetMessage(int Box, int Slot){
+	char Buffer[slotSize];
+	char* MemLoc;
+	if (Box == 0 ){
+		MemLoc = controlPointer + (Slot * slotSize);
+	} else {
+		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
+	}
+	memcpy (&Buffer, MemLoc + FlagSetSize, slotSize - FlagSetSize); 
+	return (string(Buffer)); 
+}
+void Mailbox::SetMessage(int Box, int Slot, string Message){ 
+	char Buffer[slotSize];
+	char* MemLoc;
+	if (Box == 0 ){
+		MemLoc = controlPointer + (Slot * slotSize);
+	} else {
+		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
+	}
+	*(MemLoc + MessageSetFlag) = 0x1;
+	int MemSize = Message.size();
+	if (MemSize > slotSize - FlagSetSize) { MemSize = slotSize - FlagSetSize;}
+	memcpy ( MemLoc + FlagSetSize, Message.c_str(), MemSize); 
+}
+void Mailbox::ClearSlot (int Box, int Slot){	
+	void* MemLoc;
+	if (Box == 0 ){
+		MemLoc = controlPointer + (Slot * slotSize);
+	} else {
+		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
+	}
+	memset (MemLoc,'\0',slotSize);
+}
+
+int Mailbox::FindSlot(int Box){
+	for (int i = 1; i < boxSize; i++){
+		char* MemLoc = controlPointer + inboxSize + (Box * boxSize) + (i * slotSize);
+		if (*(MemLoc + MessageSetFlag) == 0x0){
+			*(MemLoc + MessageSetFlag) = 0x1;	
+			return i;
+		}
+	}
+	return 0;
+}
+	
