@@ -34,10 +34,6 @@ class Item {
 
     template<typename T> std::string ConvertToString(T data);
 
-    std::string Pack(); 
-
-    void Unpack(std::string str); 
-
 	private:
 	int value;
 	int max_range;
