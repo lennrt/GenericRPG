@@ -14,10 +14,20 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
 		// stats, so combat damage should simply take into account the final character stats 
 		// without knowing anything about the item stats.
 
+        // Getter function for item name
+        std::string Item::GetName() { 
+            return name;
+        }
+
 		// Getter function for description
     	std::string Item::GetDescription() { 
     		return description;
     	}
+
+        // Getter function for item ID
+        int Item::GetItemId() { 
+            return itemId;
+        }
     	
     	// Getter function for rarity
     	std::string Item::GetRarity() { 
@@ -76,7 +86,15 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
 
 		// Stores value, max_range, length of rarity, rarity, length of description,
         // description, length of type, type, and isBroken 
-        void Item::WriteToStream(std::ostream & str) {          
+        void Item::WriteToStream(std::ostream & str) {
+            // Write length and data for name
+            int name_length = name.length();
+            str.write(reinterpret_cast<char *>(&name_length),sizeof(int));
+            str.write(name.data(), name_length);
+
+            // Write item id
+            str.write(reinterpret_cast<char *>(&itemId),sizeof(itemId));
+
             // Write value
             str.write(reinterpret_cast<char *>(&value),sizeof(value));
             
@@ -107,6 +125,16 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         void Item::ReadFromFile(std::istream & str) {
             const int BUFFER_SIZE = 256;
             static char buffer[256];
+
+            // Get the name's length, read the data into a local buffer, and assign to a variable
+            int name_length;
+            str.read(reinterpret_cast<char *>(&name_length),sizeof(int));
+            str.read(buffer, name_length);
+            buffer[name_length] = '\0';
+            name = buffer;
+
+            // Get item ID
+            str.read(reinterpret_cast<char *>(&itemId),sizeof(itemId));           
             
         	// Get value
             str.read(reinterpret_cast<char *>(&value),sizeof(value));
