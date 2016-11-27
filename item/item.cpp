@@ -1,6 +1,6 @@
 #include <sstream>
 #include <string>
-#include "../enums.h"
+#include "enums.h"
 #include "item.h"
 	
 /************************************************************************************
