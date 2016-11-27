@@ -22,7 +22,7 @@ class Entity{
 	void AlterStat (Stats Stat, bool Max, int Amount);
 	void SetStatToMax (Stats Stat);
 
-    private:
+    protected:
 	int _Exp;
 	int _Gold;
 	int _Level;
