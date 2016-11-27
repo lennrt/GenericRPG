@@ -13,6 +13,7 @@ using namespace std;
 
 Mailbox::Mailbox (){
 	bool Success = true;
+	semName = "Inbox";
 	
 	//Attempt to create a new memory segment.
 	controlID = shmget(controlKey, controlSize, S_IRUSR | S_IWUSR | IPC_CREAT);
