@@ -5,27 +5,39 @@
 #include <sys/shm.h>
 #include <sys/stat.h>
 #include <string.h>
-#include <atomic>
+#include <semaphore.h>
+#include <fcntl.h>
 #include "mailbox.h"
 
 using namespace std;
 
 Mailbox::Mailbox (){
+	bool Success = true;
+	
 	//Attempt to create a new memory segment.
 	controlID = shmget(controlKey, controlSize, S_IRUSR | S_IWUSR | IPC_CREAT);
 	
 	if (controlID == -1) {
 		//Fatal error.  Unknown error with shmget.
-		exit(-1);
+		Success = false;
 	}
 		
 	//Attach to the memory segment.
 	controlPointer = (char*)shmat(controlID, NULL, 0);
+	
+	//Create the Inbox semaphore
+	semID = sem_open (semName.c_str(), O_CREAT | O_EXCL, 0644, 1);
+	
+	if (semID == SEM_FAILED) {
+		Success = false;
+	}
+	SetupOK = Success;
 }
 
 Mailbox::~Mailbox (){
 	shmdt(controlPointer);
 	shmctl(controlID, IPC_RMID, NULL);
+	sem_destroy (semID);
 }
 
 void Mailbox::OpenUserBox(int Box){
@@ -44,33 +56,41 @@ void Mailbox::CloseUserBox(int Box){
 }
 
 bool Mailbox::SetupSuccessful(){
-	return (controlPointer != NULL);
+	return (SetupOK);
 }
 
 void Mailbox::CheckMessages(){
-	if (LockInbox()){
-		for (int i = 1; i < inboxCount;i++){
-			if (CheckSlot(0,i)){
-				Inbox.push_back(GetMessage(0,i));
-				ClearSlot(0,i);
-			} else {
-				break;
-			}
-		}	
-		UnlockInbox();
-	}
+	LockInbox();
+	for (int i = 1; i < inboxCount;i++){
+		if (CheckSlot(0,i)){
+			Inbox.push_back(GetMessage(0,i));
+			ClearSlot(0,i);
+		} else {
+			break;
+		}
+	}	
+	UnlockInbox();	
 }
 
-bool Mailbox::LockInbox(){
-	//Attempt to lock Inbox.  Success = Inbox was not locked.
-	bool* LockLocation = controlPointer + InboxLock;
-	return (!std::atomic_fetch_or(LockLocation, true));
-
+void Mailbox::LockInbox(){
+// 	//Attempt to lock Inbox.  Success = Inbox was not locked.
+// 	char* LockLocation = controlPointer + InboxLock;
+// 	bool Success = false;
+// 	
+// 	sem_wait(semID);
+// 	if (*LockLocation == 0x0){
+// 		*LockLocation = 0x1;
+// 		Success = true;
+// 	}
+// 	sem_post(semID);
+// 	return (Success);
+	sem_wait(semID);
 }
 
 void Mailbox::UnlockInbox(){
-	bool* LockLocation = controlPointer + InboxLock;
-	*LockLocation = 0x0;
+// 	char* LockLocation = controlPointer + InboxLock;
+// 	*LockLocation = 0x0;
+	sem_post(semID);
 }
 
 string Mailbox::GetNextMessage(){
@@ -93,7 +113,8 @@ void Mailbox::BroadcastMessage(string Message){
 void Mailbox::SendMessageToBox(std::string Message, int Box){
 	//Note: a full box results in a dropped message.
 	for (int i = 1; i < slotCount; i++){
-		if (CheckSlot(Box, i)){               
+		if (CheckSlot(Box, i)){    
+			ClearSlot(Box, i);
 			SetMessage(Box, i, Message);
 			break;
 		}
@@ -109,7 +130,7 @@ bool Mailbox::CheckSlot(int Box, int Slot){
 	} else {
 		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
 	}
-	return (MemLoc[MessageSetFlag] == 0x0);
+	return (MemLoc[MessageSetFlag] == 0x0 || MemLoc[MessageReceivedFlag] == 0x1);
 }
 
 string Mailbox::GetMessage(int Box, int Slot){
@@ -123,6 +144,7 @@ string Mailbox::GetMessage(int Box, int Slot){
 	memcpy (&Buffer, MemLoc + FlagSetSize, slotSize - FlagSetSize); 
 	return (string(Buffer)); 
 }
+
 void Mailbox::SetMessage(int Box, int Slot, string Message){ 
 	char Buffer[slotSize];
 	char* MemLoc;
@@ -136,6 +158,7 @@ void Mailbox::SetMessage(int Box, int Slot, string Message){
 	if (MemSize > slotSize - FlagSetSize) { MemSize = slotSize - FlagSetSize;}
 	memcpy ( MemLoc + FlagSetSize, Message.c_str(), MemSize); 
 }
+
 void Mailbox::ClearSlot (int Box, int Slot){	
 	void* MemLoc;
 	if (Box == 0 ){
