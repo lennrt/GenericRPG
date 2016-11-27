@@ -2,6 +2,8 @@
 #include "entity.h"
 #include "enums.h"
 
+Entity::Entity(){}
+Entity::~Entity(){}
 
 void Entity::AlterExp (int Amount){
 	//Use this method to add experience to an entity.  This can add experience 
