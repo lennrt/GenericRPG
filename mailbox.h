@@ -3,6 +3,14 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <atomic>
+#include <semaphore.h>
+#include <fcntl.h>
+
+#ifndef MAILBOX_H
+#define MAILBOX_H
 
 class Mailbox{
     public:
@@ -21,16 +29,22 @@ class Mailbox{
 	std::vector <int> OpenBoxes;
 	
 	void CheckMessages();
-	bool LockInbox();
+	void LockInbox();
 	void UnlockInbox();
-	std::string GetMessage(int Slot);
-	void SetMessage(int Slot, std::string Message);
-	void ClearSlot (int Slot);	
+	std::string GetMessage(int Box, int Slot);
+	void SetMessage(int Box, int Slot, std::string Message);
+	void ClearSlot (int Box,int Slot);	
 	bool CheckSlot(int Box, int Slot);
+	int FindSlot(int Box);
 	
-	//shared Memory ID and pointer for control segment.
+	//Indicates OS operations have been successfully performed (SHM and SEM)
+	bool SetupOK = false;
+	
+	//shared Memory and semaphore ID and pointer for control segment.
 	int controlID;
 	char* controlPointer;
+	sem_t* semID;
+	std::string semName("Inbox");
 
 	//Randomly generated key value for shared memory: 920004285
 	key_t controlKey = 920004285;
@@ -56,5 +70,9 @@ class Mailbox{
 	int MessageSetFlag = 0;
 	int MessageReceivedFlag = 1;
 	int FlagSetSize = 2;
+	int SessionIDLocation = 3;
+	int SessionIDSize = 8;
 	
 };
+
+#endif
