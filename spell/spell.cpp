@@ -14,7 +14,7 @@ protected:
 	int value;
 	int mana_cost;
 	int range;
-	stats target_stat;
+	Stats target_stat;
 
 public:
 	//get functions
@@ -33,7 +33,7 @@ public:
 	int get_range() {
 		return range;
 	}
-	void cast_spell(Entity *casting_char, Entity *target)	{
+	void cast_spell(Entity& casting_char, Entity& target)	{
 		target -> AlterStat(target_stat, value);
 	}
 	//todo: value dependent on casting character stats
