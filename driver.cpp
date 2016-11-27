@@ -16,7 +16,8 @@
 
 #include "entity.h"
 #include "character.h"
-#include
+#include "timetable.h"
+#include "mailbox.h"
 
 using namespace std;
 
@@ -32,12 +33,28 @@ vector<Enemy> SpawnedEnemies; // []
 //Vector to hold Key / Value pairs after processing
 vector<FormInfo> FormData;
 
-void setupMemory();
-size_t getControlSize();
 void getFormData();
 
 int main(){
+	//Setup Game state
+	
+	//Load maps
+	
+	//Load definitions
+	
+	//Setup mailbox
+	
+	//Setup time table
+	
+	//Main Loop
 
+		//Check Time table
+	
+		//Perform function for all expired times
+	
+		//Check Messages
+	
+		//Process Messages
 	//Process incoming POST data
 	//getFormData();  --->  Setup Mailbox
 
