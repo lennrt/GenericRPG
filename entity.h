@@ -30,8 +30,7 @@ class Entity{
 	
 	const int Current = 0;
 	const int Maximum = 1;
-	
-	int SetLevel(int tExp);
+	void SetLevel();
 };
 
 #endif
