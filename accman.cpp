@@ -353,21 +353,16 @@ int main(){
 	
 	//Update information from game service
 	if (Op == "Update"){			
-		fstream LogFile;
-		LogFile.open ("Log", fstream::out);
 		int Box = stoi(GetValueFromKey("b"));
 		string RetVal;
 		
 		//Connect to game service
-			LogFile << "UPDATE_ConnectToGameService\n" << flush;
 		ConnectToGameService();
 		
 		//VerifySession
 		if (VerifySession()){
 			//Get Messages
 			for (int i = 1; i < slotCount; i++){
-				
-					LogFile << "UPDATE_Checkslot\n" << flush;
 				if (CheckSlot(Box, i)){
 					//Host interprets ^ as message dilineator.
 					RetVal += "^" + GetMessage(Box, i);
@@ -379,8 +374,6 @@ int main(){
 		}
 		
 		//Close Session
-				
-				LogFile << "UPDATE_DisconnectFromGameService\n" << flush;
 		DisconnectFromGameService();
 		exit(0);	
 	}    
