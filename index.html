@@ -24,6 +24,7 @@
 		var User;
 		var Pass;
 		var charID;
+		var Box;
 		var Query = "";
 		var Operation = "";
 		var SelectedChar = 0;
@@ -142,13 +143,25 @@
 		}
 		
 		function Play(){
-			SetDiv(Tabs[0]);
 			var xhttp;
 			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					EnterResponse(xhttp);
+				}
+			};
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass);			
-			BackgroundUpdate();
+			xhttp.send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass);	
+		}
+		
+		function EnterResponse(xhttp){
+			ParseResponse();
+			if (GetValueFromKey("Status") == "Success"){
+				SetDiv(Tabs[0]);
+				Box = GetValueFromKey("Box");
+				BackgroundUpdate();
+			}			
 		}
 		
 		function BackgroundUpdate(){
@@ -172,7 +185,7 @@
 		}
 		
 		function UpdateResponse(xhttp){
-			if (xhttp.responseText != "") {alert (xhttp.responseText);}
+			if (xhttp.responseText.length > 10) {alert (xhttp.responseText);}
 		}
 		
 		function NewCharacter(){
