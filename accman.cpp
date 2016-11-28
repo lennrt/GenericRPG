@@ -299,10 +299,7 @@ int main(){
 	}   
 
 	//Character Login
-	if (Op == "EnterGame"){		
-		fstream LogFile;
-		LogFile.open ("Log", fstream::out);	
-		LogFile << "HERE" << flush;
+	if (Op == "EnterGame"){			
 		if (fileExists ("u/" + u)){
 			string PassTestIn(crypt(p.c_str(),"AB"));  //This is EXTREMELY insecure.  Use for student project only.
 			string PassTestFile;
@@ -313,18 +310,13 @@ int main(){
 			PWFile.close();
 			
 			if (PassTestFile == PassTestIn){
-			LogFile << "ConnectToGameService" << flush;
 				string TryConnect = ConnectToGameService();
-				if (TryConnect == ""){
-					
-					LogFile << "EnterGame" << flush;	
+				if (TryConnect == ""){	
 					Response += EnterGame();
 				} else {
 					Response += TryConnect;
 				}
 				cout << Response;
-				
-				LogFile << "DisconnectFromGameService" << flush;
 				DisconnectFromGameService();
 				exit(0);
 			} else {
@@ -359,17 +351,22 @@ int main(){
 	}
 	
 	//Update information from game service
-	if (Op == "Update"){	
+	if (Op == "Update"){			
+		fstream LogFile;
+		LogFile.open ("Log", fstream::out);
 		int Box = stoi(GetValueFromKey("b"));
 		string RetVal;
 		
 		//Connect to game service
+			LogFile << "ConnectToGameService\n" << flush;
 		ConnectToGameService();
 		
 		//VerifySession
 		if (VerifySession()){
 			//Get Messages
 			for (int i = 1; i < slotCount; i++){
+				
+					LogFile << "Checkslot\n" << flush;
 				if (CheckSlot(Box, i)){
 					//Host interprets ^ as message dilineator.
 					RetVal += "^" + GetMessage(Box, i);
@@ -381,6 +378,8 @@ int main(){
 		}
 		
 		//Close Session
+				
+				LogFile << "DisconnectFromGameService\n" << flush;
 		DisconnectFromGameService();
 		exit(0);	
 	}    
