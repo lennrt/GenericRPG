@@ -33,6 +33,8 @@
 		var ResponseValue = [];
 		var ResponseArray = [];
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
+		const Key = 0;
+		const Value = 1;
 		
 		function Setup(){
 			SetDiv("Splash");
@@ -110,7 +112,13 @@
 			var Temp = ResponseText.split("&");
 			for (var i = 0; i < Temp.length; i++) {
 				ResponseArray.push(Temp[i].split("="));
-			}		
+			}	
+			
+			var Output = "";
+			for (var i = 0; i < ResponseArray.length; i++){
+				Output += ResponseArray[i][Key] + ResponseArray[i][Value];
+			}
+			alert (Output);
 		}
 		
 		function GetValueFromKey(Key){
