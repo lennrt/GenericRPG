@@ -68,7 +68,7 @@ int main(){
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
 			Mailbox.OpenUserBox(NewChar.Box);
-			Mailbox.BroadcastMessage("This is a test of the server.", NewChar.Box);
+			Mailbox.BroadcastMessage("This is a test of the server.");
 			Done = true;
 		}
 		
