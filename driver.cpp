@@ -59,6 +59,7 @@ int main(){
 		//Check Time table.  Perform function for all expired times
 		
 		//Check and Process Messages
+		cout << "Next Msg" << flush;
 		FormData = Mailbox.GetNextMessage();
 		cout << FormData << flush;
 		getFormData(FormData);
