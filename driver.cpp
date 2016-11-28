@@ -52,18 +52,18 @@ int main(){
 	//Load maps
 	
 	//Load definitions
-	cout << "Beginning main loop\n";
-	cout << "Mailbox: " << Mailbox.SetupSuccessful() << "\n";
+	cout << "Beginning main loop\n" << flush;
+	cout << "Mailbox: " << Mailbox.SetupSuccessful() << "\n" << flush;
 	//Main Loop
 	while (!Done){
 		//Check Time table.  Perform function for all expired times
 		
 		//Check and Process Messages
 		FormData = Mailbox.GetNextMessage();
-		cout << FormData;
+		cout << FormData << flush;
 		getFormData(FormData);
 		Action = GetValueFromKey("Action");
-		cout << Action;
+		cout << Action << flush;
 		
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));

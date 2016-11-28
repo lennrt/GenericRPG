@@ -44,7 +44,6 @@ class Mailbox{
 	int controlID;
 	char* controlPointer;
 	sem_t* semID;
-	std::string semName;
 
 	//Randomly generated key value for shared memory: 920004285
 	key_t controlKey = 920004285;

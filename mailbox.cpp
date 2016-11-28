@@ -13,7 +13,6 @@ using namespace std;
 
 Mailbox::Mailbox (){
 	bool Success = true;
-	semName = "Inbox";
 	
 	//Attempt to create a new memory segment.
 	controlID = shmget(controlKey, controlSize, S_IRUSR | S_IWUSR | IPC_CREAT);
@@ -27,7 +26,7 @@ Mailbox::Mailbox (){
 	controlPointer = (char*)shmat(controlID, NULL, 0);
 	
 	//Create the Inbox semaphore
-	semID = sem_open (semName.c_str(), O_CREAT | O_EXCL, 0644, 1);
+	semID = sem_open ("/Inbox", O_CREAT | O_EXCL, 0644, 1);
 	
 	if (semID == SEM_FAILED) {
 		Success = false;

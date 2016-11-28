@@ -25,7 +25,6 @@ using namespace std;
 	int controlID;
 	char* controlPointer;
 	sem_t* semID;
-	std::string semName("Inbox");
 
 	//Randomly generated key value for shared memory: 920004285
 	key_t controlKey = 920004285;
@@ -407,7 +406,7 @@ string ConnectToGameService(){
 	controlPointer = (char*)shmat(controlID, NULL, 0);
 	
 	//Access semaphore	
-	semID = sem_open (semName.c_str(), 0);
+	semID = sem_open ("/Inbox", 0);
 	
 	if (semID == SEM_FAILED) {
 		//Fatal error.  Unknown error with sem_open.
