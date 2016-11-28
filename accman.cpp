@@ -300,6 +300,9 @@ int main(){
 
 	//Character Login
 	if (Op == "EnterGame"){		
+		fstream LogFile;
+		LogFile.open ("Log", fstream::out);	
+		LogFile << "HERE" << flush;
 		if (fileExists ("u/" + u)){
 			string PassTestIn(crypt(p.c_str(),"AB"));  //This is EXTREMELY insecure.  Use for student project only.
 			string PassTestFile;
@@ -310,13 +313,18 @@ int main(){
 			PWFile.close();
 			
 			if (PassTestFile == PassTestIn){
+			LogFile << "ConnectToGameService" << flush;
 				string TryConnect = ConnectToGameService();
 				if (TryConnect == ""){
+					
+					LogFile << "EnterGame" << flush;	
 					Response += EnterGame();
 				} else {
 					Response += TryConnect;
 				}
 				cout << Response;
+				
+				LogFile << "DisconnectFromGameService" << flush;
 				DisconnectFromGameService();
 				exit(0);
 			} else {
