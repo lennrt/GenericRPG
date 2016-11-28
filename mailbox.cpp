@@ -15,7 +15,7 @@ Mailbox::Mailbox (){
 	bool Success = true;
 	
 	//Attempt to create a new memory segment.
-	controlID = shmget(controlKey, controlSize, S_IRUSR | S_IWUSR | IPC_CREAT);
+	controlID = shmget(controlKey, controlSize, S_IRUSR | S_IWUSR | IPC_CREAT | 0644);
 	
 	if (controlID == -1) {
 		//Fatal error.  Unknown error with shmget.
