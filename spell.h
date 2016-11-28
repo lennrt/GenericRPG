@@ -13,7 +13,7 @@ class Spell {
     ~Spell();
     std::string get_title();
     std::string get_description();
-    std::int get_range();
+    int get_range();
     void cast_spell(Entity *casting_char, Entity *target);
   /*  todo: 
     have spells modified by character stats e.g. fireball damage affected by int
@@ -30,6 +30,6 @@ class Spell {
     std::string description;
     //int value;
     //int mana_cost;
-    std::int range;
+    int range;
     
 };
