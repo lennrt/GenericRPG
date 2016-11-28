@@ -9,5 +9,5 @@ g++ -std=c++0x timetable.cpp -c -o timetable.o
 g++ -std=c++0x driver.cpp -o driver.cgi mailbox.o timetable.o entity.o monster.o character.o tile.o spell.o item.o -lcrypt -lrt -lpthread
 
 g++ -std=c++0x accman.cpp -o accman.cgi -lcrypt -lrt -lpthread
-chmod +s accman.cgi
+sudo chmod 4755 accman.cgi
  
