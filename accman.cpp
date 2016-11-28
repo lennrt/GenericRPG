@@ -358,7 +358,7 @@ int main(){
 		string RetVal;
 		
 		//Connect to game service
-			LogFile << "ConnectToGameService\n" << flush;
+			LogFile << "UPDATE_ConnectToGameService\n" << flush;
 		ConnectToGameService();
 		
 		//VerifySession
@@ -366,7 +366,7 @@ int main(){
 			//Get Messages
 			for (int i = 1; i < slotCount; i++){
 				
-					LogFile << "Checkslot\n" << flush;
+					LogFile << "UPDATE_Checkslot\n" << flush;
 				if (CheckSlot(Box, i)){
 					//Host interprets ^ as message dilineator.
 					RetVal += "^" + GetMessage(Box, i);
@@ -379,7 +379,7 @@ int main(){
 		
 		//Close Session
 				
-				LogFile << "DisconnectFromGameService\n" << flush;
+				LogFile << "UPDATE_DisconnectFromGameService\n" << flush;
 		DisconnectFromGameService();
 		exit(0);	
 	}    

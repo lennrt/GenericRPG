@@ -60,7 +60,7 @@ int main(){
 		
 		//Check and Process Messages
 		FormData = Mailbox.GetNextMessage();
-		cout << FormData << flush;
+		cout << FormData << "\n" << flush;
 		getFormData(FormData);
 		Action = GetValueFromKey("Action");
 		cout << Action << flush;
