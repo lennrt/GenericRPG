@@ -22,9 +22,10 @@ class Character : public Entity{
 	std::string Sex;
 	bool CanDoAction;
 	bool CanCastspell;
+	int Box;		//Mailbox number
 
 	Character();	
-	Character(std::string U, std::string C);
+	Character(std::string U, std::string C, int B);
 	~Character();
 	void LoadCharacterFromFile();
 	void SaveCharacterToFile();

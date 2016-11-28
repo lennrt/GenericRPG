@@ -63,7 +63,10 @@ int main(){
 		Action = GetValueFromKey("Action");
 		
 		if (Action == "EnterGame"){
-			
+			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
+			Mailbox.OpenUserBox(NewChar.Box);
+			Mailbox.SendMessageToBox("This is a test of the server.", NewChar.Box);
+			Done = true;
 		}
 		
 		if (Action == "LeaveGame"){

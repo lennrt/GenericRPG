@@ -13,11 +13,12 @@ Character::Character(){
 	CanDoAction = true;
 }
 
-Character::Character(string U, string C){
+Character::Character(string U, string C, int B){
 	CanCastspell = true;
 	CanDoAction = true;
 	_U = U;
 	_C = C;
+	Box = B;
 	LoadCharacterFromFile();
 }
 
