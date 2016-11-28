@@ -22,7 +22,7 @@ public:
 	std::string Spell::get_description() {
 		return description;
 	}
-	std::int Spell::get_range() {
+	int Spell::get_range() {
 		return range;
 	}
 	void Spell::cast_spell(Entity& casting_char, Entity& target)	{
