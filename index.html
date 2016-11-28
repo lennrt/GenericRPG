@@ -143,6 +143,11 @@
 		
 		function Play(){
 			SetDiv(Tabs[0]);
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.open("POST", SiteURL, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass);			
 			BackgroundUpdate();
 		}
 		
