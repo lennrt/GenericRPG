@@ -76,6 +76,7 @@
 		}
 		
 		function LoginResponse(xhttp){
+			alert(">" + xhttp.responseText + "<");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -156,6 +157,7 @@
 		}
 		
 		function EnterResponse(xhttp){
+			alert(">" + xhttp.responseText + "<");
 			ParseResponse();
 			if (GetValueFromKey("Status") == "Success"){
 				SetDiv(Tabs[0]);
@@ -214,6 +216,7 @@
 		}
 		
 		function DeleteResponse (xhttp) {
+			alert(">" + xhttp.responseText + "<");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -325,6 +328,7 @@
 		}
 		
 		function CreateResponse(xhttp){
+			alert(">" + xhttp.responseText + "<");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
