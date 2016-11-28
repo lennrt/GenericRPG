@@ -31,7 +31,8 @@
 		var ResponseKey = [];
 		var ResponseValue = [];
 		var ResponseArray = [];
-		var SiteURL="http://www.ctr-online.com/~grpg/cgi-bin/accman.cgi";
+		var SiteURL="http://www.ctr-online.com/~grpg/ls -l
+		cgi-bin/accman.cgi";
 		
 		function Setup(){
 			SetDiv("Splash");
@@ -142,6 +143,32 @@
 		}
 		
 		function Play(){
+			SetDiv(Tabs[0]);
+			BackgroundUpdate();
+		}
+		
+		function BackgroundUpdate(){
+			User = document.getElementById("u").value;
+			Pass = document.getElementById("p").value;
+			
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					UpdateResponse(xhttp);
+				}
+			};
+			
+			Operation = "?Op=Update";
+			Query = "&u=" + User + "&p=" + Pass;
+			xhttp.open("POST", SiteURL, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(Operation + Query);
+			window.setInterval(function(){ BackgroundUpdate(); }, 1000);
+		}
+		
+		function UpdateResponse(xhttp){
+			if (xhttp.responseText != "") {alert (xhttp.responseText);}
 		}
 		
 		function NewCharacter(){
