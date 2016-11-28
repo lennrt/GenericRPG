@@ -1,11 +1,15 @@
+#include <cstdlib>
+#include "enums.h"
+#include "entity.h"
+
 class Spell {
 
   public:
   
     Spell();
     ~Spell();
-   	string get_title();
-    string get_description();
+   std::string get_title();
+    std::string get_description();
     int get_value();
     int get_mana_cost();
     int get_range();
@@ -13,11 +17,11 @@ class Spell {
     
    private:
     
-    string title;
-    string description;
+    std::string title;
+    std::string description;
     int value;
     int mana_cost;
     int range;
-    stats target_stat;
+    Stats target_stat;
     
 };

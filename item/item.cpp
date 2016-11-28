@@ -177,7 +177,3 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
     		str += '/';
     		return str;
     	}
-
-int main() {
-	return 0;
-}
