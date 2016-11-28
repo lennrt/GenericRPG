@@ -8,13 +8,13 @@
 class Spell {
 
   public:
-  
-    Spell();
-    ~Spell();
-    std::string get_title();
-    std::string get_description();
-    int get_range();
-    void cast_spell(Entity& casting_char, Entity& target);
+
+	Spell();
+	~Spell();
+	std::string get_title();
+	std::string get_description();
+	int get_range();
+	void cast_spell(Entity& casting_char, Entity& target);
   /*  todo: 
     have spells modified by character stats e.g. fireball damage affected by int
     work on spells that temporarily alter stats
@@ -26,10 +26,11 @@ class Spell {
     
    private:
     
-    std::string title;
-    std::string description;
-    //int value;
-    //int mana_cost;
-    int range;
+	std::string title;
+	std::string description;
+	int value;
+	int mana_cost;
+	int range;
+	Stats target_stat;
     
 };
