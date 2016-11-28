@@ -10,3 +10,4 @@ g++ -std=c++0x driver.cpp -o driver.cgi mailbox.o timetable.o entity.o monster.o
 
 g++ -std=c++0x accman.cpp -o accman.cgi -lcrypt -lrt -lpthread
 chmod +s accman.cgi
+ 
