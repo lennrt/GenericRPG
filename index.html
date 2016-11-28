@@ -95,7 +95,7 @@
 			for (var i = 1; i < 6; i++){
 				if (GetValueFromKey("c" + i) != "Not Found"){
 					document.getElementById("char" + i).style.visibility = "visible";
-					document.getElementById("c" + i).value = GetValueFromKey("c" + i);
+					document.getElementById("c" + i).innerText = GetValueFromKey("c" + i);
 					document.getElementById("name" + i).innerText = GetValueFromKey("Name" + i);
 					document.getElementById("level" + i).innerText = GetValueFromKey("Level" + i);
 					document.getElementById("race" + i).innerText = GetValueFromKey("Race" + i);					
@@ -122,7 +122,6 @@
 		function GetValueFromKey(SearchKey){
 			for (var i = 0; i < ResponseArray.length; i++) {
 				if (ResponseArray[i][Key] == SearchKey) {
-				alert (SearchKey + " := " + ResponseArray[i][Value]);
 					return ResponseArray[i][Value];
 				}
 			}
@@ -133,7 +132,7 @@
 			for (var i = 1; i < 6; i++){
 				document.getElementById("char" + i).style.backgroundColor = "transparent";
 				document.getElementById("char" + i).style.visibility = "hidden";
-				document.getElementById("charID" + i).value = "";
+				document.getElementById("charID" + i).innerText = "";
 				document.getElementById("name" + i).innerText = "";
 				document.getElementById("level" + i).innerText = "";
 				document.getElementById("race" + i).innerText = "";
