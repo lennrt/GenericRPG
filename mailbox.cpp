@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
@@ -26,8 +27,8 @@ Mailbox::Mailbox (){
 	controlPointer = (char*)shmat(controlID, NULL, 0);
 	
 	//Create the Inbox semaphore
-	semID = sem_open ("/Inbox", O_CREAT | O_EXCL, 0644, 1);
-	
+	semID = sem_open ("/Inbox", O_CREAT, 0644, 1);
+	cout << "semID: " << semID << flush;
 	if (semID == SEM_FAILED) {
 		Success = false;
 	}
