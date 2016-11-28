@@ -60,6 +60,7 @@ int main(){
 		
 		//Check and Process Messages
 		FormData = Mailbox.GetNextMessage();
+		if (FormData.size() > 5) { cout << FormData; }
 		getFormData(FormData);
 		Action = GetValueFromKey("Action");
 		cout << Action << flush;
@@ -67,7 +68,7 @@ int main(){
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
 			Mailbox.OpenUserBox(NewChar.Box);
-			Mailbox.SendMessageToBox("This is a test of the server.", NewChar.Box);
+			Mailbox.BroadcastMessage("This is a test of the server.", NewChar.Box);
 			Done = true;
 		}
 		
