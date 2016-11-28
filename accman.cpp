@@ -5,6 +5,7 @@
 #include <time.h>
 #include <cstdio>
 #include <cstdlib>
+#include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
