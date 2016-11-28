@@ -25,12 +25,11 @@
 		var Pass;
 		var charID;
 		var Box;
+		var SessionKey;
 		var Query = "";
 		var Operation = "";
 		var SelectedChar = 0;
 		var MaxChar = 5;
-		var ResponseKey = [];
-		var ResponseValue = [];
 		var ResponseArray = [];
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
 		const Key = 0;
@@ -84,7 +83,6 @@
 				alert(GetValueFromKey("Reason"));
 				return;
 			}
-			//List();
 			
 			//If login is successful set up the logged in name at the top of the page.
 			document.getElementById("LoginStatus").innerText = User;
@@ -121,10 +119,11 @@
 			alert (Output);
 		}
 		
-		function GetValueFromKey(Key){
+		function GetValueFromKey(SearchKey){
 			for (var i = 0; i < ResponseArray.length; i++) {
-				if (ResponseArray[i][0] == Key) {
-					return ResponseArray[i][1];
+				if (ResponseArray[i][Key] == SearchKey) {
+				alert (SearchKey + " := " + ResponseArray[i][Value]);
+					return ResponseArray[i][Value];
 				}
 			}
 			return "Not Found";
@@ -175,9 +174,6 @@
 		}
 		
 		function BackgroundUpdate(){
-			User = document.getElementById("u").value;
-			Pass = document.getElementById("p").value;
-			
 			var xhttp;
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -187,7 +183,7 @@
 			};
 			
 			Operation = "?Op=Update";
-			Query = "&u=" + User + "&p=" + Pass;
+			Query = "&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey;
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(Operation + Query);
