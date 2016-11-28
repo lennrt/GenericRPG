@@ -200,7 +200,7 @@ int main(){
 
 				UserFile.close();
 				
-				//Write out list of characters removing the deleted character.
+				//Write out list of characters.
 				UserFile.open ("u/" + u + "/u", fstream::out | fstream::trunc);
 				for (int i = 0; i < Rebuild.size(); i++){
 					UserFile << Rebuild[i] << endl;
@@ -218,7 +218,8 @@ int main(){
 				CharFile << "Race=" + GetValueFromKey("Race") << endl;
 				CharFile << "Class=" + GetValueFromKey("Class") << endl;
 				CharFile << "Sex=" + GetValueFromKey("Sex") << endl;
-				CharFile << "Level=" + GetValueFromKey("Level") << endl;				
+				CharFile << "Exp=0" << endl;		
+				CharFile << "Gold=250" << endl;
 				CharFile << "Int=" + GetValueFromKey("Int") << endl;
 				CharFile << "Str=" + GetValueFromKey("Str") << endl;
 				CharFile << "Agi=" + GetValueFromKey("Agi") << endl;
@@ -251,7 +252,7 @@ int main(){
 			fstream PWFile;
 		
 		if (fileExists ("u/" + u)){
-			string PassTestIn(crypt(p.c_str(),"AB"));  //This is EXTREMELY insecure.  Use for student project only.
+			string PassTestIn(crypt(p.c_str(),"AB"));  //This is extremely insecure.  Use for student project only.
 			string PassTestFile;
 			string Temp;
 			

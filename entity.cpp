@@ -2,6 +2,8 @@
 #include "entity.h"
 #include "enums.h"
 
+Entity::Entity(){}
+Entity::~Entity(){}
 
 void Entity::AlterExp (int Amount){
 	//Use this method to add experience to an entity.  This can add experience 
@@ -55,8 +57,15 @@ void Entity::SetStatToMax (Stats Stat){
 	//Set the given stat's current value to it's max value.  Useful for healing,
 	//mana replenishment, adverse effect restoration, etc.
 	
-	StatTable[Current][(int) Stat] = StatTable[Maximum][(int) Stat];
-    
+	StatTable[Current][(int) Stat] = StatTable[Maximum][(int) Stat]; 
+}
+
+void Entity::SetAllStatsToMax()
+{
+	//Set All Stats - For initializing a new or restored entity (usually a player)
+	for (int i = 0; i < 14; i++){
+		StatTable[Current][i] = StatTable[Maximum][i]; 
+	}
 }
 
 void Entity::SetLevel(){

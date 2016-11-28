@@ -21,6 +21,10 @@ class Entity{
 	int GetStat(Stats Stat, bool Max);
 	void AlterStat (Stats Stat, bool Max, int Amount);
 	void SetStatToMax (Stats Stat);
+	void SetAllStatsToMax ();
+	
+	int X;
+	int Y;
 
     protected:
 	int _Exp;
