@@ -68,7 +68,8 @@ int main(){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
 			Mailbox.OpenUserBox(NewChar.Box);
 			Mailbox.BroadcastMessage("This is a test of the server.");
-			Done = true;
+			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
+			Players.push_back(NewChar);
 		}
 		
 		if (Action == "LeaveGame"){
