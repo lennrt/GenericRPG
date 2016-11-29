@@ -1,100 +1,100 @@
-"""Wood sword""",1,100,5,"""Making a sword out of wood wasn't the smartest idea ever. This is more of a club than a sword...""","""Common""","""Sword""",-1,-1,-1,0,0,0
-"""Iron sword""",2,200,5,"""This is an iron sword. How generic!""","""Common""","""Sword""",-1,-1,-1,0,0,0
-"""Steel sword""",3,320,5,"""This is a steel sword. How generic!""","""Common""","""Sword""",-1,-1,-1,0,0,0
-"""Mithril sword""",4,600,5,"""This is a mithril sword. This is slightly less generic!""","""Uncommon""","""Sword""",-1,-1,-1,0,0,0
-"""Rune sword""",5,800,5,"""This is a rune sword. This is slightly less generic!""","""Uncommon""","""Sword""",-1,-1,-1,0,0,0
-"""Gold sword""",6,3200,5,"""You could sell this and get something more effective...""","""Rare""","""Sword""",-1,-1,-1,0,0,0
-"""Diamond sword""",7,5200,5,"""You really should sell this.""","""Epic""","""Sword""",-1,-1,-1,0,0,0
-"""Obsidian sword""",8,1400,5,"""Where did someone get enough obsidian to make a sword?""","""Lava Forged""","""Sword""",-1,-1,-1,0,0,0
-"""Glass sword""",9,400,5,"""What? Why would anyone actually use this?""","""Very Uncommon""","""Sword""",-1,-1,-1,0,0,0
-"""Wood shield""",10,125,1,"""Making a shield out of wood wasn't the smartest idea ever. I hope you don't try to block firebolts...""","""Common""","""Shield""",-1,-1,-1,0,0,0
-"""Iron shield""",11,250,1,"""This is an iron shield. How generic!""","""Common""","""Shield""",-1,-1,-1,0,0,0
-"""Steel shield""",12,400,1,"""This is a steel shield. How generic (and heavy)!""","""Common""","""Shield""",-1,-1,-1,0,0,0
-"""Mithril shield""",13,750,1,"""This is a mithril shield. This is slightly less generic!""","""Uncommon""","""Shield""",-1,-1,-1,0,0,0
-"""Rune shield""",14,1000,1,"""This is a rune shield. This is slightly less generic!""","""Uncommon""","""Shield""",-1,-1,-1,0,0,0
-"""Gold shield""",15,4000,1,"""This is a giant chunk of gold and you're trying to use it to block attacks. Reevaluate your choices.""","""Rare""","""Shield""",-1,-1,-1,0,0,0
-"""Diamond shield""",16,6500,1,"""This is a giant chunk of diamond and you're trying to use it to block attacks. Reevaluate your choices.""","""Epic""","""Shield""",-1,-1,-1,0,0,0
-"""Obsidian shield""",17,1750,1,"""This came straight out of a volcano. Neat.""","""Lava Forged""","""Shield""",-1,-1,-1,0,0,0
-"""Glass shield""",18,500,1,"""I don't think you can block more than one attack with this...""","""Very Uncommon""","""Shield""",-1,-1,-1,0,0,0
-"""Wood shoulders""",19,50,1,"""These are more effective at making you look like a wood elf than they are at protecting you.""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
-"""Iron shoulders""",20,100,1,"""These are iron shoulder guards. How generic!""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
-"""Steel shoulders""",21,160,1,"""These are steel shoulder guards. How generic!""","""Common""","""Shoulders""",-1,-1,-1,0,0,0
-"""Mithril shoulders""",22,300,1,"""These are mithril shoulder guards. These are slightly less generic!""","""Uncommon""","""Shoulders""",-1,-1,-1,0,0,0
-"""Rune shoulders""",23,400,1,"""These are rune shoulder guards. These are slightly less generic!""","""Uncommon""","""Shoulders""",-1,-1,-1,0,0,0
-"""Gold shoulders""",24,1600,1,"""These are gold shoulder guards. These are expensive!""","""Rare""","""Shoulders""",-1,-1,-1,0,0,0
-"""Diamond shoulders""",25,2600,1,"""These are diamond shoulder guards. These are very expensive!""","""Epic""","""Shoulders""",-1,-1,-1,0,0,0
-"""Obsidian shoulders""",26,700,1,"""These are obsidian shoulder guards.""","""Lava Forged""","""Shoulders""",-1,-1,-1,0,0,0
-"""Glass shoulders""",27,200,1,"""These are glass shoulder guards.""","""Very Uncommon""","""Shoulders""",-1,-1,-1,0,0,0
-"""Wood chestplate""",28,250,1,"""This is more effective at making you look like a wood elf than it is at protecting you.""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
-"""Iron chestplate""",29,500,1,"""This is an iron chestplate. How generic!""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
-"""Steel chestplate""",30,800,1,"""This is a steel chestplate. How generic (and heavy)!""","""Common""","""Chestplate""",-1,-1,-1,0,0,0
-"""Mithril chestplate""",31,1500,1,"""This is a mithril chestplate. This is slightly less generic!""","""Uncommon""","""Chestplate""",-1,-1,-1,0,0,0
-"""Rune chestplate""",32,2000,1,"""This is a rune chestplate. This is slightly less generic!""","""Uncommon""","""Chestplate""",-1,-1,-1,0,0,0
-"""Gold chestplate""",33,8000,1,"""This is a gold chestplate.""","""Rare""","""Chestplate""",-1,-1,-1,0,0,0
-"""Diamond chestplate""",34,13000,1,"""This is a diamond chestplate.""","""Epic""","""Chestplate""",-1,-1,-1,0,0,0
-"""Obsidian chestplate""",35,3500,1,"""This is an obsidian chestplate. It smells like fire and brimstone.""","""Lava Forged""","""Chestplate""",-1,-1,-1,0,0,0
-"""Glass chestplate""",36,1000,1,"""Wear this to maximize bodily injury upon attack.""","""Very Uncommon""","""Chestplate""",-1,-1,-1,0,0,0
-"""Wood leg guards""",37,187.5,1,"""These are more effective at making you look like a wood elf than they are at protecting you.""","""Common""","""Legs""",-1,-1,-1,0,0,0
-"""Iron leg guards""",38,375,1,"""These are iron leg guards. How generic!""","""Common""","""Legs""",-1,-1,-1,0,0,0
-"""Steel leg guards""",39,600,1,"""These are steel leg guards. How generic!""","""Common""","""Legs""",-1,-1,-1,0,0,0
-"""Mithril leg guards""",40,1500,1,"""These are mithril leg guards. These are slightly less generic!""","""Uncommon""","""Legs""",-1,-1,-1,0,0,0
-"""Rune leg guards""",41,1500,1,"""These are rune leg guards. These are slightly less generic!""","""Uncommon""","""Legs""",-1,-1,-1,0,0,0
-"""Gold leg guards""",42,8000,1,"""These are gold leg guards. These are expensive!""","""Rare""","""Legs""",-1,-1,-1,0,0,0
-"""Diamond leg guards""",43,9750,1,"""These are diamond leg guards. These are very expensive!""","""Epic""","""Legs""",-1,-1,-1,0,0,0
-"""Obsidian leg guards""",44,2625,1,"""These are obsidian leg guards.""","""Lava Forged""","""Legs""",-1,-1,-1,0,0,0
-"""Glass leg guards""",45,750,1,"""It would be a shame if these shattered.""","""Very Uncommon""","""Legs""",-1,-1,-1,0,0,0
-"""Wood gauntlets""",46,250,1,"""You can't move your hands while wearing these.""","""Common""","""Hands""",-1,-1,-1,0,0,0
-"""Iron gauntlets""",47,50,1,"""These are iron gauntlets. How generic!""","""Common""","""Hands""",-1,-1,-1,0,0,0
-"""Steel gauntlets""",48,100,1,"""These are steel gauntlets. How generic!""","""Common""","""Hands""",-1,-1,-1,0,0,0
-"""Mithril gauntlets""",49,160,1,"""These are mithril gauntlets. These are slightly less generic!""","""Uncommon""","""Hands""",-1,-1,-1,0,0,0
-"""Rune gauntlets""",50,300,1,"""These are rune gauntlets. These are slightly less generic!""","""Uncommon""","""Hands""",-1,-1,-1,0,0,0
-"""Gold gauntlets""",51,400,1,"""These are gold gauntlets.""","""Rare""","""Hands""",-1,-1,-1,0,0,0
-"""Diamond gauntlets""",52,1600,1,"""These are diamond gauntlets.""","""Epic""","""Hands""",-1,-1,-1,0,0,0
-"""Obsidian gauntlets""",53,2600,1,"""These are obsidian gauntlets.""","""Lava Forged""","""Hands""",-1,-1,-1,0,0,0
-"""Glass gauntlets""",54,700,1,"""Caution: fragile. Handle with care.""","""Very Uncommon""","""Hands""",-1,-1,-1,0,0,0
-"""Wood boots""",55,55,1,"""You'll sound like a horse if you run while wearing these.""","""Common""","""Feet""",-1,-1,-1,0,0,0
-"""Iron boots""",56,110,1,"""These are iron boots. How generic!""","""Common""","""Feet""",-1,-1,-1,0,0,0
-"""Steel boots""",57,176,1,"""These are steel boots. How generic!""","""Common""","""Feet""",-1,-1,-1,0,0,0
-"""Mithril boots""",58,330,1,"""These are mithril boots. These are slightly less generic!""","""Uncommon""","""Feet""",-1,-1,-1,0,0,0
-"""Rune boots""",59,440,1,"""These are rune boots. These are slightly less generic!""","""Uncommon""","""Feet""",-1,-1,-1,0,0,0
-"""Gold boots""",60,1760,1,"""When you're so rich that you can step on gold.""","""Rare""","""Feet""",-1,-1,-1,0,0,0
-"""Diamond boots""",61,2860,1,"""When you're so rich that you can step on diamond.""","""Epic""","""Feet""",-1,-1,-1,0,0,0
-"""Obsidian boots""",62,770,1,"""Lava walkers""","""Lava Forged""","""Feet""",-1,-1,-1,0,0,0
-"""Glass boots""",63,220,1,"""Ouch, tread lightly.""","""Very Uncommon""","""Feet""",-1,-1,-1,0,0,0
-"""Wood helm""",64,82.5,1,"""Is it a helmet or a bowl? The world may never know.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
-"""Iron helm""",65,165,1,"""For when you want to look like a welder...""","""Common""","""Helmet""",-1,-1,-1,0,0,0
-"""Steel helm""",66,264,1,"""Putting this much strain on your neck is probably a bad idea.""","""Common""","""Helmet""",-1,-1,-1,0,0,0
-"""Mithril helm""",67,495,1,"""This is a mithril helm. This is slightly less generic!""","""Uncommon""","""Helmet""",-1,-1,-1,0,0,0
-"""Rune helm""",68,660,1,"""This is a rune helm. This is slightly less generic!""","""Uncommon""","""Helmet""",-1,-1,-1,0,0,0
-"""Gold helm""",69,2640,1,"""When you aren't sure if you want a crown or a helmet, get this.""","""Rare""","""Helmet""",-1,-1,-1,0,0,0
-"""Diamond helm""",70,4290,1,"""If you're wearing a giant chunk of diamond to protect your head, you probably already took a significant blow to the head.""","""Epic""","""Helmet""",-1,-1,-1,0,0,0
-"""Obsidian helm""",71,1155,1,"""This is an obsidian helm.""","""Lava Forged""","""Helmet""",-1,-1,-1,0,0,0
-"""Glass helm""",72,330,1,"""Use this only if you want shards in your eye.""","""Very Uncommon""","""Helmet""",-1,-1,-1,0,0,0
-"""Wood dagger""",73,45,2,"""This is hardly a dagger...""","""Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Iron dagger""",74,90,2,"""This is an iron dagger. How generic!""","""Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Steel dagger""",75,144,2,"""This is a steel dagger. How generic!""","""Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Mithril dagger""",76,270,2,"""This is a mithril dagger. This is slightly less generic!""","""Uncommon""","""Dagger""",-1,-1,-1,0,0,0
-"""Rune dagger""",77,360,2,"""This is a rune dagger. This is slightly less generic!""","""Uncommon""","""Dagger""",-1,-1,-1,0,0,0
-"""Gold dagger""",78,1440,2,"""If you can afford to stab someone with gold, you could probably just hire someone to do the job...""","""Rare""","""Dagger""",-1,-1,-1,0,0,0
-"""Diamond dagger""",79,2340,2,"""If you can afford to stab someone with diamond, you could probably just hire someone to do the job...""","""Epic""","""Dagger""",-1,-1,-1,0,0,0
-"""Obsidian dagger""",80,630,2,"""For when you have a volcanic fury.""","""Lava Forged""","""Dagger""",-1,-1,-1,0,0,0
-"""Glass dagger""",81,180,2,"""Single use only.""","""Very Uncommon""","""Dagger""",-1,-1,-1,0,0,0
-"""Fork""",82,300,2,"""This is a shrinkwrapped fork. Wow!""","""Shrinkwrapped Common""","""Dagger""",-1,-1,-1,0,0,0
-"""Lightsaber""",83,1000000,6,"""An alien artifact from a galaxy far, far away?""","""Legendary Alien Artifact""","""Lightsaber""",-1,-1,-1,0,0,0
-"""Landshark launcher""",84,30000,10,"""This device fires landsharks. You read that right.""","""Legendary""","""Launcher""",-1,-1,-1,0,0,0
-"""Flail""",85,1500,4,"""User beware: momentum is conserved.""","""Common""","""Flail""",-1,-1,-1,0,0,0
-"""Oak bow""",86,2000,12,"""Legolas would be proud.""","""Common""","""Bow""",-1,-1,-1,0,0,0
-"""Iron crossbow""",87,3000,16,"""This doesn't fire bolts of lightning, but it'll work.""","""Uncommon""","""Crossbow""",-1,-1,-1,0,0,0
-"""Musket""",88,10000,20,"""For piercing armor at long range.""","""Rare""","""Musket""",-1,-1,-1,0,0,0
-"""Blunderbuss""",89,6500,10,"""For piercing armor at short range.""","""Rare""","""Blunderbuss""",-1,-1,-1,0,0,0
-"""Scimitar""",90,5500,6,"""This is a curved sword.""","""Uncommon""","""Scimitar""",-1,-1,-1,0,0,0
-"""Hatchet""",91,500,3,"""For use on trees only.""","""Common""","""Hatchet""",-1,-1,-1,0,0,0
-"""Wooden stick""",92,250,4,"""You might mistake it for a magical staff, but this is nothing more than a walking stick.""","""Common""","""Stick""",-1,-1,-1,0,0,0
-"""Enchanted staff""",93,10000,4,"""This is a stick that has been imbued with magical properties.""","""Legendary""","""Staff""",-1,-1,-1,0,0,0
-"""Shadow katana""",94,50000,7,"""A slight glow is emanating from the blade.'","""Legendary""","""Katana""",-1,-1,-1,0,0,0
-"""Scythe""",95,1000,8,"""For use on grass only.""","""Uncommon""","""Scythe""",-1,-1,-1,0,0,0
-"""Iron mace""",96,800,3,"""This is an iron mace. How generically medieval.""","""Common""","""Mace""",-1,-1,-1,0,0,0
-"""Battleaxe""",97,2500,5,"""And my axe!""","""Rare""","""Axe""",-1,-1,-1,0,0,0
-"""Morningstar""",98,2500,4,"""This is a spiked hammer.""","""Uncommon""","""Hammer""",-1,-1,-1,0,0,0
-"""Brass knuckles""",99,1200,2,"""Here is a test description.""","""Uncommon""","""Fist Weapon""",-1,-1,-1,0,0,0
-"""Butter knife""",100,100,2,"""Use this when you really mean business.""","""Legendary""","""Dagger""",-1,-1,-1,0,0,0
+"""Wood sword""",1,100,5,"""Making a sword out of wood wasn't the smartest idea ever. This is more of a club than a sword...""","""Common""","""Sword""",9,3,4,1,1,3
+"""Iron sword""",2,200,5,"""This is an iron sword. How generic!""","""Common""","""Sword""",9,3,-1,2,2,0
+"""Steel sword""",3,320,5,"""This is a steel sword. How generic!""","""Common""","""Sword""",9,3,-1,3,3,0
+"""Mithril sword""",4,600,5,"""This is a mithril sword. This is slightly less generic!""","""Uncommon""","""Sword""",9,3,-1,4,4,0
+"""Rune sword""",5,800,5,"""This is a rune sword. This is slightly less generic!""","""Uncommon""","""Sword""",9,3,-1,3,3,0
+"""Gold sword""",6,3200,5,"""You could sell this and get something more effective...""","""Rare""","""Sword""",9,3,-1,2,2,0
+"""Diamond sword""",7,5200,5,"""You really should sell this.""","""Epic""","""Sword""",9,3,-1,7,7,0
+"""Obsidian sword""",8,1400,5,"""Where did someone get enough obsidian to make a sword?""","""Lava Forged""","""Sword""",9,3,-1,4,4,0
+"""Glass sword""",9,400,5,"""What? Why would anyone actually use this?""","""Very Uncommon""","""Sword""",9,3,6,3,3,3
+"""Wood shield""",10,125,1,"""Making a shield out of wood wasn't the smartest idea ever. I hope you don't try to block firebolts...""","""Common""","""Shield""",10,5,4,1,1,3
+"""Iron shield""",11,250,1,"""This is an iron shield. How generic!""","""Common""","""Shield""",10,5,8,2,2,2
+"""Steel shield""",12,400,1,"""This is a steel shield. How generic (and heavy)!""","""Common""","""Shield""",10,5,8,3,3,3
+"""Mithril shield""",13,750,1,"""This is a mithril shield. This is slightly less generic!""","""Uncommon""","""Shield""",10,5,8,4,4,4
+"""Rune shield""",14,1000,1,"""This is a rune shield. This is slightly less generic!""","""Uncommon""","""Shield""",10,5,8,3,3,3
+"""Gold shield""",15,4000,1,"""This is a giant chunk of gold and you're trying to use it to block attacks. Reevaluate your choices.""","""Rare""","""Shield""",10,5,8,2,2,2
+"""Diamond shield""",16,6500,1,"""This is a giant chunk of diamond and you're trying to use it to block attacks. Reevaluate your choices.""","""Epic""","""Shield""",10,5,8,7,7,7
+"""Obsidian shield""",17,1750,1,"""This came straight out of a volcano. Neat.""","""Lava Forged""","""Shield""",10,5,8,4,4,4
+"""Glass shield""",18,500,1,"""I don't think you can block more than one attack with this...""","""Very Uncommon""","""Shield""",10,5,6,3,3,3
+"""Wood shoulders""",19,50,1,"""These are more effective at making you look like a wood elf than they are at protecting you.""","""Common""","""Shoulders""",10,5,4,1,1,3
+"""Iron shoulders""",20,100,1,"""These are iron shoulder guards. How generic!""","""Common""","""Shoulders""",10,5,8,2,2,2
+"""Steel shoulders""",21,160,1,"""These are steel shoulder guards. How generic!""","""Common""","""Shoulders""",10,5,8,3,3,3
+"""Mithril shoulders""",22,300,1,"""These are mithril shoulder guards. These are slightly less generic!""","""Uncommon""","""Shoulders""",10,5,8,4,4,4
+"""Rune shoulders""",23,400,1,"""These are rune shoulder guards. These are slightly less generic!""","""Uncommon""","""Shoulders""",10,5,8,3,3,3
+"""Gold shoulders""",24,1600,1,"""These are gold shoulder guards. These are expensive!""","""Rare""","""Shoulders""",10,5,8,2,2,2
+"""Diamond shoulders""",25,2600,1,"""These are diamond shoulder guards. These are very expensive!""","""Epic""","""Shoulders""",10,5,8,7,7,7
+"""Obsidian shoulders""",26,700,1,"""These are obsidian shoulder guards.""","""Lava Forged""","""Shoulders""",10,5,8,4,4,4
+"""Glass shoulders""",27,200,1,"""These are glass shoulder guards.""","""Very Uncommon""","""Shoulders""",10,5,6,3,3,3
+"""Wood chestplate""",28,250,1,"""This is more effective at making you look like a wood elf than it is at protecting you.""","""Common""","""Chestplate""",10,5,4,1,1,3
+"""Iron chestplate""",29,500,1,"""This is an iron chestplate. How generic!""","""Common""","""Chestplate""",10,5,8,2,2,2
+"""Steel chestplate""",30,800,1,"""This is a steel chestplate. How generic (and heavy)!""","""Common""","""Chestplate""",10,5,8,3,3,3
+"""Mithril chestplate""",31,1500,1,"""This is a mithril chestplate. This is slightly less generic!""","""Uncommon""","""Chestplate""",10,5,8,4,4,4
+"""Rune chestplate""",32,2000,1,"""This is a rune chestplate. This is slightly less generic!""","""Uncommon""","""Chestplate""",10,5,8,3,3,3
+"""Gold chestplate""",33,8000,1,"""This is a gold chestplate.""","""Rare""","""Chestplate""",10,5,8,2,2,2
+"""Diamond chestplate""",34,13000,1,"""This is a diamond chestplate.""","""Epic""","""Chestplate""",10,5,8,7,7,7
+"""Obsidian chestplate""",35,3500,1,"""This is an obsidian chestplate. It smells like fire and brimstone.""","""Lava Forged""","""Chestplate""",10,5,8,4,4,4
+"""Glass chestplate""",36,1000,1,"""Wear this to maximize bodily injury upon attack.""","""Very Uncommon""","""Chestplate""",10,5,6,3,3,3
+"""Wood leg guards""",37,187.5,1,"""These are more effective at making you look like a wood elf than they are at protecting you.""","""Common""","""Legs""",10,5,4,1,1,3
+"""Iron leg guards""",38,375,1,"""These are iron leg guards. How generic!""","""Common""","""Legs""",10,5,8,2,2,2
+"""Steel leg guards""",39,600,1,"""These are steel leg guards. How generic!""","""Common""","""Legs""",10,5,8,3,3,3
+"""Mithril leg guards""",40,1500,1,"""These are mithril leg guards. These are slightly less generic!""","""Uncommon""","""Legs""",10,5,8,4,4,4
+"""Rune leg guards""",41,1500,1,"""These are rune leg guards. These are slightly less generic!""","""Uncommon""","""Legs""",10,5,8,3,3,3
+"""Gold leg guards""",42,8000,1,"""These are gold leg guards. These are expensive!""","""Rare""","""Legs""",10,5,8,2,2,2
+"""Diamond leg guards""",43,9750,1,"""These are diamond leg guards. These are very expensive!""","""Epic""","""Legs""",10,5,8,7,7,7
+"""Obsidian leg guards""",44,2625,1,"""These are obsidian leg guards.""","""Lava Forged""","""Legs""",10,5,8,4,4,4
+"""Glass leg guards""",45,750,1,"""It would be a shame if these shattered.""","""Very Uncommon""","""Legs""",10,5,6,3,3,3
+"""Wood gauntlets""",46,250,1,"""You can't move your hands while wearing these.""","""Common""","""Hands""",10,5,4,1,1,3
+"""Iron gauntlets""",47,50,1,"""These are iron gauntlets. How generic!""","""Common""","""Hands""",10,5,8,2,2,2
+"""Steel gauntlets""",48,100,1,"""These are steel gauntlets. How generic!""","""Common""","""Hands""",10,5,8,3,3,3
+"""Mithril gauntlets""",49,160,1,"""These are mithril gauntlets. These are slightly less generic!""","""Uncommon""","""Hands""",10,5,8,4,4,4
+"""Rune gauntlets""",50,300,1,"""These are rune gauntlets. These are slightly less generic!""","""Uncommon""","""Hands""",10,5,8,3,3,3
+"""Gold gauntlets""",51,400,1,"""These are gold gauntlets.""","""Rare""","""Hands""",10,5,8,2,2,2
+"""Diamond gauntlets""",52,1600,1,"""These are diamond gauntlets.""","""Epic""","""Hands""",10,5,8,7,7,7
+"""Obsidian gauntlets""",53,2600,1,"""These are obsidian gauntlets.""","""Lava Forged""","""Hands""",10,5,8,4,4,4
+"""Glass gauntlets""",54,700,1,"""Caution: fragile. Handle with care.""","""Very Uncommon""","""Hands""",10,5,6,3,3,3
+"""Wood boots""",55,55,1,"""You'll sound like a horse if you run while wearing these.""","""Common""","""Feet""",10,5,4,1,1,3
+"""Iron boots""",56,110,1,"""These are iron boots. How generic!""","""Common""","""Feet""",10,5,6,2,2,2
+"""Steel boots""",57,176,1,"""These are steel boots. How generic!""","""Common""","""Feet""",10,5,6,3,3,3
+"""Mithril boots""",58,330,1,"""These are mithril boots. These are slightly less generic!""","""Uncommon""","""Feet""",10,5,6,4,4,4
+"""Rune boots""",59,440,1,"""These are rune boots. These are slightly less generic!""","""Uncommon""","""Feet""",10,5,6,3,3,3
+"""Gold boots""",60,1760,1,"""When you're so rich that you can step on gold.""","""Rare""","""Feet""",10,5,6,2,2,2
+"""Diamond boots""",61,2860,1,"""When you're so rich that you can step on diamond.""","""Epic""","""Feet""",10,5,6,7,7,7
+"""Obsidian boots""",62,770,1,"""Lava walkers""","""Lava Forged""","""Feet""",10,5,6,4,4,4
+"""Glass boots""",63,220,1,"""Ouch, tread lightly.""","""Very Uncommon""","""Feet""",10,5,6,3,3,3
+"""Wood helm""",64,82.5,1,"""Is it a helmet or a bowl? The world may never know.""","""Common""","""Helmet""",10,5,4,1,1,3
+"""Iron helm""",65,165,1,"""For when you want to look like a welder...""","""Common""","""Helmet""",10,5,8,2,2,2
+"""Steel helm""",66,264,1,"""Putting this much strain on your neck is probably a bad idea.""","""Common""","""Helmet""",10,5,8,3,3,3
+"""Mithril helm""",67,495,1,"""This is a mithril helm. This is slightly less generic!""","""Uncommon""","""Helmet""",10,5,8,4,4,4
+"""Rune helm""",68,660,1,"""This is a rune helm. This is slightly less generic!""","""Uncommon""","""Helmet""",10,5,8,3,3,3
+"""Gold helm""",69,2640,1,"""When you aren't sure if you want a crown or a helmet, get this.""","""Rare""","""Helmet""",10,5,8,2,2,2
+"""Diamond helm""",70,4290,1,"""If you're wearing a giant chunk of diamond to protect your head, you probably already took a significant blow to the head.""","""Epic""","""Helmet""",10,5,8,7,7,7
+"""Obsidian helm""",71,1155,1,"""This is an obsidian helm.""","""Lava Forged""","""Helmet""",10,5,8,4,4,4
+"""Glass helm""",72,330,1,"""Use this only if you want shards in your eye.""","""Very Uncommon""","""Helmet""",10,5,6,3,3,3
+"""Wood dagger""",73,45,2,"""This is hardly a dagger...""","""Common""","""Dagger""",9,3,4,1,1,3
+"""Iron dagger""",74,90,2,"""This is an iron dagger. How generic!""","""Common""","""Dagger""",9,3,-1,2,2,0
+"""Steel dagger""",75,144,2,"""This is a steel dagger. How generic!""","""Common""","""Dagger""",9,3,-1,3,3,0
+"""Mithril dagger""",76,270,2,"""This is a mithril dagger. This is slightly less generic!""","""Uncommon""","""Dagger""",9,3,-1,4,4,0
+"""Rune dagger""",77,360,2,"""This is a rune dagger. This is slightly less generic!""","""Uncommon""","""Dagger""",9,3,-1,3,3,0
+"""Gold dagger""",78,1440,2,"""If you can afford to stab someone with gold, you could probably just hire someone to do the job...""","""Rare""","""Dagger""",9,3,-1,2,2,0
+"""Diamond dagger""",79,2340,2,"""If you can afford to stab someone with diamond, you could probably just hire someone to do the job...""","""Epic""","""Dagger""",9,3,-1,7,7,0
+"""Obsidian dagger""",80,630,2,"""For when you have a volcanic fury.""","""Lava Forged""","""Dagger""",9,3,-1,4,4,0
+"""Glass dagger""",81,180,2,"""Single use only.""","""Very Uncommon""","""Dagger""",9,3,6,3,3,3
+"""Fork""",82,300,2,"""This is a shrinkwrapped fork. Wow!""","""Shrinkwrapped Common""","""Dagger""",9,7,6,1,5,3
+"""Lightsaber""",83,1000000,6,"""An alien artifact from a galaxy far, far away?""","""Legendary Alien Artifact""","""Lightsaber""",9,10,12,25,5,5
+"""Landshark launcher""",84,30000,10,"""This device fires landsharks. You read that right.""","""Legendary""","""Launcher""",9,7,-1,15,5,0
+"""Flail""",85,1500,4,"""User beware: momentum is conserved.""","""Common""","""Flail""",9,6,-1,0,0,0
+"""Oak bow""",86,2000,12,"""Legolas would be proud.""","""Common""","""Bow""",9,4,-1,5,0,0
+"""Iron crossbow""",87,3000,16,"""This doesn't fire bolts of lightning, but it'll work.""","""Uncommon""","""Crossbow""",9,4,-1,8,0,0
+"""Musket""",88,10000,20,"""For piercing armor at long range.""","""Rare""","""Musket""",9,4,-1,13,0,0
+"""Blunderbuss""",89,6500,10,"""For piercing armor at short range.""","""Rare""","""Blunderbuss""",9,4,-1,10,0,0
+"""Scimitar""",90,5500,6,"""This is a curved sword.""","""Uncommon""","""Scimitar""",9,6,-1,6,0,0
+"""Hatchet""",91,500,3,"""For use on trees only.""","""Common""","""Hatchet""",9,6,-1,4,0,0
+"""Wooden stick""",92,250,4,"""You might mistake it for a magical staff, but this is nothing more than a walking stick.""","""Common""","""Stick""",9,2,-1,1,-1,0
+"""Enchanted staff""",93,10000,4,"""This is a stick that has been imbued with magical properties.""","""Legendary""","""Staff""",2,12,7,15,10,7
+"""Shadow katana""",94,50000,7,"""A slight glow is emanating from the blade.'","""Legendary""","""Katana""",9,4,6,15,15,15
+"""Scythe""",95,1000,8,"""For use on grass only.""","""Uncommon""","""Scythe""",9,6,-1,4,6,0
+"""Iron mace""",96,800,3,"""This is an iron mace. How generically medieval.""","""Common""","""Mace""",9,3,-1,5,5,0
+"""Battleaxe""",97,2500,5,"""And my axe!""","""Rare""","""Axe""",9,3,-1,7,7,0
+"""Morningstar""",98,2500,4,"""This is a spiked hammer.""","""Uncommon""","""Hammer""",9,3,-1,6,6,0
+"""Brass knuckles""",99,1200,2,"""Here is a test description.""","""Uncommon""","""Fist Weapon""",9,3,-1,4,4,0
+"""Butter knife""",100,100,2,"""Use this when you really mean business.""","""Legendary""","""Dagger""",9,7,-1,1,5,0
