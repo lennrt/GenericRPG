@@ -92,7 +92,7 @@
 			SetDiv("AccountView");
 			
 			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
-			
+			alert ("here1");
 			for (var i = 1; i < 6; i++){
 				if (GetValueFromKey("c" + i) != "Not Found"){
 					document.getElementById("char" + i).style.visibility = "visible";
@@ -103,6 +103,7 @@
 					document.getElementById("class" + i).innerText = GetValueFromKey("Class" + i);
 				}
 			}
+			alert ("here2");
 		}
 		
 		function ParseResponse(Response){
