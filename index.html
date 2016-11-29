@@ -23,7 +23,7 @@
 		var Tabs = ["Main", "Splash", "AccountView"];
 		var User;
 		var Pass;
-		var charID;
+		var CharID;
 		var Box;
 		var SessionKey;
 		var Query = "";
@@ -174,7 +174,6 @@
 		
 		function BackgroundUpdate(){
 			var xhttp;
-			alert (Output);
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -203,7 +202,7 @@
 			var conf = confirm("Are you sure you want to delete this character?");
 			if (conf === false) {return;}		
 			
-			charID = document.getElementById("charID" + SelectedChar).value;
+			CharID = document.getElementById("charID" + SelectedChar).value;
 			
 			var xhttp;
 			xhttp = new XMLHttpRequest();
@@ -213,7 +212,7 @@
 				}
 			};
 			
-			Operation = "?Op=DeleteCharacter&c=" + charID;												
+			Operation = "?Op=DeleteCharacter&c=" + CharID;												
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(Operation + Query);
@@ -276,7 +275,7 @@
 		function Create(){
 			User = document.getElementById("u").value;
 			Pass = document.getElementById("p").value;
-			charID = GetNewID();
+			CharID = GetNewID();
 			var Name = document.getElementById("charName").value;
 			var Class = document.getElementById("charClass").value;
 			var Race = document.getElementById("charRace").value;
@@ -303,7 +302,7 @@
 			
 			Operation = "?Op=NewCharacter";
 			Query = "&u=" + User + "&p=" + Pass;
-			Query += "&c=" + charID + "&Name=" + Name + "&Class=" + Class + "&Race=" + Race + "&Sex=" + Sex + "&Level=" + Level;
+			Query += "&c=" + CharID + "&Name=" + Name + "&Class=" + Class + "&Race=" + Race + "&Sex=" + Sex + "&Level=" + Level;
 			Query += "&Int=" + Int + "&Str=" + Str + "&Agi=" + Agi + "&Con=" + Con + "&Spd=" + Spd + "&Cha=" + Cha + "&End=" + End;
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -346,7 +345,7 @@
 			}
 			
 			document.getElementById("char" + NextSpot).style.visibility = "visible";
-			document.getElementById("chardID" + NextSpot).value = charID;
+			document.getElementById("charID" + NextSpot).value = CharID;
 			document.getElementById("name" + NextSpot).innerText = document.getElementById("charName").value;
 			document.getElementById("level" + NextSpot).innerText = "1";
 			document.getElementById("race" + NextSpot).innerText = document.getElementById("charRace").value;					
