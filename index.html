@@ -105,17 +105,17 @@
 		}
 		
 		function ParseResponse(Response){
-			var ResponseText = Response.substr(2);alert("PR1");
-			ResponseArray = [];alert("PR2");
-			var Temp = ResponseText.split("&");alert("PR3");
+			var ResponseText = Response.substr(2);
+			ResponseArray = [];
+			var Temp = ResponseText.split("&");
 			for (var i = 0; i < Temp.length; i++) {
 				ResponseArray.push(Temp[i].split("="));
 			}	
 			
-			var Output = "";alert("PR4");
+			var Output = "";
 			for (var i = 0; i < ResponseArray.length; i++){
 				Output += ResponseArray[i][Key] + ResponseArray[i][Value];
-			}alert("PR5");
+			}
 		}
 		
 		function GetValueFromKey(SearchKey){
