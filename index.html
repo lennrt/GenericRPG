@@ -163,16 +163,16 @@
 		
 		function PlayResponse(xhttp){
 			alert(">" + xhttp.responseText + "<");
-			ParseResponse(xhttp.responseText);alert("here1");
-			if (GetValueFromKey("Status") == "Success"){alert("here2");
-				SetDiv("Main");alert("here3");
+			ParseResponse(xhttp.responseText);
+			if (GetValueFromKey("Status") == "Success"){
+				SetDiv("Main");
 				Box = GetValueFromKey("Box");
 				BackgroundUpdate();
 			}
-			alert("here4");
 		}
 		
 		function BackgroundUpdate(){
+			alert("herebg");
 			var xhttp;
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -186,7 +186,7 @@
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(Operation + Query);
-			window.setInterval(function(){ BackgroundUpdate(); }, 1000);
+			window.setInterval(function(){ BackgroundUpdate(); }, 3000);
 		}
 		
 		function UpdateResponse(xhttp){
