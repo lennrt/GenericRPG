@@ -63,7 +63,6 @@ int main(){
 		if (FormData.size() > 5) { cout << FormData; }
 		getFormData(FormData);
 		Action = GetValueFromKey("Action");
-		cout << Action << flush;
 		
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
