@@ -163,12 +163,13 @@
 		
 		function PlayResponse(xhttp){
 			alert(">" + xhttp.responseText + "<");
-			ParseResponse();
-			if (GetValueFromKey("Status") == "Success"){
-				SetDiv("Main");
+			ParseResponse();alert("here1");
+			if (GetValueFromKey("Status") == "Success"){alert("here2");
+				SetDiv("Main");alert("here3");
 				Box = GetValueFromKey("Box");
 				BackgroundUpdate();
-			}			
+			}
+			alert("here4");
 		}
 		
 		function BackgroundUpdate(){
