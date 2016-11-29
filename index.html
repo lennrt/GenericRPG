@@ -92,7 +92,6 @@
 			SetDiv("AccountView");
 			
 			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
-			alert ("here1");
 			for (var i = 1; i < 6; i++){
 				if (GetValueFromKey("c" + i) != "Not Found"){
 					document.getElementById("char" + i).style.visibility = "visible";
@@ -103,7 +102,6 @@
 					document.getElementById("class" + i).innerText = GetValueFromKey("Class" + i);
 				}
 			}
-			alert ("here");
 		}
 		
 		function ParseResponse(Response){
@@ -155,7 +153,7 @@
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					EnterResponse(xhttp);
+					PlayResponse(xhttp);
 				}
 			};
 			xhttp.open("POST", SiteURL, true);
@@ -163,11 +161,11 @@
 			xhttp.send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass);	
 		}
 		
-		function EnterResponse(xhttp){
+		function PlayResponse(xhttp){
 			alert(">" + xhttp.responseText + "<");
 			ParseResponse();
 			if (GetValueFromKey("Status") == "Success"){
-				SetDiv(Tabs[0]);
+				SetDiv("Main");
 				Box = GetValueFromKey("Box");
 				BackgroundUpdate();
 			}			
