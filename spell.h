@@ -11,7 +11,7 @@ class Spell {
   
     Spell();
     ~Spell();
-   std::string get_title();
+    std::string get_title();
     std::string get_description();
     int get_value();
     int get_mana_cost();
