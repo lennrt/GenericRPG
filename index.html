@@ -105,16 +105,16 @@
 		}
 		
 		function ParseResponse(Response){
-			var ResponseText = Response.substr(2);
-			ResponseArray = [];
-			var Temp = ResponseText.split("&");
-			for (var i = 0; i < Temp.length; i++) {
-				ResponseArray.push(Temp[i].split("="));
+			var ResponseText = Response.substr(2);alert("PR1");
+			ResponseArray = [];alert("PR2");
+			var Temp = ResponseText.split("&");alert("PR3");
+			for (var i = 0; i < Temp.length; i++) {alert("PR4");
+				ResponseArray.push(Temp[i].split("="));alert("PR5");
 			}	
 			
-			var Output = "";
-			for (var i = 0; i < ResponseArray.length; i++){
-				Output += ResponseArray[i][Key] + ResponseArray[i][Value];
+			var Output = "";alert("PR6");
+			for (var i = 0; i < ResponseArray.length; i++){alert("PR7");
+				Output += ResponseArray[i][Key] + ResponseArray[i][Value];alert("PR8");
 			}
 		}
 		
