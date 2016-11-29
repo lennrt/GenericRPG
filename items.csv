@@ -96,5 +96,5 @@
 """Iron mace""",96,800,3,"""This is an iron mace. How generically medieval.""","""Common""","""Mace""",9,3,-1,5,5,0
 """Battleaxe""",97,2500,5,"""And my axe!""","""Rare""","""Axe""",9,3,-1,7,7,0
 """Morningstar""",98,2500,4,"""This is a spiked hammer.""","""Uncommon""","""Hammer""",9,3,-1,6,6,0
-"""Brass knuckles""",99,1200,2,"""Here is a test description.""","""Uncommon""","""Fist Weapon""",9,3,-1,4,4,0
+"""Brass knuckles""",99,1200,2,"""For when fists just don't cut it.""","""Uncommon""","""Fist Weapon""",9,3,-1,4,4,0
 """Butter knife""",100,100,2,"""Use this when you really mean business.""","""Legendary""","""Dagger""",9,7,-1,1,5,0
