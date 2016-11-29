@@ -1,13 +1,5 @@
-#include <stdio.h>
-#include <string>
-#include <iostream>
-#include <cstdlib>
-#include "enums.h"
-#include "entity.h"
-using namespace std;
-
 //Basic class for castable spells in the game
-class Spell {
+/*class Spell {
 protected:
 	string title;
 	string description;
@@ -17,28 +9,28 @@ protected:
 	Stats target_stat;
 
 public:
+*/
+#include <sstream>
+#include <string>
+#include "enums.h"
+#include "spell.h"
+
 	//get functions
-	string get_title() {
+	std::string Spell::get_title() {
 		return title;
 	}
-	string get_description() {
+	std::string Spell::get_description() {
 		return description;
 	}
-	int get_value() {
-		return value;
-	}
-	int get_mana_cost() {
-		return mana_cost;
-	}
-	int get_range() {
+	std::int Spell::get_range() {
 		return range;
 	}
-	void cast_spell(Entity& casting_char, Entity& target)	{
+	void Spell::cast_spell(Entity& casting_char, Entity& target)	{
 		target.AlterStat(target_stat, false, value);
 	}
 	//todo: value dependent on casting character stats
 
-};
+
 
 
 //example spell
