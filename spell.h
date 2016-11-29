@@ -23,6 +23,5 @@ class Spell {
     //int value;
     //int mana_cost;
     std::int range;
-    //std::Stats target_stat;
     
 };
