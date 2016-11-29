@@ -29,8 +29,6 @@ class Mailbox{
 	std::vector <int> OpenBoxes;
 	
 	void CheckMessages();
-	void LockInbox();
-	void UnlockInbox();
 	std::string GetMessage(int Box, int Slot);
 	void SetMessage(int Box, int Slot, std::string Message);
 	void ClearSlot (int Box,int Slot);	

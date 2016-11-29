@@ -60,37 +60,16 @@ bool Mailbox::SetupSuccessful(){
 }
 
 void Mailbox::CheckMessages(){
-	LockInbox();
+	sem_wait(semID);		//Lock Inbox
 	for (int i = 1; i < inboxCount;i++){
-		if (CheckSlot(0,i)){
+		if (!CheckSlot(0,i)){
 			Inbox.push_back(GetMessage(0,i));
 			ClearSlot(0,i);
 		} else {
 			break;
 		}
 	}	
-	UnlockInbox();	
-}
-
-void Mailbox::LockInbox(){
-// 	//Attempt to lock Inbox.  Success = Inbox was not locked.
-// 	char* LockLocation = controlPointer + InboxLock;
-// 	bool Success = false;
-// 	
-// 	sem_wait(semID);
-// 	if (*LockLocation == 0x0){
-// 		*LockLocation = 0x1;
-// 		Success = true;
-// 	}
-// 	sem_post(semID);
-// 	return (Success);
-	sem_wait(semID);
-}
-
-void Mailbox::UnlockInbox(){
-// 	char* LockLocation = controlPointer + InboxLock;
-// 	*LockLocation = 0x0;
-	sem_post(semID);
+	sem_post(semID);		//Unlock Inbox
 }
 
 string Mailbox::GetNextMessage(){

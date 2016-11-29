@@ -69,8 +69,6 @@ bool VerifySession();
 string ConnectToGameService();
 void DisconnectFromGameService();
 string EnterGame();
-void LockInbox();
-void UnlockInbox();
 void SendMessageToBox(std::string Message, int Box);
 bool CheckSlot(int Box, int Slot);
 string GetMessage(int Box, int Slot);
@@ -450,21 +448,13 @@ string EnterGame(){
 	
 	BoxClaimMessage = "&u=" + GetValueFromKey("u") + "&c=" + GetValueFromKey("c") + "&s=" + GetValueFromKey("s") + "&Box=" + to_string(NewBox) + "&Action=EnterGame";
 	
-	LockInbox();
+	sem_wait(semID);		//Lock Inbox
 	SendMessageToBox(BoxClaimMessage, 0);
-	UnlockInbox();
+	sem_post(semID);		//Unlock Inbox
 
 	RetVal += "&Status=Success&Box=" + to_string(NewBox);
 
 	return RetVal;
-}
-
-void LockInbox(){
-	sem_wait(semID);
-}
-
-void UnlockInbox(){
-	sem_post(semID);
 }
 
 void SendMessageToBox(std::string Message, int Box){
