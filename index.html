@@ -96,14 +96,14 @@
 			for (var i = 1; i < 6; i++){
 				if (GetValueFromKey("c" + i) != "Not Found"){
 					document.getElementById("char" + i).style.visibility = "visible";
-					document.getElementById("charID" + i).innerText = GetValueFromKey("c" + i);
+					document.getElementById("charID" + i).value = GetValueFromKey("c" + i);
 					document.getElementById("name" + i).innerText = GetValueFromKey("Name" + i);
 					document.getElementById("level" + i).innerText = GetValueFromKey("Level" + i);
 					document.getElementById("race" + i).innerText = GetValueFromKey("Race" + i);					
 					document.getElementById("class" + i).innerText = GetValueFromKey("Class" + i);
 				}
 			}
-			alert ("here2");
+			alert ("here");
 		}
 		
 		function ParseResponse(Response){
