@@ -163,7 +163,7 @@
 		
 		function PlayResponse(xhttp){
 			alert(">" + xhttp.responseText + "<");
-			ParseResponse();alert("here1");
+			ParseResponse(xhttp.responseText);alert("here1");
 			if (GetValueFromKey("Status") == "Success"){alert("here2");
 				SetDiv("Main");alert("here3");
 				Box = GetValueFromKey("Box");
