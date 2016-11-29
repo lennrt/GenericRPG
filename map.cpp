@@ -6,6 +6,7 @@
 //  Copyright © 2016 Nhat Nguyen. All rights reserved.
 //
 
+#include "map.h"
 #include "tile.h"
 
 /* Map Class Constructors */
