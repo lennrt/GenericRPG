@@ -21,7 +21,7 @@ using namespace std;
 
 class Map {
 private:
-    int mapArray [100][100];
+    unsigned short int mapArray [100][100];
     
 public:
     Map();
