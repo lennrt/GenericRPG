@@ -167,7 +167,7 @@
 			if (GetValueFromKey("Status") == "Success"){
 				SetDiv("Main");
 				Box = GetValueFromKey("Box");
-				window.setInterval(function(){ BackgroundUpdate(); }, 3000);
+				window.setInterval(BackgroundUpdate, 3000);
 			}
 		}
 		
