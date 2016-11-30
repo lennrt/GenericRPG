@@ -71,7 +71,7 @@ int main(){
 			Mailbox.OpenUserBox(NewChar.Box);
 			Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
-			cout << "Intelligence:" << .GetStat(Intelligence, true);
+			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true);
 			Players.push_back(NewChar);
 		}
 		
