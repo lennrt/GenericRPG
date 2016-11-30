@@ -6,7 +6,7 @@
 #include <vector>
 #include <limits>
 #include <fstream>
-#include "item.cpp"
+#include "item.h"
 
 struct CsvItem {
     std::string name;
@@ -60,16 +60,17 @@ for (CsvItem i;
     items.push_back(i);
 }
 
-    std::cout << items[1].name << std::endl;
-    std::cout << items[1].itemId << std::endl;
-    std::cout << items[1].value << std::endl;
-    std::cout << items[1].max_range << std::endl;
-    std::cout << items[1].description << std::endl;
-    std::cout << items[1].rarity << std::endl;
-    std::cout << items[1].itemType << std::endl;
-    std::cout << items[1].stat1 << std::endl;
-    std::cout << items[1].stat2 << std::endl;
-    std::cout << items[1].stat3 << std::endl;
+    // for testing
+    // std::cout << items[1].name << std::endl;
+    // std::cout << items[1].itemId << std::endl;
+    // std::cout << items[1].value << std::endl;
+    // std::cout << items[1].max_range << std::endl;
+    // std::cout << items[1].description << std::endl;
+    // std::cout << items[1].rarity << std::endl;
+    // std::cout << items[1].itemType << std::endl;
+    // std::cout << items[1].stat1 << std::endl;
+    // std::cout << items[1].stat2 << std::endl;
+    // std::cout << items[1].stat3 << std::endl;
 
     file.close();
     return items;
@@ -88,9 +89,98 @@ std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input) {
     newItem.SetRarity(oldItem.rarity);
     newItem.SetItemType(oldItem.itemType);
 
-    int StatTable[2][6]; 
+    if (oldItem.stat1 > -1) {
+      switch (oldItem.stat1) {
+      case 0:
+        newItem.AlterStat(Mana, true, oldItem.mod1);
+      case 1:
+        newItem.AlterStat(Health, true, oldItem.mod1);
+      case 2:
+        newItem.AlterStat(Intelligence, true, oldItem.mod1);
+      case 3:
+        newItem.AlterStat(Strength, true, oldItem.mod1);
+      case 4:
+        newItem.AlterStat(Agility, true, oldItem.mod1);
+      case 5:
+        newItem.AlterStat(Constitution, true, oldItem.mod1);
+      case 6:
+        newItem.AlterStat(Speed, true, oldItem.mod1);
+      case 7:
+        newItem.AlterStat(Charisma, true, oldItem.mod1);
+      case 8:
+        newItem.AlterStat(Endurance, true, oldItem.mod1);
+      case 9:
+        newItem.AlterStat(Attack, true, oldItem.mod1);
+      case 10:
+        newItem.AlterStat(Defense, true, oldItem.mod1);
+      case 11:
+        newItem.AlterStat(ActionCoolDown, true, oldItem.mod1);  
+      case 12:
+        newItem.AlterStat(MagicCoolDown, true, oldItem.mod1);
+      }       
+    }; 
 
-    // build stat table
+    if (oldItem.stat2 > -1) {
+      switch (oldItem.stat2) {
+      case 0:
+        newItem.AlterStat(Mana, true, oldItem.mod2);
+      case 1:
+        newItem.AlterStat(Health, true, oldItem.mod2);
+      case 2:
+        newItem.AlterStat(Intelligence, true, oldItem.mod2);
+      case 3:
+        newItem.AlterStat(Strength, true, oldItem.mod2);
+      case 4:
+        newItem.AlterStat(Agility, true, oldItem.mod2);
+      case 5:
+        newItem.AlterStat(Constitution, true, oldItem.mod2);
+      case 6:
+        newItem.AlterStat(Speed, true, oldItem.mod2);
+      case 7:
+        newItem.AlterStat(Charisma, true, oldItem.mod2);
+      case 8:
+        newItem.AlterStat(Endurance, true, oldItem.mod2);
+      case 9:
+        newItem.AlterStat(Attack, true, oldItem.mod2);
+      case 10:
+        newItem.AlterStat(Defense, true, oldItem.mod2);
+      case 11:
+        newItem.AlterStat(ActionCoolDown, true, oldItem.mod2);  
+      case 12:
+        newItem.AlterStat(MagicCoolDown, true, oldItem.mod2);
+      }       
+    };
+
+    if (oldItem.stat3 > -1) {
+      switch (oldItem.stat3) {
+      case 0:
+        newItem.AlterStat(Mana, true, oldItem.mod3);
+      case 1:
+        newItem.AlterStat(Health, true, oldItem.mod3);
+      case 2:
+        newItem.AlterStat(Intelligence, true, oldItem.mod3);
+      case 3:
+        newItem.AlterStat(Strength, true, oldItem.mod3);
+      case 4:
+        newItem.AlterStat(Agility, true, oldItem.mod3);
+      case 5:
+        newItem.AlterStat(Constitution, true, oldItem.mod3);
+      case 6:
+        newItem.AlterStat(Speed, true, oldItem.mod3);
+      case 7:
+        newItem.AlterStat(Charisma, true, oldItem.mod3);
+      case 8:
+        newItem.AlterStat(Endurance, true, oldItem.mod3);
+      case 9:
+        newItem.AlterStat(Attack, true, oldItem.mod3);
+      case 10:
+        newItem.AlterStat(Defense, true, oldItem.mod3);
+      case 11:
+        newItem.AlterStat(ActionCoolDown, true, oldItem.mod3);  
+      case 12:
+        newItem.AlterStat(MagicCoolDown, true, oldItem.mod3);
+      }       
+    };    
 
     itemVec.push_back(newItem);
   }
