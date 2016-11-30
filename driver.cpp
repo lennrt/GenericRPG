@@ -84,12 +84,15 @@ int main(){
 		
 		if (Action == "RepeatMessage"){
 			//This convoluted mess tests the message passing among objects (It's obv super redundant.)
-			string Test = GetValueFromKey("Message") + " Repeated back at ya.";
-			Mailbox.SendMessageToBox(Test , Players[GetPlayerByBox(GetValueFromKey("b"))].Box);
+			string TestString = GetValueFromKey("Message") + " Repeated back at ya.";
+			int TestBox = Players[GetPlayerByBox(GetValueFromKey("b"))].Box;
+			cout << "Test:" << TestString << "\n";
+			Mailbox.SendMessageToBox(TestString , TestBox );
 			
 		}
 		
 		if (Action == "LeaveGame"){
+			Done = true;
 		}
 		
 		if (Action == "Move"){

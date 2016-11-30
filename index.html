@@ -384,6 +384,13 @@
 				if (!Found) return RetVal;
 			}
 		}
+		
+		function QuitGame(){
+			var xhttp;
+			xhttp.open("POST", SiteURL, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey);	
+		}
 		-->
 	</script>
 </head>
@@ -398,6 +405,7 @@
 
 		<div id = "Main" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
 			Main
+			<input onClick = "QuitGame();" value="Quit" type= "button">
 		</div>
 
 		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
