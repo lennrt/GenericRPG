@@ -97,7 +97,9 @@ std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input) {
 
 }
 
-int main() {
-  std::vector<CsvItem> items = GenerateCsvItems();
-  return 0;
-}
+// example of how to use these functions:
+// int main() {
+//   std::vector<CsvItem> items = GenerateCsvItems();
+//   std::vector<Item> realItems = ConvertCsvItemToItem(items);
+//   return 0;
+// }
