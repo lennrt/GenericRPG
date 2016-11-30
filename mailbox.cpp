@@ -69,10 +69,7 @@ int Mailbox::MessageCount(){
 }
 
 void Mailbox::CheckMessages(){
-	cout << "Locking\n";
-	cout << "semID:" << semID << "\n";
 	sem_wait(semID);		//Lock Inbox
-	cout << "Locked\n";
 	for (int i = 1; i < inboxCount;i++){
 		if (!CheckSlot(0,i)){
 			Inbox.push_back(GetMessage(0,i));
@@ -81,9 +78,7 @@ void Mailbox::CheckMessages(){
 			break;
 		}
 	}	
-	cout << "Unlocking\n";
 	sem_post(semID);		//Unlock Inbox
-	cout << "Unlocked\n";
 }
 
 string Mailbox::GetNextMessage(){
