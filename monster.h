@@ -31,9 +31,6 @@ public:
     
     //Accessor function for name
     std::string get_name();
- 
-    //Setter for name
-    void set_name(std::string);
 };
 
 
