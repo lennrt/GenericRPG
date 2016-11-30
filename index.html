@@ -36,6 +36,10 @@
 		const Key = 0;
 		const Value = 1;
 		
+		function Debug(DebugValue){
+			document.getElementById("DebugDiv").innerText += DebugValue;
+		}
+		
 		function Setup(){
 			SetDiv("Splash");
 			HideAllChars();
@@ -80,7 +84,7 @@
 		}
 		
 		function LoginResponse(xhttp){
-			alert(">" + xhttp.responseText + "<");
+			Debug("LoginResponse >" + xhttp.responseText + "<");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -165,7 +169,7 @@
 		}
 		
 		function PlayResponse(xhttp){
-			alert(">" + xhttp.responseText + "<");
+			Debug("PlayResponse >" + xhttp.responseText + "<");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Success"){
 				SetDiv("Main");
@@ -191,7 +195,7 @@
 		}
 		
 		function UpdateResponse(xhttp){
-			alert (xhttp.responseText);
+			Debug ("UpdateResponse >" + xhttp.responseText + "<");
 			TEST();
 		}
 		
@@ -238,7 +242,7 @@
 		}
 		
 		function DeleteResponse (xhttp) {
-			alert(">" + xhttp.responseText + "<");
+			Debug("DeleteResponse>" + xhttp.responseText + "<");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -350,7 +354,7 @@
 		}
 		
 		function CreateResponse(xhttp){
-			alert(">" + xhttp.responseText + "<");
+			Debug("CreateResponse >" + xhttp.responseText + "<");80
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -371,7 +375,7 @@
 			document.getElementById("class" + NextSpot).innerText = document.getElementById("charClass").value;			
 			
 			
-			//Close the character creation screen
+			//Close the character creation screen80
 			Toggle("NewChar");
 			ClearChar();
 		}
@@ -530,6 +534,9 @@
 			<input onClick = "Logout();" type = "button" value="Logout" style = "top:75%;left:72%;width:16%">
 			
 
+		</div>
+		<div class = "box" id="DebugDiv" style = "top:82%;left:10%;width:80%;height:14%">
+			Debug
 		</div>
 	</div>
 </body>
