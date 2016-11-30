@@ -40,6 +40,7 @@ vector<FormInfo> FormData;
 
 void getFormData(string Env);
 string GetValueFromKey(string FindKey);
+int GetPlayerByBox(string BoxNumber);
 
 int main(){
 	//Setup Game state
@@ -70,12 +71,18 @@ int main(){
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
 			Mailbox.OpenUserBox(NewChar.Box);
-			//Mailbox.BroadcastMessage("This is a test of the server.");
+			Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
 			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true) << "\n";
 			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
 			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
 			Players.push_back(NewChar);
+		}
+		
+		if (Action == "RepeatMessage"){
+			//This convoluted mess tests the message passing among objects (It's obv super redundant.)
+			Mailbox.SendMessageToBox(GetValueFromKey("Message") + " Repeated back at ya.", Players[GetPlayerByBox(GetValueFromKey("Box")].Box);
+			
 		}
 		
 		if (Action == "LeaveGame"){
@@ -117,6 +124,12 @@ int main(){
     
 }
 
+int GetPlayerByBox(string BoxNumber){
+	for (int i = 0; i < Players.size(); i++){
+		if (Players[i].Box == BoxNumber) return i;
+	}
+	return -1;
+}
 
 string GetValueFromKey(string FindKey){
 	for (int i = 0; i < FormData.size(); i++){

@@ -31,6 +31,7 @@
 		var SelectedChar = 0;
 		var MaxChar = 5;
 		var ResponseArray = [];
+		var TEST = 0;
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
 		const Key = 0;
 		const Value = 1;
@@ -192,6 +193,14 @@
 		
 		function UpdateResponse(xhttp){
 			alert (xhttp.responseText);
+			//-----------------------------------TEST------------
+			var xhttp;
+			xhttp.open("POST", SiteURL, true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("?Op=Play&Action=RepeatMessage&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey + "&Message=" + "Blah" + TEST);	
+			TEST++;
+			
+			//-----------------------------------END TEST---------------
 		}
 		
 		function NewCharacter(){
