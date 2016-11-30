@@ -63,7 +63,7 @@ int main(){
 		
 		//Check and Process Messages
 		Message = Mailbox.GetNextMessage();
-		if (Message.size() != "") { cout << Message; }
+		if (Message != "") { cout << Message; }
 		getFormData(Message);
 		Action = GetValueFromKey("Action");
 		
