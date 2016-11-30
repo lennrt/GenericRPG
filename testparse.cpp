@@ -98,6 +98,7 @@ std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input) {
     newStatEffects.push_back(effect1);
     newStatEffects.push_back(effect2);
     newStatEffects.push_back(effect3);
+    newItem.SetStats(newStatEffects);
 
     CsvItem oldItem = input[i];
     newItem.SetName(oldItem.name);
