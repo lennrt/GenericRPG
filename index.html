@@ -189,10 +189,18 @@
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(Operation + Query);
+			TEST();
 		}
 		
 		function UpdateResponse(xhttp){
 			alert (xhttp.responseText);
+		}
+		
+		function NewCharacter(){
+			document.getElementById("NewChar").style.visibility = "visible";
+		}
+		
+		function TEST(){
 			//-----------------------------------TEST------------
 			var xhttp;
 			xhttp.open("POST", SiteURL, true);
@@ -201,10 +209,6 @@
 			TEST++;
 			
 			//-----------------------------------END TEST---------------
-		}
-		
-		function NewCharacter(){
-			document.getElementById("NewChar").style.visibility = "visible";
 		}
 		
 		function DeleteCharacter(){
