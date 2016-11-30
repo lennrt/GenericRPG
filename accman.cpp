@@ -354,22 +354,20 @@ int main(){
 		int Box = stoi(GetValueFromKey("b"));
 		string RetVal;
 		
-		RetVal += "StartUpdate";
-		
 		//Connect to game service
 		ConnectToGameService();
-		RetVal += "Connected";
+		
 		//VerifySession
 		if (VerifySession()){
-			RetVal += "Verified";
 			//Get Messages
 			for (int i = 1; i < slotCount; i++){
 				if (CheckSlot(Box, i)){
 					//Host interprets ^ as message dilineator.
 					RetVal += "^" + GetMessage(Box, i);
 				}
-			}		
-			RetVal += "Box" + to_string(Box) + " was checked.";
+			}	
+			Response += RetVal;
+			cout << Response;
 		} else {
 			Response += "&Status=Fail&Reason=Session credentials do not match.";
 			cout << Response;
