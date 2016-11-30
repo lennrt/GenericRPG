@@ -446,7 +446,7 @@ string EnterGame(){
 	
 	//Box found.  Inform the game server that a box is reserved, and initiate a game session.
 	
-	BoxClaimMessage = "&u=" + GetValueFromKey("u") + "&c=" + GetValueFromKey("c") + "&s=" + GetValueFromKey("s") + "&Box=" + to_string(NewBox) + "&Action=EnterGame";
+	BoxClaimMessage = "&u=" + GetValueFromKey("u") + "&c=" + GetValueFromKey("c") + "&s=" + GetValueFromKey("s") + "&b=" + to_string(NewBox) + "&Action=EnterGame";
 	
 	sem_wait(semID);		//Lock Inbox
 	SendMessageToBox(BoxClaimMessage, 0);

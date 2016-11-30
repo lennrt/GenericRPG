@@ -67,14 +67,9 @@ int main(){
 		if (Message != "") { cout << Message; }
 		getFormData(Message);
 		Action = GetValueFromKey("Action");
-		
-		if (Action != ""){
-			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
-			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
-		}
-		
+			
 		if (Action == "EnterGame"){
-			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
+			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("b")));
 			Mailbox.OpenUserBox(NewChar.Box);
 			Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
@@ -119,7 +114,11 @@ int main(){
 
 		//Perform targetting action
 	
-		//Sleep 10 milliseconds before looping again.	
+
+		if (Action != ""){
+			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
+			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
+		}
 		
 	}
 
