@@ -274,7 +274,9 @@ int main(){
 				for (int i = 0; i < Rebuild.size(); i++){
 					if (Rebuild[i] == charID){
 						i += 4;
-					} else {
+					} else {terminate called after throwing an instance of 'std::invalid_argument'
+  what():  stoi
+
 						UserFile << Rebuild[i] << endl;
 					}
 				}
