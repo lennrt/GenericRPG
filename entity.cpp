@@ -76,7 +76,7 @@ void Entity::SetLevel(){
 	
 	int Prior;
 	int Base = 100;
-	int AugmentFactor = 0.35;
+	double AugmentFactor = 0.35;
 	int tExp = _Exp;
 
 	_Level = 1;

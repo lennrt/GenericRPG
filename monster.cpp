@@ -19,3 +19,9 @@ void Enemy::setLevel(int amount){
 std::string Enemy::get_name(){
 	return name;
 }
+
+//Setter function for name
+void Enemy::set_name(std::string str)
+{
+	name = str;
+}
