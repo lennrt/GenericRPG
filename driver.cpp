@@ -69,7 +69,6 @@ int main(){
 		Action = GetValueFromKey("Action");
 		
 		if (Action != ""){
-			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true) << "\n";
 			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
 			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
 		}
@@ -79,6 +78,7 @@ int main(){
 			Mailbox.OpenUserBox(NewChar.Box);
 			Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
+			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true) << "\n";
 			Players.push_back(NewChar);
 		}
 		
