@@ -42,6 +42,7 @@
 		}         
 					
 		function SetDiv(WhichDiv){
+			HideAllChars();
 			for (var i = 0, len = Tabs.length; i < len; i++) {
 				document.getElementById(Tabs[i]).style.visibility = 'hidden';
 			}
@@ -190,7 +191,7 @@
 		}
 		
 		function UpdateResponse(xhttp){
-			if (xhttp.responseText.length > 10) {alert (xhttp.responseText);}
+			alert (xhttp.responseText);
 		}
 		
 		function NewCharacter(){

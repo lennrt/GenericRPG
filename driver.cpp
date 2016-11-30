@@ -56,6 +56,8 @@ int main(){
 	cout << "Mailbox: " << Mailbox.SetupSuccessful() << "\n" << flush;
 	//Main Loop
 	while (!Done){
+		FormData.clear();
+		
 		//Check Time table.  Perform function for all expired times
 		
 		//Check and Process Messages
@@ -69,6 +71,7 @@ int main(){
 			Mailbox.OpenUserBox(NewChar.Box);
 			Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
+			cout << "Intelligence:" << .GetStat(Intelligence, true);
 			Players.push_back(NewChar);
 		}
 		
