@@ -57,6 +57,7 @@ int main(){
 	//Main Loop
 	while (!Done){
 		FormData.clear();
+		Action = "";
 		
 		//Check Time table.  Perform function for all expired times
 		
@@ -69,9 +70,10 @@ int main(){
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("Box")));
 			Mailbox.OpenUserBox(NewChar.Box);
-			Mailbox.BroadcastMessage("This is a test of the server.");
+			//Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
-			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true);
+			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true) << "\n";
+			cout << "Mailbox Size:" << Mailbox.Count() << "\n";
 			Players.push_back(NewChar);
 		}
 		

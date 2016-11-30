@@ -59,6 +59,10 @@ bool Mailbox::SetupSuccessful(){
 	return (SetupOK);
 }
 
+int Mailbox::Count(){
+	return (OpenBoxes.size());
+}
+
 void Mailbox::CheckMessages(){
 	sem_wait(semID);		//Lock Inbox
 	for (int i = 1; i < inboxCount;i++){

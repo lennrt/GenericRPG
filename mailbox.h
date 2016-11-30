@@ -23,6 +23,7 @@ class Mailbox{
 	void SendMessageToBox(std::string Message, int Box);
 	void BroadcastMessage(std::string Message);
 	bool SetupSuccessful();
+	int Count();
 
     private:
 	std::vector <std::string> Inbox;
