@@ -1,12 +1,19 @@
+
+
 class Item {
     public:
     Item();
     ~Item();
     std::string GetName();
-    int GetItemId(); 
+    void SetName(std::string newName); 
+    int GetItemId();
+    void SetItemId(int newId); 
     std::string GetDescription();  
     std::string GetRarity();  
-    std::string GetItemType();  
+    std::string GetItemType(); 
+    void SetDescription(std::string newDesc);  
+    void SetRarity(std::string newRarity);  
+    void SetItemType(std::string newItemType); 
     int GetStat (Stats stat, bool Max); 
     void AlterStat (Stats Stat, bool Max, int Amount);
     void SetStatToMax (Stats Stat); 
@@ -17,7 +24,7 @@ class Item {
     void WriteToStream(std::ostream & str);          
     void ReadFromFile(std::istream & str); 
     template<typename T> std::string ConvertToString(T data);
-
+    
     private:
     std::string name;
     int itemId;
@@ -32,3 +39,5 @@ class Item {
     const int Current = 0; // temporarily affects the stat
     const int Maximum = 1; // permanently affects the stat
 };
+
+

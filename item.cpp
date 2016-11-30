@@ -2,6 +2,7 @@
 #include <string>
 #include "enums.h"
 #include "item.h"
+#include <vector>
     
 /************************************************************************************
 This is the base class for all items. It includes a description, affected stats,
@@ -14,10 +15,20 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         // stats, so combat damage should simply take into account the final character stats 
         // without knowing anything about the item stats.
 
+
         // Getter function for item name
         std::string Item::GetName() { 
             return name;
         }
+
+        void Item::SetName(std::string newName) {
+            name = newName;
+        } 
+
+        void Item::SetItemId(int newId) {
+            itemId = newId;
+        } 
+
 
         // Getter function for description
         std::string Item::GetDescription() { 
@@ -52,6 +63,16 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         // save the current temporary state of a stat as a permanent state
         void Item::SetStatToMax (Stats Stat) {
             StatTable[Current][(int) Stat] = StatTable[Maximum][(int)Stat];
+        }
+
+        void Item::SetDescription(std::string newDesc) {
+            description = newDesc;
+        }  
+        void Item::SetRarity(std::string newRarity) {
+            rarity = newRarity;
+        }  
+        void Item::SetItemType(std::string newItemType) {
+            itemType = newItemType;
         }   
                             
         // Getter for value
