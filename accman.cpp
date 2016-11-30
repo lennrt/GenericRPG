@@ -494,6 +494,7 @@ string GetMessage(int Box, int Slot){
 		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
 	}
 	memcpy (&Buffer, MemLoc + FlagSetSize, slotSize - FlagSetSize); 
+	MemLoc[MessageReceivedFlag] = 0x1;
 	return (string(Buffer)); 
 }
 
