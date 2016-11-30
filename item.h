@@ -21,9 +21,6 @@ class Item {
     void SetValue(int newValue); 
     int GetMaxRange(); 
     void SetMaxRange(int newRange); 
-    void WriteToStream(std::ostream & str);          
-    void ReadFromFile(std::istream & str); 
-    template<typename T> std::string ConvertToString(T data);
     
     private:
     std::string name;
@@ -35,7 +32,7 @@ class Item {
     std::string itemType;   
     // This StatTable holds a row  for Current item stats and a row for Maximum item stats.
     // See enums.h for the ItemStats enum. 
-    int StatTable[2][6]; 
+    int StatTable[2][13]; 
     const int Current = 0; // temporarily affects the stat
     const int Maximum = 1; // permanently affects the stat
 };
