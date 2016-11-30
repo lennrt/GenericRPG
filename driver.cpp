@@ -85,7 +85,7 @@ int main(){
 		if (Action == "RepeatMessage"){
 			//This convoluted mess tests the message passing among objects (It's obv super redundant.)
 			string Test = GetValueFromKey("Message") + " Repeated back at ya.";
-			Mailbox.SendMessageToBox(Test , Players[GetPlayerByBox(GetValueFromKey("Box"))].Box);
+			Mailbox.SendMessageToBox(Test , Players[GetPlayerByBox(GetValueFromKey("b"))].Box);
 			
 		}
 		
