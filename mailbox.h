@@ -23,8 +23,9 @@ class Mailbox{
 	void SendMessageToBox(std::string Message, int Box);
 	void BroadcastMessage(std::string Message);
 	bool SetupSuccessful();
-	int Count();
-
+	int BoxCount();
+	int MessageCount();
+	
     private:
 	std::vector <std::string> Inbox;
 	std::vector <int> OpenBoxes;

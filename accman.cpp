@@ -503,10 +503,10 @@ void SetMessage(int Box, int Slot, string Message){
 	} else {
 		MemLoc = controlPointer + inboxSize + (Box * boxSize) + (Slot * slotSize);
 	}
-	*(MemLoc + MessageSetFlag) = 0x1;
 	int MemSize = Message.size();
-	if (MemSize > slotSize - FlagSetSize) { MemSize = slotSize - FlagSetSize;}
+	if (MemSize > slotSize - FlagSetSize - 1) { MemSize = slotSize - FlagSetSize - 1;}
 	memcpy ( MemLoc + FlagSetSize, Message.c_str(), MemSize); 
+	*(MemLoc + MessageSetFlag) = 0x1;
 }
 
 string GetValueFromKey(string FindKey){

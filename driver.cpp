@@ -46,7 +46,7 @@ int main(){
 	TimeTable TimeTable;
 	Mailbox Mailbox;
 	bool Done = false;
-	string FormData;
+	string Message;
 	string Action;
 	
 	//Load maps
@@ -62,9 +62,9 @@ int main(){
 		//Check Time table.  Perform function for all expired times
 		
 		//Check and Process Messages
-		FormData = Mailbox.GetNextMessage();
-		if (FormData.size() > 5) { cout << FormData; }
-		getFormData(FormData);
+		Message = Mailbox.GetNextMessage();
+		if (Message.size() != "") { cout << Message; }
+		getFormData(Message);
 		Action = GetValueFromKey("Action");
 		
 		if (Action == "EnterGame"){
@@ -73,7 +73,8 @@ int main(){
 			//Mailbox.BroadcastMessage("This is a test of the server.");
 			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
 			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true) << "\n";
-			cout << "Mailbox Size:" << Mailbox.Count() << "\n";
+			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
+			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
 			Players.push_back(NewChar);
 		}
 		
