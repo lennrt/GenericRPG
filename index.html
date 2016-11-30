@@ -202,7 +202,12 @@
 		function TEST(){
 			//-----------------------------------TEST------------
 			var xhttp;
-			xhttp = new XMLHttpRequest();
+			xhttp = new XMLHttpRequest();			
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					var f = 0;
+				}
+			};
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send("?Op=Play&Action=RepeatMessage&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey + "&Message=" + "Blah" + TEST);	
@@ -389,6 +394,11 @@
 		function QuitGame(){
 			var xhttp;
 			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					var f = 0;
+				}
+			};
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey);	
