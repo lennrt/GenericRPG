@@ -74,10 +74,10 @@ void Entity::SetLevel(){
 	//level setter function call and always call it after calling
 	//AlterExp()
 	
-	int Prior;
-	int Base = 100;
+	double Prior;
+	double Base = 100;
 	double AugmentFactor = 0.35;
-	int tExp = _Exp;
+	double tExp = (double)_Exp;
 
 	_Level = 1;
 
