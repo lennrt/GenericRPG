@@ -175,7 +175,6 @@
 		}
 		
 		function BackgroundUpdate(){
-			alert("herebg");
 			var xhttp;
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -189,7 +188,6 @@
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(Operation + Query);
-			TEST();
 		}
 		
 		function UpdateResponse(xhttp){
@@ -198,6 +196,7 @@
 		
 		function NewCharacter(){
 			document.getElementById("NewChar").style.visibility = "visible";
+			TEST();
 		}
 		
 		function TEST(){
