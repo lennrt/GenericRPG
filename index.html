@@ -84,7 +84,7 @@
 		}
 		
 		function LoginResponse(xhttp){
-			Debug("LoginResponse >" + xhttp.responseText + "<");
+			Debug("LoginResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -169,7 +169,7 @@
 		}
 		
 		function PlayResponse(xhttp){
-			Debug("PlayResponse >" + xhttp.responseText + "<");
+			Debug("PlayResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Success"){
 				SetDiv("Main");
@@ -195,7 +195,7 @@
 		}
 		
 		function UpdateResponse(xhttp){
-			Debug ("UpdateResponse >" + xhttp.responseText + "<");
+			Debug ("UpdateResponse >" + xhttp.responseText + "<\n");
 			TEST();
 		}
 		
@@ -204,6 +204,7 @@
 		}
 		
 		function TEST(){
+			Debug("In the test\n");
 			//-----------------------------------TEST------------
 			var xhttp;
 			xhttp = new XMLHttpRequest();			
@@ -242,7 +243,7 @@
 		}
 		
 		function DeleteResponse (xhttp) {
-			Debug("DeleteResponse>" + xhttp.responseText + "<");
+			Debug("DeleteResponse>" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -354,7 +355,7 @@
 		}
 		
 		function CreateResponse(xhttp){
-			Debug("CreateResponse >" + xhttp.responseText + "<");80
+			Debug("CreateResponse >" + xhttp.responseText + "<\n");80
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
