@@ -50,21 +50,6 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
             return itemType;
         }    
 
-        // retrieve the current or max value of the item stat in position "stat" of the ItemStats enum
-        int Item::GetStat (Stats stat, bool Max) {
-            return StatTable[Max ? Maximum : Current][(int) stat];
-        }
-
-        // alter the current or max value of the stat by amount
-        void Item::AlterStat (Stats Stat, bool Max, int Amount){
-            StatTable[Max ? Maximum : Current][(int) Stat] += Amount;
-        }
-    
-        // save the current temporary state of a stat as a permanent state
-        void Item::SetStatToMax (Stats Stat) {
-            StatTable[Current][(int) Stat] = StatTable[Maximum][(int)Stat];
-        }
-
         void Item::SetDescription(std::string newDesc) {
             description = newDesc;
         }  
@@ -94,3 +79,26 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         void Item::SetMaxRange(int newRange) {
             max_range = newRange;
         }
+
+        // retrieve the primary, secondary, or tertiary StatEffect object (degree = 1 is primary, degree = 2 is secondary, etc.)
+        StatEffect Item::GetStat (int degree) {
+            return statEffects[degree-1];
+        }
+
+        // alter the specified stat
+        void Item::SetStat (int degree, Stats Stat, int modifier, bool permanent) {
+            StatEffect newStat;
+            newStat.Stat = Stat;
+            newStat.Modifier = modifier;
+            newStat.Permanent = permanent;
+            statEffects[degree -1] = newStat;
+        }
+
+        std::vector<StatEffect> Item::GetStats() {
+            return statEffects;
+        }
+
+        void Item::SetStats(std::vector<StatEffect> effectsVector) {
+            statEffects = effectsVector;
+        }
+    

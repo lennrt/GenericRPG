@@ -80,6 +80,25 @@ std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input) {
   std::vector<Item> itemVec;
   for (int i = 0; i < input.size(); ++i) {
     Item newItem;
+
+    StatEffect effect1;
+    effect1.Stat = Intelligence; // just use Intelligence as a placeholder for initialization since enums.h doesn't contain a "none" type
+    effect1.Modifier = 0;
+    effect1.Permanent = false;
+    StatEffect effect2;
+    effect2.Stat = Intelligence;
+    effect2.Modifier = 0;
+    effect2.Permanent = false;
+    StatEffect effect3;
+    effect3.Stat = Intelligence;
+    effect3.Modifier = 0;
+    effect3.Permanent = false;
+
+    std::vector<StatEffect> newStatEffects;
+    newStatEffects.push_back(effect1);
+    newStatEffects.push_back(effect2);
+    newStatEffects.push_back(effect3);
+
     CsvItem oldItem = input[i];
     newItem.SetName(oldItem.name);
     newItem.SetItemId(oldItem.itemId);
@@ -92,93 +111,93 @@ std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input) {
     if (oldItem.stat1 > -1) {
       switch (oldItem.stat1) {
       case 0:
-        newItem.AlterStat(Mana, false, oldItem.mod1);
+        newItem.SetStat(1, Mana, oldItem.mod1, false);
       case 1:
-        newItem.AlterStat(Health, false, oldItem.mod1);
+        newItem.SetStat(1, Health, oldItem.mod1, false);
       case 2:
-        newItem.AlterStat(Intelligence, false, oldItem.mod1);
+        newItem.SetStat(1, Intelligence, oldItem.mod1, false);
       case 3:
-        newItem.AlterStat(Strength, false, oldItem.mod1);
+        newItem.SetStat(1, Strength, oldItem.mod1, false);
       case 4:
-        newItem.AlterStat(Agility, false, oldItem.mod1);
+        newItem.SetStat(1, Agility, oldItem.mod1, false);
       case 5:
-        newItem.AlterStat(Constitution, false, oldItem.mod1);
+        newItem.SetStat(1, Constitution, oldItem.mod1, false);
       case 6:
-        newItem.AlterStat(Speed, false, oldItem.mod1);
+        newItem.SetStat(1, Speed, oldItem.mod1, false);
       case 7:
-        newItem.AlterStat(Charisma, false, oldItem.mod1);
+        newItem.SetStat(1, Charisma, oldItem.mod1, false);
       case 8:
-        newItem.AlterStat(Endurance, false, oldItem.mod1);
+        newItem.SetStat(1, Endurance, oldItem.mod1, false);
       case 9:
-        newItem.AlterStat(Attack, false, oldItem.mod1);
+        newItem.SetStat(1, Attack, oldItem.mod1, false);
       case 10:
-        newItem.AlterStat(Defense, false, oldItem.mod1);
+        newItem.SetStat(1, Defense, oldItem.mod1, false);
       case 11:
-        newItem.AlterStat(ActionCoolDown, false, oldItem.mod1);  
+        newItem.SetStat(1, ActionCoolDown, oldItem.mod1, false);  
       case 12:
-        newItem.AlterStat(MagicCoolDown, false, oldItem.mod1);
+        newItem.SetStat(1, MagicCoolDown, oldItem.mod1, false);
       }       
     }; 
 
     if (oldItem.stat2 > -1) {
       switch (oldItem.stat2) {
       case 0:
-        newItem.AlterStat(Mana, false, oldItem.mod2);
+        newItem.SetStat(2, Mana, oldItem.mod2, false);
       case 1:
-        newItem.AlterStat(Health, false, oldItem.mod2);
+        newItem.SetStat(2, Health, oldItem.mod2, false);
       case 2:
-        newItem.AlterStat(Intelligence, false, oldItem.mod2);
+        newItem.SetStat(2, Intelligence, oldItem.mod2, false);
       case 3:
-        newItem.AlterStat(Strength, false, oldItem.mod2);
+        newItem.SetStat(2, Strength, oldItem.mod2, false);
       case 4:
-        newItem.AlterStat(Agility, false, oldItem.mod2);
+        newItem.SetStat(2, Agility, oldItem.mod2, false);
       case 5:
-        newItem.AlterStat(Constitution, false, oldItem.mod2);
+        newItem.SetStat(2, Constitution, oldItem.mod2, false);
       case 6:
-        newItem.AlterStat(Speed, false, oldItem.mod2);
+        newItem.SetStat(2, Speed, oldItem.mod2, false);
       case 7:
-        newItem.AlterStat(Charisma, false, oldItem.mod2);
+        newItem.SetStat(2, Charisma, oldItem.mod2, false);
       case 8:
-        newItem.AlterStat(Endurance, false, oldItem.mod2);
+        newItem.SetStat(2, Endurance, oldItem.mod2, false);
       case 9:
-        newItem.AlterStat(Attack, false, oldItem.mod2);
+        newItem.SetStat(2, Attack, oldItem.mod2, false);
       case 10:
-        newItem.AlterStat(Defense, false, oldItem.mod2);
+        newItem.SetStat(2, Defense, oldItem.mod2, false);
       case 11:
-        newItem.AlterStat(ActionCoolDown, false, oldItem.mod2);  
+        newItem.SetStat(2, ActionCoolDown, oldItem.mod2, false);  
       case 12:
-        newItem.AlterStat(MagicCoolDown, false, oldItem.mod2);
+        newItem.SetStat(2, MagicCoolDown, oldItem.mod2, false);
       }       
     };
 
     if (oldItem.stat3 > -1) {
       switch (oldItem.stat3) {
       case 0:
-        newItem.AlterStat(Mana, false, oldItem.mod3);
+        newItem.SetStat(3, Mana, oldItem.mod3, false);
       case 1:
-        newItem.AlterStat(Health, false, oldItem.mod3);
+        newItem.SetStat(3, Health, oldItem.mod3, false);
       case 2:
-        newItem.AlterStat(Intelligence, false, oldItem.mod3);
+        newItem.SetStat(3, Intelligence, oldItem.mod3, false);
       case 3:
-        newItem.AlterStat(Strength, false, oldItem.mod3);
+        newItem.SetStat(3, Strength, oldItem.mod3, false);
       case 4:
-        newItem.AlterStat(Agility, false, oldItem.mod3);
+        newItem.SetStat(3, Agility, oldItem.mod3, false);
       case 5:
-        newItem.AlterStat(Constitution, false, oldItem.mod3);
+        newItem.SetStat(3, Constitution, oldItem.mod3, false);
       case 6:
-        newItem.AlterStat(Speed, false, oldItem.mod3);
+        newItem.SetStat(3, Speed, oldItem.mod3, false);
       case 7:
-        newItem.AlterStat(Charisma, false, oldItem.mod3);
+        newItem.SetStat(3, Charisma, oldItem.mod3, false);
       case 8:
-        newItem.AlterStat(Endurance, false, oldItem.mod3);
+        newItem.SetStat(3, Endurance, oldItem.mod3, false);
       case 9:
-        newItem.AlterStat(Attack, false, oldItem.mod3);
+        newItem.SetStat(3, Attack, oldItem.mod3, false);
       case 10:
-        newItem.AlterStat(Defense, false, oldItem.mod3);
+        newItem.SetStat(3, Defense, oldItem.mod3, false);
       case 11:
-        newItem.AlterStat(ActionCoolDown, false, oldItem.mod3);  
+        newItem.SetStat(3, ActionCoolDown, oldItem.mod3, false);  
       case 12:
-        newItem.AlterStat(MagicCoolDown, false, oldItem.mod3);
+        newItem.SetStat(3, MagicCoolDown, oldItem.mod3, false);
       }       
     };    
 
@@ -188,8 +207,8 @@ std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input) {
 }
 
 // example of how to use these functions:
-// int main() {
-//   std::vector<CsvItem> items = GenerateCsvItems();
-//   std::vector<Item> realItems = ConvertCsvItemToItem(items);
-//   return 0;
-// }
+int main() {
+  std::vector<CsvItem> items = GenerateCsvItems();
+  std::vector<Item> realItems = ConvertCsvItemToItem(items);
+  return 0;
+}
