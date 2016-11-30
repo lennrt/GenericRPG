@@ -15,27 +15,6 @@ value, range, type, and rarity. Item drops and skills haven't been implemented y
         // stats, so combat damage should simply take into account the final character stats 
         // without knowing anything about the item stats.
 
-std::vector<Item> Item::ConvertCsvItemToItem(std::vector<CsvItem> input) {
-  std::vector<Item> itemVec;
-  for (int i = 0; i < input.size(); ++i) {
-    Item newItem;
-    CsvItem oldItem = input[i];
-    newItem.SetName(oldItem.name);
-    newItem.SetItemId(oldItem.itemId);
-    newItem.SetValue(oldItem.value);
-    newItem.SetMaxRange(oldItem.max_range);
-    newItem.SetDescription(oldItem.description);
-    newItem.SetRarity(oldItem.rarity);
-    newItem.SetItemType(oldItem.itemType);
-
-    int StatTable[2][6]; 
-
-    // build stat table
-
-    itemVec.push_back(newItem);
-  }
-
-}
 
         // Getter function for item name
         std::string Item::GetName() { 

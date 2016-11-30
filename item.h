@@ -1,21 +1,4 @@
-#include<vector>
 
-struct CsvItem {
-    std::string name;
-    int itemId;
-    int value;
-    int max_range;
-    std::string description;
-    std::string rarity;
-    std::string itemType;   
-
-    int stat1;
-    int stat2;
-    int stat3;
-    int mod1;
-    int mod2;
-    int mod3;
-};
 
 class Item {
     public:
@@ -41,7 +24,6 @@ class Item {
     void WriteToStream(std::ostream & str);          
     void ReadFromFile(std::istream & str); 
     template<typename T> std::string ConvertToString(T data);
-    std::vector<Item> ConvertCsvItemToItem(std::vector<CsvItem> input);
     
     private:
     std::string name;
