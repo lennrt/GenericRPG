@@ -274,8 +274,8 @@
 		function AddTile(X, Y){
 			var NewTile = document.createElement("img");
 			NewTile.setAttribute("src", MapTiles[Map[X][Y]].src);
-			NewTile.setAttribute("top", );
-			NewTile.setAttribute("left", "1024");
+			NewTile.setAttribute("top", (X * 50) + "px");
+			NewTile.setAttribute("left",(Y * 50) + "px");
 			document.getElementById("MapTilesDiv").appendChild(NewTile);
 		}
 		
