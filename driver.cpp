@@ -22,8 +22,12 @@
 #include "tile.h"
 #include "timetable.h"
 #include "mailbox.h"
+#include "map.h"
 
 using namespace std;
+
+const int StartingX = 15;
+const int StartingY = 15;
 
 //Structure for HTTP form data
 struct FormInfo{
@@ -31,7 +35,6 @@ struct FormInfo{
 	string Value;
 };
 
-vector<Tile> Map; //[][]
 vector<Enemy> SpawnedEnemies; // []
 vector<Character> Players;
 
@@ -46,11 +49,14 @@ int main(){
 	//Setup Game state
 	TimeTable TimeTable;
 	Mailbox Mailbox;
+	Map Map;
 	bool Done = false;
 	string Message;
 	string Action;
+	string Temp;
 	
 	//Load maps
+	Map.LoadMap("map.csv");
 	
 	//Load definitions
 	cout << "Beginning main loop\n" << flush;
@@ -71,9 +77,12 @@ int main(){
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("b")));
 			Mailbox.OpenUserBox(NewChar.Box);
-			Mailbox.BroadcastMessage("This is a test of the server.");
-			Mailbox.SendMessageToBox("Specific User Message", NewChar.Box);
-			cout << "Intelligence:" << NewChar.GetStat(Intelligence, true) << "\n";
+			NewChar.X = StartingX;
+			NewChar.Y = StartingY;
+			Temp = "&Info=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
+			Mailbox.SendMessageToBox(Temp, NewChar.Box);
+			Temp = "&Info=MapPlot&Plot=" + Map.GetPlot(NewChar.X - 9, NewChar.Y - 9);
+			Mailbox.SendMessageToBox(Temp, NewChar.Box);
 			Players.push_back(NewChar);
 		}
 		

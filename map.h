@@ -20,11 +20,22 @@
 using namespace std;
 
 class Map {
-private:
-    unsigned short int mapArray [100][100];
-    
-public:
-    Map();
+	public:
+		Map();
+		~Map();
+		void LoadMap(string MapFileName);
+		int Point(int X, int Y);
+		bool Passable(int X, int Y);
+		string GetPlot(int X, int Y);
+		
+	private:
+		unsigned short int mapArray [100][100];
+		int PassableThreshhold = 10;
+		int MaxX = 99;
+		int MaxY = 99;
+		
+	
+
 };
 
 #endif /* map_h */

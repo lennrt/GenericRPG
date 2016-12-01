@@ -29,13 +29,24 @@
 		var Query = "";
 		var Operation = "";
 		var SelectedChar = 0;
-		var MaxChar = 5;
+		var MaxChar = 5;		
 		var ResponseArray = [];
+		var Players = [];
+		var Enemies = [];
+		var X;
+		var Y;
+		var MapImage = document.getElementById("MapImageDiv");
+		var MeImage = document.getElementById("MeDiv");
 		var TEST = 0;
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
-		const Key = 0;
-		const Value = 1;
+		var Key = 0;
+		var Value = 1;
+		var MoveStep = 5;
+		var MapTiles = [];
 		
+		var Map = [];
+		var MapBool = [];
+				
 		function Debug(DebugValue){
 			document.getElementById("DebugDiv").innerText += DebugValue;
 		}
@@ -44,6 +55,47 @@
 			SetDiv("Splash");
 			HideAllChars();
 			SessionKey = "sdfsd";
+			MapTiles[0] = new Image();
+			MapTiles[0].src = 'images/forest.png';
+			MapTiles[1] = new Image();
+			MapTiles[1].src = 'images/forest.png';    		//Forest
+			MapTiles[2] = new Image();
+			MapTiles[2].src = 'images/orangedesert.png';  		//Desert
+			MapTiles[3] = new Image();
+			MapTiles[3].src = 'images/forest.png';			//Shallow Water
+			MapTiles[4] = new Image();
+			MapTiles[4].src = 'images/greengrassland.png';		//Grassland
+			MapTiles[5] = new Image();
+			MapTiles[5].src = 'images/trail.png';			//Trail
+			MapTiles[6] = new Image();
+			MapTiles[6].src = 'images/whitefloor.png';		//White Floor
+			MapTiles[7] = new Image();
+			MapTiles[7].src = 'images/yellowgrassland.png';			//Hill
+			MapTiles[8] = new Image();
+			MapTiles[8].src = 'images/yellowdesert.png';			//Snow
+			MapTiles[9] = new Image();
+			MapTiles[9].src = 'images/forest.png';			
+			MapTiles[10] = new Image();
+			MapTiles[10].src = 'images/forest.png';		
+			MapTiles[11] = new Image();
+			MapTiles[11].src = 'images/water.png';			//Deep Water
+			MapTiles[12] = new Image();
+			MapTiles[12].src = 'images/whitewall.png';			//White Wall
+			MapTiles[13] = new Image();
+			MapTiles[13].src = 'images/whitewall.png';			//Tree     -NO
+			MapTiles[14] = new Image();
+			MapTiles[14].src = 'images/water.png';			//Mountain -NO
+			MapTiles[15] = new Image();
+			MapTiles[15].src = 'images/forest.png';
+
+			for (var i = 0; i < 100; i++){
+				Map[i] = new Int8Array(100);
+				MapBool = new Int8Array(100);
+				for (var j = 0; j < 100; j++){
+					Map[i][j] = -2;
+					MapBool[i][j] = 0;
+				}
+			}
 		}         
 					
 		function SetDiv(WhichDiv){
@@ -95,6 +147,7 @@
 			document.getElementById("LoginStatus").innerText = User;
 			
 			//Switch to the character management page.
+			Mailbox.BroadcastMessage("This is a test of the server.");
 			SetDiv("AccountView");
 			
 			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
@@ -111,16 +164,14 @@
 		}
 		
 		function ParseResponse(Response){
-			var ResponseText = Response.substr(2);
+			var i = 0;
+			while (Response.substr(i,1) != "&"){i++;}
+			var ResponseText = Response.substr(i);
 			ResponseArray = [];
+			
 			var Temp = ResponseText.split("&");
 			for (var i = 0; i < Temp.length; i++) {
 				ResponseArray.push(Temp[i].split("="));
-			}	
-			
-			var Output = "";
-			for (var i = 0; i < ResponseArray.length; i++){
-				Output += ResponseArray[i][Key] + ResponseArray[i][Value];
 			}
 		}
 		
@@ -195,8 +246,66 @@
 		}
 		
 		function UpdateResponse(xhttp){
+			ParseResponse(xhttp.responseText);
+			
+			var Info = GetValueFromKey("Info");
+			
+			if (Info == "MapPlot"){
+				FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
+			}
+			if (Info == "MyPosition"){
+				X = parseInt(GetValueFromKey("X"));
+				Y = parseInt(GetValueFromKey("Y"));
+				ShowMeOnMap();
+			}
+			
 			Debug ("UpdateResponse >" + xhttp.responseText + "<\n");
 			TestFunction();
+		}
+		
+		function ShowMeOnMap(){
+			var TopCornerX = -((X - 9) * 50);
+			var TopCornerY = -((Y - 9) * 50);
+			var XDiff = (NewX - MapImage.style.left) / MoveStep;
+			var YDiff = (NewY - MapImage.style.top) / MoveStep;
+			setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
+		}
+		
+		function AddTile(X, Y){
+			var NewTile = document.createElement("img");
+			NewTile.setAttribute("src", MapTiles[Map[X][Y]].src);
+			NewTile.setAttribute("top", );
+			NewTile.setAttribute("left", "1024");
+			document.getElementById("MapTilesDiv").appendChild(NewTile);
+		}
+		
+		function MoveMap(NewX,NewY, XInc, YInc, Count){
+			if (Count === 0 || (NewX = MapImage.style.left && NewY - MapImage.style.top)) {
+				MapImage.style.left = NewX + "px";
+				MapImage.style.top = NewY + "px";
+				MeImage.style.left = NewX + (9 * 50) + "px";
+				MeImage.style.top = NewY + (9 * 50) + "px";
+			} else {
+				MapImage.offsetLeft += XInc;
+				MapImage.offsetTop += YInc;
+				MeImage.offsetLeft -= XInc;
+				MeImage.offsetTop -= YInc;
+				setTimeout(MoveMap(NewX,NewY, XInc, YInc, Count - 1), 100);
+			}			
+		}
+		
+		function FillMap(Plot, X, Y){
+			Slot = 0;
+			for (var i = X; i < X + 20; i++){
+				for (var j = Y; j < Y + 20; j++){
+					Map[i][j] = parseInt(Plot.substr(Slot,2));
+					Slot += 2;
+					if (MapBool[i][j] == 0) {
+						AddTile(i,j);
+						MapBool[i][j] = 1;
+					}
+				}
+			}
 		}
 		
 		function NewCharacter(){
@@ -355,7 +464,7 @@
 		}
 		
 		function CreateResponse(xhttp){
-			Debug("CreateResponse >" + xhttp.responseText + "<\n");80
+			Debug("CreateResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -421,6 +530,15 @@
 		</div>
 
 		<div id = "Main" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			<div id="MapViewPort" class = "clear" style = "top:0%;left0%;width:100%;height:100%;overflow:hidden">
+				<div id = "MapImageDiv" style="top:0px;left:0px;height:5000px;width:5000px">
+					<div id = "MapTilesDiv" style="top:0px;left:0px"></div>
+					<div id = "MeDiv"></div>
+					<div id = "EnemyDiv" style="top:0px;left:0px"></div>
+					<div id = "OtherPlayerDiv" style="top:0px;left:0px"></div>
+				</div>
+				
+			</div>
 			Main
 			<input onClick = "QuitGame();" value="Quit" type= "button">
 		</div>
