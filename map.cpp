@@ -24,10 +24,11 @@ void Map::LoadMap(string MapFileName){
 }
 
 int Map::Point(int X, int Y){
-	return (int)mapArray(X,Y);
+	return (int)mapArray[X][Y];
 }
+
 bool Map::Passable(int X, int Y){
-	return (mapArray(X,Y) < PassableThreshhold);
+	return (mapArray[X][Y] < PassableThreshhold);
 }
 
 string Map::GetPlot(int X, int Y){
@@ -37,7 +38,7 @@ string Map::GetPlot(int X, int Y){
 	for (int i = X; i < X + 20; i++){
 		for (int j = Y; j < Y + 20; j++){
 			if (i <= MaxX && i > -1 && j <= MaxY && j > -1){
-				Temp = to_string(mapArray(i,j));
+				Temp = to_string(mapArray[i][j]);
 				if (Temp.length() == 1) { RetVal += "0";}
 				RetVal += Temp;
 			} else {
