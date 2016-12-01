@@ -24,7 +24,7 @@ void Map::LoadMap(string MapFileName){
 }
 
 int Map::Point(int X, int Y){
-	return mapArray(X,Y);
+	return (int)mapArray(X,Y);
 }
 bool Map::Passable(int X, int Y){
 	return (mapArray(X,Y) < PassableThreshhold);
