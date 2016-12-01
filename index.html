@@ -149,7 +149,7 @@
 			//Switch to the character management page.
 			Mailbox.BroadcastMessage("This is a test of the server.");
 			SetDiv("AccountView");
-			
+			Debug("End of LoginResponse");
 			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
 			for (var i = 1; i < 6; i++){
 				if (GetValueFromKey("c" + i) != "Not Found"){
