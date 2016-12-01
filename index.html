@@ -138,16 +138,16 @@
 		function LoginResponse(xhttp){
 			Debug("LoginResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
+			Debug("1");
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
 				return;
 			}
-			
+			Debug("2");
 			//If login is successful set up the logged in name at the top of the page.
 			document.getElementById("LoginStatus").innerText = User;
-			
+			Debug("3");
 			//Switch to the character management page.
-			Mailbox.BroadcastMessage("This is a test of the server.");
 			SetDiv("AccountView");
 			Debug("End of LoginResponse");
 			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
