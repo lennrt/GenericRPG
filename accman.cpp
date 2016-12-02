@@ -97,6 +97,8 @@ int main(){
 	string u = GetValueFromKey("u");
 	string p = GetValueFromKey("p");
 	
+	Response = "^";
+	
 	//User Login
 	if (Op == "Login"){
 		if (fileExists ("u/" + u)){
@@ -364,6 +366,7 @@ int main(){
 	if (Op == "Update"){			
 		int Box = stoi(GetValueFromKey("b"));
 		string RetVal;
+		bool First = true;
 		
 		//Connect to game service
 		ConnectToGameService();
@@ -374,7 +377,12 @@ int main(){
 			for (int i = 1; i < slotCount; i++){
 				if (CheckSlot(Box, i)){
 					//Host interprets ^ as message dilineator.
-					RetVal += "^" + GetMessage(Box, i);
+					if (First) {
+						First = false;
+					} else {
+						RetVal += "^";
+					}
+					RetVal += GetMessage(Box, i);
 				}
 			}	
 			Response += RetVal;
