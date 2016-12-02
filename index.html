@@ -131,7 +131,7 @@
 		function ProcessCommands(){
 			Debug(" PC ");
 			if (NextCommandIn){
-				NextCommandIn = false;
+				NextCommandIn = false;Debug("CMDLen:" + CommandsIn.length);
 				
 				if (CommandsIn.length > 0) {
 					LoadKeys(CommandsIn.shift());
