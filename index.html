@@ -212,7 +212,7 @@
 		function ParseResponse(xhttp){ Debug (" >| ");
 			var Response = xhttp.responseText;Debug (" 1| ");
 			var i = 0;
-			while (Response.substr(i,1) != "^"){i++;}Debug (" 2| ");
+			//while (Response.substr(i,1) != "^"){i++;}Debug (" 2| ");
 			var ResponseText = Response.substr(i);
 			Debug ("Mid-PR");
 			var Temp = ResponseText.split("^");Debug ("TMPLen: " + Temp.length);
