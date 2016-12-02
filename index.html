@@ -222,7 +222,8 @@
 		function PlayResponse(xhttp){
 			Debug("PlayResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
-			if (GetValueFromKey("Status") == "Success"){
+			Debug(GetValueFromKey("Status"));
+			if (GetValueFromKey("Status") === "Success"){
 				Debug("Main");
 				SetDiv("Main");
 				Debug("Box");
