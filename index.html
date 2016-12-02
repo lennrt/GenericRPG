@@ -249,17 +249,19 @@
 			xhttp.open("POST", SiteURL, true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(Operation + Query);
+			Debug("|");
 		}
 		
 		function UpdateResponse(xhttp){
+			Debug("UpdateResponse");
 			ParseResponse(xhttp.responseText);
 			
 			var Info = GetValueFromKey("Info");
-			
-			if (Info == "MapPlot"){
+			Debug(Info);
+			if (Info === "MapPlot"){
 				FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
 			}
-			if (Info == "MyPosition"){
+			if (Info === "MyPosition"){
 				X = parseInt(GetValueFromKey("X"));
 				Y = parseInt(GetValueFromKey("Y"));
 				ShowMeOnMap();
