@@ -210,10 +210,11 @@
 		}
 		
 		function ParseResponse(xhttp){ Debug (" >| ");
+			debugger;
 			var Response = xhttp.responseText;Debug (" 1| ");
-			//var i = 0;
-			//while (Response.substr(i,1) != "^"){i++;}Debug (" 2| ");
-			//var ResponseText = Response.substr(i);
+			var i = 0;
+			while (Response.substr(i,1) != "^"){i++;}Debug (" 2| ");
+			var ResponseText = Response.substr(i);
 			Debug ("Mid-PR");
 			var Temp = Response.split("^");Debug ("TMPLen: " + Temp.length);
 			for (var i = 0; i < Temp.length; i++) {
