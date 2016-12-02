@@ -217,9 +217,9 @@
 			while (Response.substr(i,1) != "^"){i++;}
 			var ResponseText = Response.substr(i);
 			
-			var Temp = ResponseText.split("^");
+			var Temp = ResponseText.split("^");Debug ("TMPLen: " + Temp.length);
 			for (var i = 0; i < Temp.length; i++) {
-				CommandsIn.push(Temp[i]);
+				CommandsIn.push(Temp[i]);Debug(" Push ");
 			}
 		}
 		
