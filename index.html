@@ -185,19 +185,17 @@
 		}
 		
 		function LoginResponse(){
-
-			Debug("1");
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
 				return;
 			}
-			Debug("2");
+			
 			//If login is successful set up the logged in name at the top of the page.
 			document.getElementById("LoginStatus").innerText = User;
-			Debug("3");
+			
 			//Switch to the character management page.
 			SetDiv("AccountView");
-			Debug("End of LoginResponse");
+			
 			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
 			for (var i = 1; i < 6; i++){
 				if (GetValueFromKey("c" + i) != "Not Found"){
@@ -212,9 +210,9 @@
 		}
 		
 		function ParseResponse(xhttp){ Debug (" >| ");
-			var Response = xhttp.responseText;
+			var Response = xhttp.responseText;Debug (" 1| ");
 			var i = 0;
-			while (Response.substr(i,1) != "^"){i++;}
+			while (Response.substr(i,1) != "^"){i++;}Debug (" 2| ");
 			var ResponseText = Response.substr(i);
 			Debug ("Mid-PR");
 			var Temp = ResponseText.split("^");Debug ("TMPLen: " + Temp.length);
