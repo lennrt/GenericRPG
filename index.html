@@ -264,7 +264,7 @@
 		}
 		
 		function ProcessCommands(){
-		
+			Debug(" PC ");
 			if (NextCommand){
 				NextCommand = false;
 				
@@ -332,7 +332,7 @@
 				for (var j = Y; j < Y + 20; j++){
 					Map[i][j] = parseInt(Plot.substr(Slot,2));
 					Slot += 2;
-					if (MapBool[i][j] == 0) {
+					if (MapBool[i][j] === 0) {
 						AddTile(i,j);
 						MapBool[i][j] = 1;
 					}
