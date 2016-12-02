@@ -26,14 +26,13 @@
 		var CharID;
 		var Box;
 		var SessionKey;
-		var Query = "";
-		var Operation = "";
 		var SelectedChar = 0;
 		var MaxChar = 5;		
 		var ResponseArray = [];
 		var Players = [];
 		var Enemies = [];
-		var Commands = [];
+		var CommandsIn = [];
+		var CommandsOut = [];
 		var X;
 		var Y;
 		var MapImage = document.getElementById("MapImageDiv");
@@ -45,7 +44,8 @@
 		var MoveStep = 5;
 		var MapTiles = [];
 		var BackgroundTimer = false;
-		var NextCommand = true;
+		var NextCommandIn = true;
+		var NextCommandOut = true;
 		
 		var Map = [];
 		var MapBool = [];
@@ -101,7 +101,53 @@
 			}
 			
 			window.setInterval(BackgroundUpdate, 3000);
-		}         
+		}       
+		
+		function Send(Message){
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					ParseResponse(xhttp.responseText);
+				}
+			};			
+			xhttp.open("POST", SiteURL, true);
+			xhttp.timeout = 1500;
+			xhttp.ontimeout = function () {Send(Message);};
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(Message);
+		}
+		
+		function ProcessCommands(){
+			Debug(" PC ");
+			if (NextCommandIn){
+				NextCommandIn = false;
+				
+				if (CommandsIn.length > 0) {
+					LoadKeys(CommandsIn.shift());
+						
+					var Op = GetValueFromKey("Op");
+					Debug(Op);
+					
+					if (Op == "Login"){LoginResponse();}
+					if (Op == "NewCharacter"){CreateResponse();}
+					if (Op == "DeleteCharacter"){DeleteResponse();}
+					if (Op == "EnterGame"){EnterGameResponse();}
+					if (Op == "Play"){CheckFail();}
+					if (Op == "Update"){CheckFail();}
+					if (Op == "MapPlot"){
+						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
+					}
+					if (Op == "MyPosition"){
+						Debug("Detect MyPosition Command");
+						X = parseInt(GetValueFromKey("X"));
+						Y = parseInt(GetValueFromKey("Y"));
+						ShowMeOnMap();
+					}
+				}
+				NextCommandIn = true;
+			}
+		}
 					
 		function SetDiv(WhichDiv){
 			HideAllChars();
@@ -125,24 +171,11 @@
 			if (User.length < 4) {alert("Username too short"); return;}
 			if (Pass.length < 4) {alert("Password too short"); return;}
 			
-			var xhttp;
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					LoginResponse(xhttp);
-				}
-			};
-			
-			Operation = "?Op=" + Op;
-			Query = "&u=" + User + "&p=" + Pass;
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send(Operation + Query);
+			Send("?Op=" + Op + "&u=" + User + "&p=" + Pass);
 		}
 		
-		function LoginResponse(xhttp){
-			Debug("LoginResponse >" + xhttp.responseText + "<\n");
-			ParseResponse(xhttp.responseText);
+		function LoginResponse(){
+
 			Debug("1");
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
@@ -175,7 +208,7 @@
 			
 			var Temp = ResponseText.split("^");
 			for (var i = 0; i < Temp.length; i++) {
-				Commands.push(Temp[i]);
+				CommandsIn.push(Temp[i]);
 			}
 		}
 		
@@ -222,22 +255,11 @@
 			CharID = document.getElementById("charID" + num).value;
 		}
 		
-		function Play(){
-			var xhttp;
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					PlayResponse(xhttp);
-				}
-			};
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass + "&c=" + CharID + "&s=" + SessionKey);	
+		function EnterGame(){
+			Send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass + "&c=" + CharID + "&s=" + SessionKey);	
 		}
 		
-		function PlayResponse(xhttp){
-			Debug("PlayResponse >" + xhttp.responseText + "<\n");
-			ParseResponse(xhttp.responseText);
+		function EnterGameResponse(){
 			if (GetValueFromKey("Status") === "Success"){
 				SetDiv("Main");
 				Box = GetValueFromKey("Box");
@@ -245,60 +267,24 @@
 			}
 		}
 		
+		function CheckFail(){
+			if (GetValueFromKey("Status") === "Fail"){alert(GetValueFromKey("Reason"));}
+		}
+		
 		function BackgroundUpdate(){
 			Debug(".");
 			if (BackgroundTimer){
-				var xhttp;
-				xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function() {
-					if (xhttp.readyState === 4 && xhttp.status === 200) {
-						UpdateResponse(xhttp);
-					}
-				};	
-				xhttp.open("POST", SiteURL, true);
-				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhttp.send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
+				Send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
 				Debug("|");
 			}
 			ProcessCommands();
 		}
 		
-		function ProcessCommands(){
-			Debug(" PC ");
-			if (NextCommand){
-				NextCommand = false;
-				
-				if (Commands.length > 0) {
-					LoadKeys(Commands.shift());
-						
-					var Info = GetValueFromKey("Info");
-					Debug(Info);
-					
-					if (Info === "MapPlot"){
-						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
-					}
-					if (Info === "MyPosition"){
-						Debug("Detect MyPosition Command");
-						X = parseInt(GetValueFromKey("X"));
-						Y = parseInt(GetValueFromKey("Y"));
-						ShowMeOnMap();
-					}
-				}
-				NextCommand = true;
-			}
-		}
-		
-		function UpdateResponse(xhttp){
-			ParseResponse(xhttp.responseText);
-			Debug ("UpdateResponse >" + xhttp.responseText + "<\n");
-			TestFunction();
-		}
-		
 		function ShowMeOnMap(){
 			var TopCornerX = -((X - 9) * 50);
 			var TopCornerY = -((Y - 9) * 50);
-			var XDiff = (NewX - MapImage.style.left) / MoveStep;
-			var YDiff = (NewY - MapImage.style.top) / MoveStep;
+			var XDiff = (TopCornerX - MapImage.style.left) / MoveStep;
+			var YDiff = (TopCornerY - MapImage.style.top) / MoveStep;
 			Debug("ShowMeOnMap");
 			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 		}
@@ -327,7 +313,7 @@
 		}
 		
 		function FillMap(Plot, X, Y){
-			Slot = 0;
+			var Slot = 0;
 			for (var i = X; i < X + 20; i++){
 				for (var j = Y; j < Y + 20; j++){
 					Map[i][j] = parseInt(Plot.substr(Slot,2));
@@ -347,16 +333,7 @@
 		function TestFunction(){
 			Debug("In the test\n");
 			//-----------------------------------TEST------------
-			var xhttp;
-			xhttp = new XMLHttpRequest();			
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					var f = 0;
-				}
-			};
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send("?Op=Play&Action=RepeatMessage&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey + "&Message=" + "Blah" + TEST);	
+			Send("?Op=Play&Action=RepeatMessage&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey + "&Message=" + "Blah" + TEST);	
 			TEST++;
 			
 			//-----------------------------------END TEST---------------
@@ -368,24 +345,11 @@
 			if (conf === false) {return;}		
 			
 			CharID = document.getElementById("charID" + SelectedChar).value;
-			
-			var xhttp;
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					DeleteResponse(xhttp);
-				}
-			};
-			
-			Operation = "?Op=DeleteCharacter&c=" + CharID;												
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send(Operation + Query);
+			Send("?Op=DeleteCharacter&u=" + User + "&p=" + Pass + "&c=" + CharID);
+
 		}
 		
-		function DeleteResponse (xhttp) {
-			Debug("DeleteResponse>" + xhttp.responseText + "<\n");
-			ParseResponse(xhttp.responseText);
+		function DeleteResponse () {
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
 				return;
@@ -456,22 +420,12 @@
 
 			if (Name === "") {alert ("Must specify a name for the character."); return;}
 			if (Int === "") {alert ("Must roll for chracter traits."); return;}
-			
-			var xhttp;
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					CreateResponse(xhttp);
-				}
-			};
-			
-			Operation = "?Op=NewCharacter";
-			Query = "&u=" + User + "&p=" + Pass;
-			Query += "&c=" + CharID + "&Name=" + Name + "&Class=" + Class + "&Race=" + Race + "&Sex=" + Sex + "&Level=" + Level;
-			Query += "&Int=" + Int + "&Str=" + Str + "&Agi=" + Agi + "&Con=" + Con + "&Spd=" + Spd + "&Cha=" + Cha + "&End=" + End;
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send(Operation + Query);
+						
+			var Operation = "?Op=NewCharacter";
+			Operation = "&u=" + User + "&p=" + Pass;
+			Operation += "&c=" + CharID + "&Name=" + Name + "&Class=" + Class + "&Race=" + Race + "&Sex=" + Sex + "&Level=" + Level;
+			Operation += "&Int=" + Int + "&Str=" + Str + "&Agi=" + Agi + "&Con=" + Con + "&Spd=" + Spd + "&Cha=" + Cha + "&End=" + End;
+			Send(Operation);
 		}
 		
 		function ClearChar(){
@@ -495,9 +449,7 @@
 			document.getElementById("charMCD").value = "";
 		}
 		
-		function CreateResponse(xhttp){
-			Debug("CreateResponse >" + xhttp.responseText + "<\n");
-			ParseResponse(xhttp.responseText);
+		function CreateResponse(){
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
 				return;
@@ -538,16 +490,7 @@
 		}
 		
 		function QuitGame(){
-			var xhttp;
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					var f = 0;
-				}
-			};
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey);	
+			Send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey, "LeaveGame");	
 		}
 		-->
 	</script>
@@ -679,7 +622,7 @@
 					<div id = "class5" class = "clear" style="top:50%;left:50%;width:45%;height:45%"></div>
 				</div>
 			</div>
-			<input onClick = "Play();" type = "button" value="Play" style = "top:75%;left:12%;width:16%">
+			<input onClick = "EnterGame();" type = "button" value="Play" style = "top:75%;left:12%;width:16%">
 			<input onClick = "NewCharacter();" type = "button" value="New Character" style = "top:75%;left:32%;width:16%">
 			<input onClick = "DeleteCharacter();" type = "button" value="Delete Character" style = "top:75%;left:52%;width:16%">
 			<input onClick = "Logout();" type = "button" value="Logout" style = "top:75%;left:72%;width:16%">

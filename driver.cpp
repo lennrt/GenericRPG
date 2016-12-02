@@ -79,16 +79,16 @@ int main(){
 			Mailbox.OpenUserBox(NewChar.Box);
 			NewChar.X = StartingX;
 			NewChar.Y = StartingY;
-			Temp = "&Info=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
+			Temp = "&Op=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
-			Temp = "&Info=MapPlot&Plot=" + Map.GetPlot(NewChar.X - 9, NewChar.Y - 9);
+			Temp = "&Op=MapPlot&Plot=" + Map.GetPlot(NewChar.X - 9, NewChar.Y - 9);
 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
 			Players.push_back(NewChar);
 		}
 		
 		if (Action == "RepeatMessage"){
 			//This convoluted mess tests the message passing among objects (It's obv super redundant.)
-			string TestString = GetValueFromKey("Message") + " Repeated back at ya.";
+			string TestString = "&Op=Alert&Message=" + GetValueFromKey("Message") + " Repeated back at ya.";
 			int TestBox = Players[GetPlayerByBox(GetValueFromKey("b"))].Box;
 			cout << "Test:" << TestString << "\n";
 			Mailbox.SendMessageToBox(TestString , TestBox );

@@ -105,6 +105,8 @@ int main(){
 			string Temp;
 			int i, j;
 			
+			Response += "&Op=Login";
+			
 			PWFile.open ("u/" + u + "/p", fstream::in);
 			PWFile >> PassTestFile;
 			PWFile.close();
@@ -144,7 +146,9 @@ int main(){
 	}
 
 	//User Setup
-	if (Op == "New"){
+	if (Op == "New"){		
+		Response += "&Op=Login";  //Same as Login - New is needed server side only
+		
 		//Check if a directory exists for the supplied username.  If so, the user exists.  Fail and exit.
 		if (fileExists ("u/" + u)){
 			Response += "&Status=Fail&Reason=User already exists.";
@@ -170,6 +174,7 @@ int main(){
 	if (Op == "NewCharacter"){
 		vector <string> Rebuild;
 
+		Response += "&Op=NewCharacter";
 
 		string charID = GetValueFromKey("c");
 		
@@ -247,7 +252,9 @@ int main(){
 		string u = GetValueFromKey("u");
 		string p = GetValueFromKey("p");
 		string charID = GetValueFromKey("c");
-			fstream PWFile;
+		fstream PWFile;
+		
+		Response += "&Op=DeleteCharacter";
 		
 		if (fileExists ("u/" + u)){
 			string PassTestIn(crypt(p.c_str(),"AB"));  //This is extremely insecure.  Use for student project only.
@@ -298,7 +305,9 @@ int main(){
 	}   
 
 	//Character Login
-	if (Op == "EnterGame"){			
+	if (Op == "EnterGame"){		
+		Response += "&Op=EnterGame";
+		
 		if (fileExists ("u/" + u)){
 			string PassTestIn(crypt(p.c_str(),"AB"));  //This is EXTREMELY insecure.  Use for student project only.
 			string PassTestFile;
@@ -331,7 +340,9 @@ int main(){
 	}
 	
 	//Make an in-game action (send message to service)
-	if (Op == "Play"){	
+	if (Op == "Play"){
+		Response += "&Op=Play";
+		
 		//Connect to game service
 		ConnectToGameService();
 		
@@ -369,7 +380,7 @@ int main(){
 			Response += RetVal;
 			cout << Response;
 		} else {
-			Response += "&Status=Fail&Reason=Session credentials do not match.";
+			Response += "&Op=Update&Status=Fail&Reason=Session credentials do not match.";
 			cout << Response;
 		}
 		
