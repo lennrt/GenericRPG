@@ -46,6 +46,7 @@
 		var BackgroundTimer = false;
 		var NextCommandIn = true;
 		var NextCommandOut = true;
+		var RefreshBounds = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0};
 		
 		var Map = [];
 		var MapBool = [];
@@ -92,8 +93,8 @@
 			MapTiles[15].src = 'images/forest.png';
 
 			for (var i = 0; i < 100; i++){
-				Map[i] = new Int8Array(100);
-				MapBool[i] = new Int8Array(100);
+				Map[i] = [];
+				MapBool[i] = [];
 				for (var j = 0; j < 100; j++){
 					Map[i][j] = -2;
 					MapBool[i][j] = 0;
