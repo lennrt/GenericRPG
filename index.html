@@ -223,9 +223,13 @@
 			Debug("PlayResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
 			if (GetValueFromKey("Status") == "Success"){
+				Debug("Main");
 				SetDiv("Main");
+				Debug("Box");
 				Box = GetValueFromKey("Box");
+				Debug("SetInterval");
 				window.setInterval(BackgroundUpdate, 3000);
+				Debug("End");
 			}
 		}
 		
