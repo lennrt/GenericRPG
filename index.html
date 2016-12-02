@@ -101,9 +101,18 @@
 			}
 			
 			window.setInterval(BackgroundUpdate, 3000);
-		}       
-		
-		function Send(Message){
+		}  
+				
+		function BackgroundUpdate(){
+			Debug(".");
+			if (BackgroundTimer){
+				Send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
+				Debug("|");
+			}
+			ProcessCommands();
+		}
+				
+		function Send(Message){Debug(" -> ");
 			var xhttp;
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -165,7 +174,7 @@
 			}
 		}
 		
-		function Login(Op){
+		function Login(Op){Debug("Login");
 			User = document.getElementById("u").value;
 			Pass = document.getElementById("p").value;
 			if (User.length < 4) {alert("Username too short"); return;}
@@ -201,7 +210,7 @@
 			}
 		}
 		
-		function ParseResponse(Response){ 
+		function ParseResponse(Response){ Debug (" >| ");
 			var i = 0;
 			while (Response.substr(i,1) != "^"){i++;}
 			var ResponseText = Response.substr(i);
@@ -269,15 +278,6 @@
 		
 		function CheckFail(){
 			if (GetValueFromKey("Status") === "Fail"){alert(GetValueFromKey("Reason"));}
-		}
-		
-		function BackgroundUpdate(){
-			Debug(".");
-			if (BackgroundTimer){
-				Send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
-				Debug("|");
-			}
-			ProcessCommands();
 		}
 		
 		function ShowMeOnMap(){
