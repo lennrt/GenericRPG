@@ -118,7 +118,7 @@
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					ParseResponse(xhttp.responseText);
+					ParseResponse(xhttp);
 				}
 			};			
 			xhttp.open("POST", SiteURL, true);
