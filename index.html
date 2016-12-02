@@ -33,6 +33,7 @@
 		var ResponseArray = [];
 		var Players = [];
 		var Enemies = [];
+		var Commands = [];
 		var X;
 		var Y;
 		var MapImage = document.getElementById("MapImageDiv");
@@ -43,6 +44,8 @@
 		var Value = 1;
 		var MoveStep = 5;
 		var MapTiles = [];
+		var BackgroundTimer = false;
+		var NextCommand = true;
 		
 		var Map = [];
 		var MapBool = [];
@@ -96,6 +99,8 @@
 					MapBool[i][j] = 0;
 				}
 			}
+			
+			window.setInterval(BackgroundUpdate, 3000);
 		}         
 					
 		function SetDiv(WhichDiv){
@@ -163,7 +168,18 @@
 			}
 		}
 		
-		function ParseResponse(Response){
+		function ParseResponse(Response){ 
+			var i = 0;
+			while (Response.substr(i,1) != "^"){i++;}
+			var ResponseText = Response.substr(i);
+			
+			var Temp = ResponseText.split("^");
+			for (var i = 0; i < Temp.length; i++) {
+				Commands.push(Temp[i]);
+			}
+		}
+		
+		function LoadKeys(Response){
 			var i = 0;
 			while (Response.substr(i,1) != "&"){i++;}
 			var ResponseText = Response.substr(i);
@@ -222,51 +238,58 @@
 		function PlayResponse(xhttp){
 			Debug("PlayResponse >" + xhttp.responseText + "<\n");
 			ParseResponse(xhttp.responseText);
-			Debug(GetValueFromKey("Status"));
 			if (GetValueFromKey("Status") === "Success"){
-				Debug("Main");
 				SetDiv("Main");
-				Debug("Box");
 				Box = GetValueFromKey("Box");
-				Debug("SetInterval");
-				window.setInterval(BackgroundUpdate, 3000);
-				Debug("End");
+				BackgroundTimer = true;
 			}
 		}
 		
 		function BackgroundUpdate(){
 			Debug(".");
-			var xhttp;
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					UpdateResponse(xhttp);
+			if (BackgroundTimer){
+				var xhttp;
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState === 4 && xhttp.status === 200) {
+						UpdateResponse(xhttp);
+					}
+				};	
+				xhttp.open("POST", SiteURL, true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
+				Debug("|");
+			}
+			ProcessCommands();
+		}
+		
+		function ProcessCommands(){
+		
+			if (NextCommand){
+				NextCommand = false;
+				
+				if (Commands.length > 0) {
+					LoadKeys(Commands.shift());
+						
+					var Info = GetValueFromKey("Info");
+					Debug(Info);
+					
+					if (Info === "MapPlot"){
+						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
+					}
+					if (Info === "MyPosition"){
+						Debug("Detect MyPosition Command");
+						X = parseInt(GetValueFromKey("X"));
+						Y = parseInt(GetValueFromKey("Y"));
+						ShowMeOnMap();
+					}
 				}
-			};
-			
-			Operation = "?Op=Update";
-			Query = "&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey;
-			xhttp.open("POST", SiteURL, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send(Operation + Query);
-			Debug("|");
+				NextCommand = true;
+			}
 		}
 		
 		function UpdateResponse(xhttp){
-			Debug("UpdateResponse");
 			ParseResponse(xhttp.responseText);
-			
-			var Info = GetValueFromKey("Info");
-			Debug(Info);
-			if (Info === "MapPlot"){
-				FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
-			}
-			if (Info === "MyPosition"){
-				X = parseInt(GetValueFromKey("X"));
-				Y = parseInt(GetValueFromKey("Y"));
-				ShowMeOnMap();
-			}
-			
 			Debug ("UpdateResponse >" + xhttp.responseText + "<\n");
 			TestFunction();
 		}
@@ -276,7 +299,8 @@
 			var TopCornerY = -((Y - 9) * 50);
 			var XDiff = (NewX - MapImage.style.left) / MoveStep;
 			var YDiff = (NewY - MapImage.style.top) / MoveStep;
-			setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
+			Debug("ShowMeOnMap");
+			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 		}
 		
 		function AddTile(X, Y){
@@ -298,7 +322,7 @@
 				MapImage.offsetTop += YInc;
 				MeImage.offsetLeft -= XInc;
 				MeImage.offsetTop -= YInc;
-				setTimeout(MoveMap(NewX,NewY, XInc, YInc, Count - 1), 100);
+				window.setTimeout(MoveMap(NewX,NewY, XInc, YInc, Count - 1), 100);
 			}			
 		}
 		
