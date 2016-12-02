@@ -218,7 +218,7 @@
 			var Temp = ResponseText.split("^");Debug ("TMPLen: " + Temp.length);
 			for (var i = 0; i < Temp.length; i++) {
 				CommandsIn.push(Temp[i]);Debug(" Push ");
-			}Debug(" End-PR ");
+			}Debug(" End-PR -> CILen: " + CommandsIn.length);
 		}
 		
 		function LoadKeys(Response){Debug ("LOADKEYS");
