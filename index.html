@@ -216,11 +216,11 @@
 			var i = 0;
 			while (Response.substr(i,1) != "^"){i++;}
 			var ResponseText = Response.substr(i);
-			
+			Debug ("Mid-PR");
 			var Temp = ResponseText.split("^");Debug ("TMPLen: " + Temp.length);
 			for (var i = 0; i < Temp.length; i++) {
 				CommandsIn.push(Temp[i]);Debug(" Push ");
-			}
+			}Debug(" End-PR ");
 		}
 		
 		function LoadKeys(Response){
