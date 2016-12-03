@@ -28,10 +28,11 @@ void Map::LoadMap(string MapFileName){
 				cout << mapArray[X][Y] << "  " << flush;
 				X++;			
 				F = i + 1;
-		cout << "C = " << C << flush;
 			}
 		}
-		Y++;
+		Y++; 
+		X = 0;
+				cout << "C = " << C << flush;
 	}
 	MapFile.close();
 }
