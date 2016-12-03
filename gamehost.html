@@ -397,6 +397,9 @@
 				GetPlot(0,20);
 				GetPlot(20,0);
 				GetPlot(20,20);
+				document.getElementById("MeDiv").style.left = (Me.X * 50) + 'px';
+				document.getElementById("MeDiv").style.top = (Me.Y * 50) + 'px';
+				
 			}
 		}
 		
@@ -743,7 +746,11 @@
 				<div class = 'clear' id = 'CharRightHandField' style = 'top:144px;left:252px;width:126px;height:12px'></div>
 			</div>
 			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();" style = 'top:5px;left:86px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Inventory</div>
+			<div id = "InvSheetBox">
+			</div>
 			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();" style = 'top:5px;left:166px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Spells</div>
+			<div id = "SpellSheetBox">
+			</div>
 			<div id = "TargetBox" class = "box" style = "top:85%;left:60%;height:60px;width:240px;background-color:#adc4ff">
 				<div class = 'clear' id = 'NameField' style = 'top:6px;left:6px;width:117px;height:12px'></div>
 				<div class = 'clear' id = 'LevelLabel' style = 'top:6px;left:114px;width:54px;height:12px'>Level</div>
