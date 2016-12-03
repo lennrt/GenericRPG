@@ -396,11 +396,17 @@
 			if (GetValueFromKey("Status") === "Success"){
 				SetDiv("Main");
 				Box = GetValueFromKey("Box");
-				BackgroundTimer = true;			
-				GetPlot(0,0);
+				BackgroundTimer = true;	
+				for (var i = 0; i < 5; i++){
+					for (var j = 0; j < 5; j++){
+						GetPlot(i*20,j*20);
+					}
+				}
+					
+/*				GetPlot(0,0);
 				GetPlot(0,20);
 				GetPlot(20,0);
-				GetPlot(20,20);				
+				GetPlot(20,20);*/				
 			}
 		}
 		
@@ -765,7 +771,7 @@
 				<div class = 'clear' id = 'ManaLabel' style = 'top:42px;left:114px;width:45px;height:12px'>Mana</div>
 				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:170px;width:54px;height:12px'></div>
 			</div>
-			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:10%;left:70%">
+			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:2%;left:95%">
 			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button" style = "top:10%;left:80%">
 		</div>
 
