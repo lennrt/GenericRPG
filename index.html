@@ -273,11 +273,11 @@
 			document.getElementById("TargetBox").style.visibility = 'visible';
 		}
 		
-		GetEntity(EntityType, EntityID){
+		function GetEntity(EntityType, EntityID){
 			RetVal = new EntityClass();
 			if (EntityType == "Player"){
 				for (var k = 0; k < Players.length; k++){
-					if )Players[k].ID == EntityID){
+					if (Players[k].ID == EntityID){
 						RetVal.Name = Players[k].Name;
 						RetVal.Level = Players[k].Level;
 						RetVal.Att = Players[k].Att;
@@ -290,7 +290,7 @@
 				}
 			} else {
 				for (var k = 0; k < Enemies.length; k++){
-					if )Enemies[k].ID == EntityID){
+					if (Enemies[k].ID == EntityID){
 						RetVal.Name = Enemies[k].Name;
 						RetVal.Level = Enemies[k].Level;
 						RetVal.Att = Enemies[k].Att;
