@@ -18,9 +18,10 @@ void Map::LoadMap(string MapFileName){
 	
 	MapFile.open (MapFileName, fstream::in);
 	while ( MapFile >> Temp ){
+		
+				cout << Temp << endl << endl << endl << flush;
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
-				cout << Temp << endl << endl << endl << flush;
 				mapArray[X][Y] = (unsigned short int)stoi(Temp.substr(F,i-F));
 				X++;
 				F = i + 1;
