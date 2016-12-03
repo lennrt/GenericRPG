@@ -29,7 +29,7 @@ class Map {
 		string GetPlot(int X, int Y);
 		
 	private:
-		unsigned short int mapArray [100][100];
+		int mapArray [100][100];
 		int PassableThreshhold = 10;
 		int MaxX = 99;
 		int MaxY = 99;
