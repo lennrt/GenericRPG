@@ -547,10 +547,9 @@
 			if (Int === "") {alert ("Must roll for chracter traits."); return;}
 						
 			var Operation = "?Op=NewCharacter";
-			Operation = "&u=" + User + "&p=" + Pass;
+			Operation += "&u=" + User + "&p=" + Pass;
 			Operation += "&c=" + CharID + "&Name=" + Name + "&Class=" + Class + "&Race=" + Race + "&Sex=" + Sex + "&Level=" + Level;
 			Operation += "&Int=" + Int + "&Str=" + Str + "&Agi=" + Agi + "&Con=" + Con + "&Spd=" + Spd + "&Cha=" + Cha + "&End=" + End;
-			alert (Operation);
 			Send(Operation);
 		}
 		
@@ -576,7 +575,6 @@
 		}
 		
 		function CreateResponse(){
-		alert ("here");
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
 				return;
