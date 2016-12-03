@@ -11,11 +11,11 @@ Map::~Map() {}
 
 void Map::LoadMap(string MapFileName){
 	string Temp;
-	string T;
 	fstream MapFile;
 	int X = 0;
 	int Y = 0;
 	int F = 0;
+	int C = 0;
 	
 	MapFile.open (MapFileName, fstream::in);
 	while ( MapFile >> Temp ){
@@ -23,15 +23,16 @@ void Map::LoadMap(string MapFileName){
 				cout << Temp << endl << endl << endl << flush;
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
-				T = Temp.substr(F,i-F);
+				C++;
 				cout << "T=" << T << " ";
 				mapArray[X][Y] = stoi(Temp.substr(F,i-F));
 				cout << mapArray[X][Y] << flush;
 				X++;			
 				F = i + 1;
 			}
-			Y++;
 		}
+		cout << "C = " << C << flush;
+		Y++;
 	}
 	MapFile.close();
 }
