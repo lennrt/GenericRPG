@@ -29,12 +29,10 @@
 		var SelectedChar = 0;
 		var MaxChar = 5;		
 		var ResponseArray = [];
+		var Me;
 		var Players = [];
 		var Enemies = [];
 		var CommandsIn = [];
-		var CommandsOut = [];
-		var X;
-		var Y;
 		var MapImage = document.getElementById("MapImageDiv");
 		var MeImage = document.getElementById("MeDiv");
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
@@ -44,9 +42,58 @@
 		var MapTiles = [];
 		var BackgroundTimer = false;
 		var NextCommandIn = true;
-		var RefreshBounds = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0};
+		var MapPos = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0, 'X' : 0, 'Y' : 0 };
 		var Map;
 		var MapBool;
+		
+		function EntityClass(){
+			this.Int = 0;
+			this.Str = 0;
+			this.Agi = 0;
+			this.Con = 0;
+			this.Spd = 0;
+			this.Cha = 0;
+			this.End = 0;
+			this.Health = 0;
+			this.Mana = 0;
+			this.Att = 0;
+			this.Def = 0;
+			this.ACD = 0;
+			this.MCD = 0;
+			
+			this.CurInt = 0;
+			this.CurStr = 0;
+			this.CurAgi = 0;
+			this.CurCon = 0;
+			this.CurSpd = 0;
+			this.CurCha = 0;
+			this.CurEnd = 0;
+			this.CurHealth = 0;
+			this.CurMana = 0;
+			this.CurAtt = 0;
+			this.CurDef = 0;
+			this.CurACD = 0;
+			this.CurMCD = 0;	
+			
+			this.X = 0;
+			this.Y = 0;
+			this.Name = ""
+			this.Race = ""
+			this.Class = ""
+			this.Sex = ""
+		}
+		
+		function ItemClass(){
+			this.Name = "";
+			this.Description ="";
+			this.Rarity = "";
+			this.Type = "";
+			this.Range = 0;
+			this.Value = 0;
+			this.StatEffect = "";
+		}
+		
+		
 				
 		function Debug(DebugValue){
 			document.getElementById("DebugDiv").innerText += DebugValue;

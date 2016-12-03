@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 
 struct StatEffect {
    Stats Stat; 
@@ -39,3 +40,4 @@ class Item {
     std::string itemType;   
     std::vector<StatEffect> statEffects;
 };
+
