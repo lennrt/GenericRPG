@@ -100,9 +100,8 @@ int main(){
 		}
 		
 		if (Action == "GetPlot"){
-			int X = to_string(GetValueFromKey("X"));
-			int Y = to_string(GetValueFromKey("Y"));
-			string Plot = 
+			int X = stoi(GetValueFromKey("X"));
+			int Y = stoi(GetValueFromKey("Y"));
 			Temp = "&Op=MapPlot&X=" + to_string(X) + "&Y=" + to_string(Y) + "&Plot=" + Map.GetPlot(X,Y);
 			Mailbox.SendMessageToBox(Temp, Players[User].Box);
 		}
