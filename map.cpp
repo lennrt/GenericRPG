@@ -19,12 +19,13 @@ void Map::LoadMap(string MapFileName){
 	MapFile.open (MapFileName, fstream::in);
 	while ( MapFile >> Temp ){
 		for (int i = 0; i < Temp.length(); i++){
-			if (Temp[i] == ","){
+			if (Temp[i] == ','){
 				mapArray[X][Y] = (unsigned short int)stoi(Temp.substr(F,i-F));
-				F = i+1;
+				X++;
+				F = i + 1;
 				cout << mapArray[X][Y];
 			}
-		X++;
+		}
 		if (X > MaxX){X = 0; Y++;}
 	}
 	MapFile.close();
