@@ -25,12 +25,12 @@ void Map::LoadMap(string MapFileName){
 			if (Temp[i] == ','){
 				T = Temp.substr(F,i-F);
 				cout << "T=" << T << " ";
-				mapArray[X][Y] = stoi(T);
+				mapArray[X][Y] = stoi(Temp.substr(F,i-F));
 				cout << mapArray[X][Y] << flush;
 				X++;			
-				if (X > MaxX){X = 0; Y++;}
 				F = i + 1;
 			}
+			Y++;
 		}
 	}
 	MapFile.close();
