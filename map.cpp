@@ -20,7 +20,7 @@ void Map::LoadMap(string MapFileName){
 	MapFile.open (MapFileName, fstream::in);
 	while ( MapFile >> Temp ){
 		
-				cout << Temp << endl << endl << endl << flush;
+				cout << endl << endl << endl << flush;
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
 				C++;
@@ -32,7 +32,8 @@ void Map::LoadMap(string MapFileName){
 		}
 		Y++; 
 		X = 0;
-				cout << "C = " << C << flush;
+		F = 0;
+				cout << "\nC = " << C << flush;
 	}
 	MapFile.close();
 }
