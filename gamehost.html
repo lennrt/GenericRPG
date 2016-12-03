@@ -114,10 +114,10 @@
 		}
 				
 		document.addEventListener("keydown", function (e) {
-			if (e.keyCode == '37') {Move(-1,0);}
-			if (e.keyCode == '38') {Move(0,-1);}
-			if (e.keyCode == '39') {Move(1,0);}
-			if (e.keyCode == '40') {Move(0,1);}			
+			if (e.keyCode == '37') {MoveMe(-1,0);}
+			if (e.keyCode == '38') {MoveMe(0,-1);}
+			if (e.keyCode == '39') {MoveMe(1,0);}
+			if (e.keyCode == '40') {MoveMe(0,1);}			
 		});
 		
 		function Setup(){
@@ -657,11 +657,11 @@
 			}
 		}
 		
-		function Move (Xpos, Ypos){
-			MapPos.X -= Xpos;
-			MapPos.Y -= Ypos;
-			Me.X += Xpos;
-			Me.Y += YPos;
+		function MoveMe (XOffset, YOffset){
+			MapPos.X -= XOffset;
+			MapPos.Y -= YOffset;
+			Me.X += XOffset;
+			Me.Y += YOffset;
 			
 			document.getElementById("MapImageDiv").style.left = (MapPos.X * 50) + "px";
 			document.getElementById("MapImageDiv").style.top = (MapPos.Y * 50) + "px";
@@ -710,7 +710,7 @@
 				
 			</div>
 			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();" style = 'top:5px;left:6px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Character</div>
-			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:250ps;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden">
+			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:250px;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden">
 				<div class = 'clear' id = 'CharNameField' style = 'top:12px;left:18px;width:96px;height:12px'></div>
 				<div class = 'clear' id = 'CharSexLabel' style = 'top:30px;left:132px;width:30px;height:12px'>Sex</div>
 				<div class = 'clear' id = 'CharSexField' style = 'top:30px;left:192px;width:18px;height:12px'></div>
@@ -748,17 +748,17 @@
 				<div class = 'clear' id = 'CharManaField' style = 'top:84px;left:192px;width:30px;height:12px'></div>
 				<div class = 'clear' id = 'CharManaLabel' style = 'top:84px;left:132px;width:30px;height:12px'>Mana</div>
 				<div class = 'clear' id = 'CharMCDField' style = 'top:84px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:48px;height:12px'>Magic Cooldown</div>
+				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:60px;height:12px'>Magic Cooldown</div>
 				<div class = 'clear' id = 'CharACDField' style = 'top:66px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:48px;height:12px'>Action Cooldown</div>
+				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:60px;height:12px'>Action Cooldown</div>
 				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px'>Equipped</div>
 				<div class = 'clear' id = 'CharHeadLabel' style = 'top:162px;left:174px;width:54px;height:12px'>Head</div>
 				<div class = 'clear' id = 'CharBodyLabel' style = 'top:180px;left:174px;width:54px;height:12px'>Body</div>
 				<div class = 'clear' id = 'CharLegsLabel' style = 'top:216px;left:174px;width:54px;height:12px'>Legs</div>
 				<div class = 'clear' id = 'CharArmsLabel' style = 'top:198px;left:174px;width:54px;height:12px'>Arms</div>
 				<div class = 'clear' id = 'CharFeetLabel' style = 'top:234px;left:174px;width:54px;height:12px'>Feet</div>
-				<div class = 'clear' id = 'CharLeftHandLabel' style = 'top:126px;left:174px;width:54px;height:12px'>Left Hand</div>
-				<div class = 'clear' id = 'CharRightHandLabel' style = 'top:144px;left:174px;width:54px;height:12px'>Right Hand</div>
+				<div class = 'clear' id = 'CharLeftHandLabel' style = 'top:126px;left:174px;width:66px;height:12px'>Left Hand</div>
+				<div class = 'clear' id = 'CharRightHandLabel' style = 'top:144px;left:174px;width:66px;height:12px'>Right Hand</div>
 				<div class = 'clear' id = 'CharFeetField' style = 'top:234px;left:252px;width:126px;height:12px'></div>
 				<div class = 'clear' id = 'CharHeadField' style = 'top:162px;left:252px;width:126px;height:12px'></div>
 				<div class = 'clear' id = 'CharBodyField' style = 'top:180px;left:252px;width:126px;height:12px'></div>
