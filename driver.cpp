@@ -26,8 +26,8 @@
 
 using namespace std;
 
-const int StartingX = 15;
-const int StartingY = 15;
+const int StartingX = 8;
+const int StartingY = 8;
 
 //Structure for HTTP form data
 struct FormInfo{
@@ -44,6 +44,7 @@ vector<FormInfo> FormData;
 void getFormData(string Env);
 string GetValueFromKey(string FindKey);
 int GetPlayerByBox(string BoxNumber);
+string GetNewCharInfo(Entity& Character);
 
 int main(){
 	//Setup Game state
@@ -84,6 +85,12 @@ int main(){
 			NewChar.Y = StartingY;
 			Temp = "&Op=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
+			Mailbox.BroadcastMessage("&Op=Con&Message=" + NewChar.Name + " has entered the game.");
+			Temp = GetNewCharInfo(NewChar);
+			Mailbox.BroadcastMessage(GetNewCharInfo(NewChar));
+			for (int i = 0; i < Players.size(); i++){
+				Mailbox.SendMessageToBox(GetNewCharInfo(Players[i]), NewChar.Box);
+			}
 			Players.push_back(NewChar);
 		}
 		
@@ -97,7 +104,8 @@ int main(){
 		}
 		
 		if (Action == "LeaveGame"){
-			Done = true;
+			//Done = true;
+			Mailbox.CloseUserBox(stoi(GetValueFromKey("b"));
 		}
 		
 		if (Action == "GetPlot"){
@@ -108,6 +116,13 @@ int main(){
 		}
 		
 		if (Action == "Move"){
+			int Who = GetPlayerByBox(GetValueFromKey("b"));
+			int X = stoi(GetValueFromKey("XMove"));
+			int Y = stoi(GetValueFromKey("YMove"));
+			if (Map.Passable(Players[Who].X + X, Players[Who].Y + Y)){
+				string Temp = "&Op=PlayerMove&b=" + GetValueFromKey("b") + "&X=" + GetValueFromKey("XMove") + "&Y=" + GetValueFromKey("YMove");
+				Mailbox.BroadcastMessage(Temp);
+			}
 		}	
 		
 		if (Action == "CastSpell"){
@@ -136,16 +151,53 @@ int main(){
 			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
 			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
 		}
-		
 	}
-
-
-	
-	
-
-    
-    
 }
+
+string GetNewCharInfo(Character& Character){
+	string RetVal;
+	RetVal += "&Op=UpdateChar&b=" + to_string(Character.Box);
+	RetVal += "&cInt=" + to_string(Character.GetStat(Intelligence, false));
+	RetVal += "&cStrt=" + to_string(Character.GetStat(Strength, false));
+	RetVal += "&cAgi=" + to_string(Character.GetStat(Agility, false));
+	RetVal += "&cCon=" + to_string(Character.GetStat(Constitution, false));
+	RetVal += "&cSpd=" + to_string(Character.GetStat(Speed, false));
+	RetVal += "&cCha=" + to_string(Character.GetStat(Charisma, false));
+	RetVal += "&cEnd=" + to_string(Character.GetStat(Endurance, false));
+	RetVal += "&cHea=" + to_string(Character.GetStat(Health, false));
+	RetVal += "&cMan=" + to_string(Character.GetStat(Mana, false));
+	RetVal += "&cAtt=" + to_string(Character.GetStat(Attack, false));
+	RetVal += "&cDef=" + to_string(Character.GetStat(Defense, false));
+	RetVal += "&cACD=" + to_string(Character.GetStat(ActionCoolDown, false));
+	RetVal += "&cMCD=" + to_string(Character.GetStat(MagicCoolDown, false));
+	
+	RetVal += "&mInt=" + to_string(Character.GetStat(Intelligence, true));
+	RetVal += "&mStrt=" + to_string(Character.GetStat(Strength, true));
+	RetVal += "&mAgi=" + to_string(Character.GetStat(Agility, true));
+	RetVal += "&mCon=" + to_string(Character.GetStat(Constitution, true));
+	RetVal += "&mSpd=" + to_string(Character.GetStat(Speed, true));
+	RetVal += "&mCha=" + to_string(Character.GetStat(Charisma, true));
+	RetVal += "&mEnd=" + to_string(Character.GetStat(Endurance, true));
+	RetVal += "&mHea=" + to_string(Character.GetStat(Health, true));
+	RetVal += "&mMan=" + to_string(Character.GetStat(Mana, true));
+	RetVal += "&mAtt=" + to_string(Character.GetStat(Attack, true));
+	RetVal += "&mDef=" + to_string(Character.GetStat(Defense, true));
+	RetVal += "&mACD=" + to_string(Character.GetStat(ActionCoolDown, true));
+	RetVal += "&mMCD=" + to_string(Character.GetStat(MagicCoolDown, true));
+	
+	RetVal += "&Level=" + Character.GetLevel();
+	RetVal += "&Exp=" + Character.GetExp();
+	RetVal += "&Gold=" + Character.GetGold();
+	RetVal += "&X=" + Character.X;
+	RetVal += "&Y=" + Character.Y;
+	RetVal += "&Name=" + Character.Name;
+	RetVal += "&Race=" + Character.Race;
+	RetVal += "&Class=" + Character.Class;
+	RetVal += "&Sex=" + Character.Sex;
+	
+	return RetVal;
+}
+
 
 int GetPlayerByBox(string BoxNumber){
 	int FindBox = stoi(BoxNumber);

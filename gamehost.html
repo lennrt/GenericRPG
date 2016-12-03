@@ -167,9 +167,9 @@
 			EnemyTiles[18].src = 'images/zombie.png';
 
 			PlayerTiles[0].src = 'images/fighter.png';
-			PlayerTiles[0].src = 'images/mage.png';
-			PlayerTiles[0].src = 'images/ranger.png';
-			PlayerTiles[0].src = 'images/thief.png';
+			PlayerTiles[1].src = 'images/mage.png';
+			PlayerTiles[2].src = 'images/ranger.png';
+			PlayerTiles[3].src = 'images/thief.png';
 									
 			Map = createArray(100,100);
 			MapBool = createArray(100,100);
@@ -232,8 +232,138 @@
 						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
 					}
 					if (Op == "MyPosition"){SetMyPosition();}
+					if (Op == "Con"){
+						document.getElementById("Con").innerHTML += GetValueFromKey("Message");
+					}
+					if (Op == "UpdateChar"){UpdateChar();}
+					if (Op == "PlayerMove"){PlayerMove();}
 				}
 				NextCommandIn = true;
+			}
+		}
+		
+		function PlayerMove(){
+			if (Me.Box == GetValueFromKey("b")){
+				Me.X += parseInt(GetValueFromKey("X"));
+				Me.Y += parseInt(GetValueFromKey("Y"));
+				document.getElementById("MapImageDiv").style.left = (MapPos.X * 50) + "px";
+				document.getElementById("MapImageDiv").style.top = (MapPos.Y * 50) + "px";
+				document.getElementById("MeDiv").style.left = (Me.X * 50) + "px";
+				document.getElementById("MeDiv").style.top = (Me.Y * 50) + "px";				
+			} else {
+				var Who = GetPlayerByBox(GetValueFromKey("b"));
+				Players[Who].X += parseInt(GetValueFromKey("X"));
+				Players[Who].Y += parseInt(GetValueFromKey("Y"));
+				document.getElementById("_" + GetValueFromKey("b")).style.left = (Players[Who].X * 50) + 'px';
+				document.getElementById("_" + GetValueFromKey("b")).style.top = (Players[Who].Y * 50) + 'px';
+			}
+		}
+		
+		function UpdateChar(){
+			if (GetValueFromKey("b") == Box){
+				Me.ID = stoi(GetValueFromKey("b"));
+				Me.MaxInt = stoi(GetValueFromKey("mInt"));
+				Me.MaxStr = stoi(GetValueFromKey("mStr"));
+				Me.MaxAgi = stoi(GetValueFromKey("mAgi"));
+				Me.MaxCon = stoi(GetValueFromKey("mCon"));
+				Me.MaxSpd = stoi(GetValueFromKey("mSpd"));
+				Me.MaxCha = stoi(GetValueFromKey("mCha"));
+				Me.MaxEnd = stoi(GetValueFromKey("mEnd"));
+				Me.MaxHealth = stoi(GetValueFromKey("mHea"));
+				Me.MaxMana = stoi(GetValueFromKey("mMan"));
+				Me.MaxAtt = stoi(GetValueFromKey("mAtt"));
+				Me.MaxDef = stoi(GetValueFromKey("mDef"));
+				Me.MaxACD = stoi(GetValueFromKey("mACD"));
+				Me.MaxMCD = stoi(GetValueFromKey("mMCD"));
+				
+				Me.CurInt = stoi(GetValueFromKey("cInt"));
+				Me.CurStr = stoi(GetValueFromKey("cStr"));
+				Me.CurAgi = stoi(GetValueFromKey("cAgi"));
+				Me.CurCon = stoi(GetValueFromKey("cCon"));
+				Me.CurSpd = stoi(GetValueFromKey("cSpd"));
+				Me.CurCha = stoi(GetValueFromKey("cCha"));
+				Me.CurEnd = stoi(GetValueFromKey("cEnd"));
+				Me.CurHealth = stoi(GetValueFromKey("cHea"));
+				Me.CurMana = stoi(GetValueFromKey("cMan"));
+				Me.CurAtt = stoi(GetValueFromKey("cAtt"));
+				Me.CurDef = stoi(GetValueFromKey("cDef"));
+				Me.CurACD = stoi(GetValueFromKey("cACD"));
+				Me.CurMCD = stoi(GetValueFromKey("cMCD"));	
+				
+				Me.Level = stoi(GetValueFromKey("Level"));
+				Me.Exp = stoi(GetValueFromKey("Exp"));
+				Me.Gold = stoi(GetValueFromKey("Gold"));
+				Me.X = stoi(GetValueFromKey("X"));
+				Me.Y = stoi(GetValueFromKey("Y"));
+				Me.Name = GetValueFromKey("Name");
+				Me.Race = GetValueFromKey("Race");
+				Me.Class = GetValueFromKey("Class");
+				Me.Sex = GetValueFromKey("Sex");
+				
+				if (Me.Class == "Fighter") document.getElementById("MeImg").src = PlayerTiles[0].src;
+				if (Me.Class == "Mage") document.getElementById("MeImg").src = PlayerTiles[1].src;
+				if (Me.Class == "Ranger") document.getElementById("MeImg").src = PlayerTiles[2].src;
+				if (Me.Class == "Thief") document.getElementById("MeImg").src = PlayerTiles[3].src;
+			} else {
+				TempEntity = new EntityClass();
+				TempEntity.ID = stoi(GetValueFromKey("b"));
+				TempEntity.MaxInt = stoi(GetValueFromKey("mInt"));
+				TempEntity.MaxStr = stoi(GetValueFromKey("mStr"));
+				TempEntity.MaxAgi = stoi(GetValueFromKey("mAgi"));
+				TempEntity.MaxCon = stoi(GetValueFromKey("mCon"));
+				TempEntity.MaxSpd = stoi(GetValueFromKey("mSpd"));
+				TempEntity.MaxCha = stoi(GetValueFromKey("mCha"));
+				TempEntity.MaxEnd = stoi(GetValueFromKey("mEnd"));
+				TempEntity.MaxHealth = stoi(GetValueFromKey("mHea"));
+				TempEntity.MaxMana = stoi(GetValueFromKey("mMan"));
+				TempEntity.MaxAtt = stoi(GetValueFromKey("mAtt"));
+				TempEntity.MaxDef = stoi(GetValueFromKey("mDef"));
+				TempEntity.MaxACD = stoi(GetValueFromKey("mACD"));
+				TempEntity.MaxMCD = stoi(GetValueFromKey("mMCD"));
+				
+				TempEntity.CurInt = stoi(GetValueFromKey("cInt"));
+				TempEntity.CurStr = stoi(GetValueFromKey("cStr"));
+				TempEntity.CurAgi = stoi(GetValueFromKey("cAgi"));
+				TempEntity.CurCon = stoi(GetValueFromKey("cCon"));
+				TempEntity.CurSpd = stoi(GetValueFromKey("cSpd"));
+				TempEntity.CurCha = stoi(GetValueFromKey("cCha"));
+				TempEntity.CurEnd = stoi(GetValueFromKey("cEnd"));
+				TempEntity.CurHealth = stoi(GetValueFromKey("cHea"));
+				TempEntity.CurMana = stoi(GetValueFromKey("cMan"));
+				TempEntity.CurAtt = stoi(GetValueFromKey("cAtt"));
+				TempEntity.CurDef = stoi(GetValueFromKey("cDef"));
+				TempEntity.CurACD = stoi(GetValueFromKey("cACD"));
+				TempEntity.CurMCD = stoi(GetValueFromKey("cMCD"));	
+				
+				TempEntity.Level = stoi(GetValueFromKey("Level"));
+				TempEntity.Exp = stoi(GetValueFromKey("Exp"));
+				TempEntity.Gold = stoi(GetValueFromKey("Gold"));
+				TempEntity.X = stoi(GetValueFromKey("X"));
+				TempEntity.Y = stoi(GetValueFromKey("Y"));
+				TempEntity.Name = GetValueFromKey("Name");
+				TempEntity.Race = GetValueFromKey("Race");
+				TempEntity.Class = GetValueFromKey("Class");
+				TempEntity.Sex = GetValueFromKey("Sex");
+				
+				Players.push(TempEntity);
+				
+				var NewImg = document.createElement("img");
+				NewImg.setAttribute("id", "_" + TempEntity.ID);
+				NewImg.style.position = 'absolute';
+				NewImg.style.left = (TempEntity.X * 50) + 'px';
+				NewImg.style.top = (TempEntity.Y * 50) + 'px';
+				
+				if (TempEntity.Class == "Fighter") NewImg.setAttribute("src", PlayerTiles[0].src);
+				if (TempEntity.Class == "Mage") NewImg.setAttribute("src", PlayerTiles[1].src);
+				if (TempEntity.Class == "Ranger") NewImg.setAttribute("src", PlayerTiles[2].src);
+				if (TempEntity.Class == "Thief") NewImg.setAttribute("src", PlayerTiles[3].src);
+				document.getElementById("EnemyDiv").appendChild(NewTile);
+			}
+		}
+		
+		function GetPlayerByBox(Box){
+			for (var i = 0; i < Players.length; i++){
+				if (Players[i].ID == Box) return i;
 			}
 		}
 		
@@ -243,8 +373,6 @@
 			MapPos.X = Me.X - 9;
 			MapPos.Y = Me.Y - 9;
 			ShowMeOnMap();	
-			Me.X = 8;
-			Me.Y = 8;
 			document.getElementById("MeDiv").style.left = (Me.X * 50) + 'px';
 			document.getElementById("MeDiv").style.top = (Me.Y * 50) + 'px';
 		}
@@ -658,20 +786,21 @@
 		}
 		
 		function MoveMe (XOffset, YOffset){
-			MapPos.X -= XOffset;
-			MapPos.Y -= YOffset;
-			Me.X += XOffset;
-			Me.Y += YOffset;
+// 			MapPos.X -= XOffset;
+// 			MapPos.Y -= YOffset;
+// 			Me.X += XOffset;
+// 			Me.Y += YOffset;
+			Send("?Op=Play&Action=Move&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey + "&X=" + XOffset + "&Y=" + YOffset);
 			
-			document.getElementById("MapImageDiv").style.left = (MapPos.X * 50) + "px";
-			document.getElementById("MapImageDiv").style.top = (MapPos.Y * 50) + "px";
-			document.getElementById("MeDiv").style.left = (Me.X * 50) + "px";
-			document.getElementById("MeDiv").style.top = (Me.Y * 50) + "px";
+// 			document.getElementById("MapImageDiv").style.left = (MapPos.X * 50) + "px";
+// 			document.getElementById("MapImageDiv").style.top = (MapPos.Y * 50) + "px";
+// 			document.getElementById("MeDiv").style.left = (Me.X * 50) + "px";
+// 			document.getElementById("MeDiv").style.top = (Me.Y * 50) + "px";
 			
 		}
 		
 		function QuitGame(){
-			Send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey, "LeaveGame");	
+			Send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey);	
 		}
 		
 		function createArray(length) {
@@ -703,14 +832,14 @@
 			<div id="MapViewPort" class = "clear" style = "top:0%;left0%;width:100%;height:100%;overflow:hidden">
 				<div id = "MapImageDiv" class="clear" style="top:0px;left:0px;height:5000px;width:5000px">
 					<div id = "MapTilesDiv" class = "clear" style="top:0px;left:0px"></div>
-					<div id = "MeDiv" class = "clear" style = "z-index:100"><img src="/images/mage.png"></div>
-					<div id = "EnemyDiv" style="top:0px;left:0px"></div>
+					<div id = "MeDiv" class = "clear" style = "z-index:100"><img id="MeImg" src="/images/mage.png"></div>
+					<div id = "EnemyDiv" style="top:0px;left:0px;z-index:100"></div>
 					<div id = "OtherPlayerDiv" style="top:0px;left:0px"></div>
 				</div>
 				
 			</div>
 			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();" style = 'top:5px;left:6px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Character</div>
-			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:250px;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden">
+			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:300px;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden">
 				<div class = 'clear' id = 'CharNameField' style = 'top:12px;left:18px;width:96px;height:12px'></div>
 				<div class = 'clear' id = 'CharSexLabel' style = 'top:30px;left:132px;width:30px;height:12px'>Sex</div>
 				<div class = 'clear' id = 'CharSexField' style = 'top:30px;left:192px;width:18px;height:12px'></div>
@@ -724,7 +853,7 @@
 				<div class = 'clear' id = 'CharLevelLabel' style = 'top:48px;left:18px;width:36px;height:12px'>Level</div>
 				<div class = 'clear' id = 'CharExpField' style = 'top:66px;left:192px;width:42px;height:12px'></div>
 				<div class = 'clear' id = 'CharExpLabel' style = 'top:66px;left:132px;width:60px;height:12px'>Experience</div>
-				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:72px;height:12px'>Base Attributes</div>
+				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px'>Base Attributes</div>
 				<div class = 'clear' id = 'CharIntField' style = 'top:126px;left:78px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Intelligence</div>
 				<div class = 'clear' id = 'CharStrField' style = 'top:144px;left:78px;width:54px;height:12px'></div>
@@ -748,9 +877,9 @@
 				<div class = 'clear' id = 'CharManaField' style = 'top:84px;left:192px;width:30px;height:12px'></div>
 				<div class = 'clear' id = 'CharManaLabel' style = 'top:84px;left:132px;width:30px;height:12px'>Mana</div>
 				<div class = 'clear' id = 'CharMCDField' style = 'top:84px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:60px;height:12px'>Magic Cooldown</div>
+				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:60px;height:12px'>Magic CD</div>
 				<div class = 'clear' id = 'CharACDField' style = 'top:66px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:60px;height:12px'>Action Cooldown</div>
+				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:60px;height:12px'>Action CD</div>
 				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px'>Equipped</div>
 				<div class = 'clear' id = 'CharHeadLabel' style = 'top:162px;left:174px;width:54px;height:12px'>Head</div>
 				<div class = 'clear' id = 'CharBodyLabel' style = 'top:180px;left:174px;width:54px;height:12px'>Body</div>
@@ -758,7 +887,7 @@
 				<div class = 'clear' id = 'CharArmsLabel' style = 'top:198px;left:174px;width:54px;height:12px'>Arms</div>
 				<div class = 'clear' id = 'CharFeetLabel' style = 'top:234px;left:174px;width:54px;height:12px'>Feet</div>
 				<div class = 'clear' id = 'CharLeftHandLabel' style = 'top:126px;left:174px;width:66px;height:12px'>Left Hand</div>
-				<div class = 'clear' id = 'CharRightHandLabel' style = 'top:144px;left:174px;width:66px;height:12px'>Right Hand</div>
+				<div class = 'clear' id = 'CharRightHandLabel' style = 'top:144px;left:174px;width:74px;height:12px'>Right Hand</div>
 				<div class = 'clear' id = 'CharFeetField' style = 'top:234px;left:252px;width:126px;height:12px'></div>
 				<div class = 'clear' id = 'CharHeadField' style = 'top:162px;left:252px;width:126px;height:12px'></div>
 				<div class = 'clear' id = 'CharBodyField' style = 'top:180px;left:252px;width:126px;height:12px'></div>
@@ -786,8 +915,10 @@
 				<div class = 'clear' id = 'ManaLabel' style = 'top:42px;left:114px;width:45px;height:12px'>Mana</div>
 				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:170px;width:54px;height:12px'></div>
 			</div>
+			<div class = "clear" id = "ConViewPort" style = "top:70%;left5%;width:35%;height:25%;overflow:hidden">
+				<div class = "clear" id = "Con" style = "color:#ffd326"></div>
+			</div>
 			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:2%;left:95%">
-			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button" style = "top:10%;left:80%">
 		</div>
 
 		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
