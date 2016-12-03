@@ -37,8 +37,6 @@
 		var Inventory = [];
 		var Spells = [];
 		var CommandsIn = [];
-		var MapImage = document.getElementById("MapImageDiv");
-		var MeImage = document.getElementById("MeDiv");
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
 		var Key = 0;
 		var Value = 1;
@@ -367,6 +365,9 @@
 		}
 		
 		function MoveMap(NewX,NewY, XInc, YInc, Count){
+			var MapImage = document.getElementById("MapImageDiv");
+			var MeImage = document.getElementById("MeDiv");
+			
 			if (Count === 0 || (NewX = MapImage.style.left && NewY - MapImage.style.top)) {
 				MapImage.style.left = NewX + "px";
 				MapImage.style.top = NewY + "px";
