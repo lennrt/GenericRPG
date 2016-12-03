@@ -11,6 +11,7 @@ Map::~Map() {}
 
 void Map::LoadMap(string MapFileName){
 	string Temp;
+	string T;
 	fstream MapFile;
 	int X = 0;
 	int Y = 0;
@@ -22,7 +23,9 @@ void Map::LoadMap(string MapFileName){
 				cout << Temp << endl << endl << endl << flush;
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
-				mapArray[X][Y] = (unsigned short int)stoi(Temp.substr(F,i-F));
+				T = Temp.substr(F,i-F);
+				cout << "T=" << T << " ";
+				mapArray[X][Y] = (unsigned short int)stoi(T);
 				X++;
 				F = i + 1;
 				cout << mapArray[X][Y] << flush;
