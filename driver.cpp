@@ -88,6 +88,7 @@ int main(){
 			Mailbox.BroadcastMessage("&Op=Con&Message=" + NewChar.Name + " has entered the game.");
 			Temp = GetNewCharInfo(NewChar);
 			Mailbox.BroadcastMessage(GetNewCharInfo(NewChar));
+			Mailbox.SendMessageToBox(GetNewCharInfo(NewChar), NewChar.Box);
 			for (int i = 0; i < Players.size(); i++){
 				Mailbox.SendMessageToBox(GetNewCharInfo(Players[i]), NewChar.Box);
 			}
