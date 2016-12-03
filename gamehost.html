@@ -129,13 +129,13 @@
 			MapTiles[4].src = 'images/greengrassland.png';		//Grassland
 			MapTiles[5].src = 'images/trail.png';			//Trail
 			MapTiles[6].src = 'images/whitefloor.png';		//White Floor
-			MapTiles[7].src = 'images/yellowgrassland.png';			//Hill
-			MapTiles[8].src = 'images/yellowdesert.png';			//Snow
+			MapTiles[7].src = 'images/yellowgrassland.png';		//Hill
+			MapTiles[8].src = 'images/yellowdesert.png';		//Snow
 			MapTiles[9].src = 'images/forest.png';			
 			MapTiles[10].src = 'images/forest.png';		
 			MapTiles[11].src = 'images/water.png';			//Deep Water
-			MapTiles[12].src = 'images/whitewall.png';			//White Wall
-			MapTiles[13].src = 'images/whitewall.png';			//Tree     -NO
+			MapTiles[12].src = 'images/whitewall.png';		//White Wall
+			MapTiles[13].src = 'images/whitewall.png';		//Tree     -NO
 			MapTiles[14].src = 'images/water.png';			//Mountain -NO
 			MapTiles[15].src = 'images/forest.png';
 			
@@ -595,9 +595,39 @@
 			ClearChar();
 		}
 		
-		ToggleCharSheet(){
+		function ToggleCharSheet(){
+			document.getElementById("InvSheetBox").style.visibility = 'hidden';
+			document.getElementById("SpellSheetBox").style.visibility = 'hidden';
+			
 			var CurrentState = document.getElementById("CharSheetBox").style.visibility;
 			document.getElementById("CharSheetBox").style.visibility = (CurrentState == 'hidden' ? 'visible' : 'hidden');
+			document.getElementById("CharNameField").innerHTML = Me.Name;
+			document.getElementById("CharSexField").innerHTML = Me.Sex;			
+			document.getElementById("CharRaceField").innerHTML = Me.Race;			
+			document.getElementById("CharClassField").innerHTML = Me.Class;			
+			document.getElementById("CharGoldField").innerHTML = Me.Gold;			
+			document.getElementById("CharLevelField").innerHTML = Me.Level;			
+			document.getElementById("CharExpField").innerHTML = Me.Exp;			
+			document.getElementById("CharIntField").innerHTML = Me.CurInt + " / " + Me.MaxInt;			
+			document.getElementById("CharStrField").innerHTML = Me.CurStr + " / " + Me.MaxStr;			
+			document.getElementById("CharAgiField").innerHTML = Me.CurAgi + " / " + Me.MaxAgi;			
+			document.getElementById("CharConField").innerHTML = Me.CurCon + " / " + Me.MaxCon;
+			document.getElementById("CharSpdField").innerHTML = Me.CurSpd + " / " + Me.MaxSpd;			
+			document.getElementById("CharChaField").innerHTML = Me.CurCha + " / " + Me.MaxCha;
+			document.getElementById("CharEndField").innerHTML = Me.CurEnd + " / " + Me.MaxEnd;
+			document.getElementById("CharAttackField").innerHTML = Me.CurAtt + " / " + Me.MaxAtt;			
+			document.getElementById("CharDefenseField").innerHTML = Me.CurDef + " / " + Me.MaxDef;
+			document.getElementById("CharManaField").innerHTML = Me.CurMana + " / " + Me.MaxMana;
+			document.getElementById("CharHealthField").innerHTML = CurHealth + " / " + Me.MaxHealth;
+			document.getElementById("CharACDField").innerHTML = Me.MaxACD;
+			document.getElementById("CharMCDField").innerHTML = Me.MaxMCD;	
+			document.getElementById("CharLeftHandLabel").innerHTML = "";			
+			document.getElementById("CharRightHandLabel").innerHTML = "";			
+			document.getElementById("CharFeetLabel").innerHTML = "";			
+			document.getElementById("CharHeadHandLabel").innerHTML = "";			
+			document.getElementById("CharBodyHandLabel").innerHTML = "";			
+			document.getElementById("CharLegsHandLabel").innerHTML = "";			
+			document.getElementById("CharArmsHandLabel").innerHTML = "";			
 		}
 		
 		function GetNewID(){
@@ -648,7 +678,7 @@
 			<div id="MapViewPort" class = "clear" style = "top:0%;left0%;width:100%;height:100%;overflow:hidden">
 				<div id = "MapImageDiv" style="top:0px;left:0px;height:5000px;width:5000px">
 					<div id = "MapTilesDiv" style="top:0px;left:0px"></div>
-					<div id = "MeDiv"></div>
+					<div id = "MeDiv"><img src="/images/mage.png"></div>
 					<div id = "EnemyDiv" style="top:0px;left:0px"></div>
 					<div id = "OtherPlayerDiv" style="top:0px;left:0px"></div>
 				</div>
@@ -671,31 +701,31 @@
 				<div class = 'clear' id = 'CharExpLabel' style = 'top:66px;left:132px;width:60px;height:12px'>Experience</div>
 				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:72px;height:12px'>Base Attributes</div>
 				<div class = 'clear' id = 'CharIntField' style = 'top:126px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Int</div>
+				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Intelligence</div>
 				<div class = 'clear' id = 'CharStrField' style = 'top:144px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharStrLabel' style = 'top:144px;left:18px;width:60px;height:12px'>Str</div>
+				<div class = 'clear' id = 'CharStrLabel' style = 'top:144px;left:18px;width:60px;height:12px'>Strength</div>
 				<div class = 'clear' id = 'CharAgiField' style = 'top:162px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharAgiLabel' style = 'top:162px;left:18px;width:60px;height:12px'>Agi</div>
+				<div class = 'clear' id = 'CharAgiLabel' style = 'top:162px;left:18px;width:60px;height:12px'>Agility</div>
 				<div class = 'clear' id = 'CharConField' style = 'top:180px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharConLabel' style = 'top:180px;left:18px;width:60px;height:12px'>Con</div>
+				<div class = 'clear' id = 'CharConLabel' style = 'top:180px;left:18px;width:60px;height:12px'>Constitution</div>
 				<div class = 'clear' id = 'CharChaField' style = 'top:216px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharChaLabel' style = 'top:216px;left:18px;width:60px;height:12px'>Cha</div>
+				<div class = 'clear' id = 'CharChaLabel' style = 'top:216px;left:18px;width:60px;height:12px'>Charisma</div>
 				<div class = 'clear' id = 'CharEndField' style = 'top:234px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharEndLabel' style = 'top:234px;left:18px;width:60px;height:12px'>End</div>
+				<div class = 'clear' id = 'CharEndLabel' style = 'top:234px;left:18px;width:60px;height:12px'>Endurance</div>
 				<div class = 'clear' id = 'CharSpdField' style = 'top:198px;left:78px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharSpdLabel' style = 'top:198px;left:18px;width:60px;height:12px'>Spd</div>
+				<div class = 'clear' id = 'CharSpdLabel' style = 'top:198px;left:18px;width:60px;height:12px'>Speed</div>
 				<div class = 'clear' id = 'CharAttackField' style = 'top:30px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharAttackLabel' style = 'top:30px;left:258px;width:48px;height:12px'>Att</div>
+				<div class = 'clear' id = 'CharAttackLabel' style = 'top:30px;left:258px;width:48px;height:12px'>Attack</div>
 				<div class = 'clear' id = 'CharDefenseField' style = 'top:48px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharDefenseLabel' style = 'top:48px;left:258px;width:48px;height:12px'>Def</div>
+				<div class = 'clear' id = 'CharDefenseLabel' style = 'top:48px;left:258px;width:48px;height:12px'>Defense</div>
 				<div class = 'clear' id = 'CharHealthField' style = 'top:66px;left:66px;width:36px;height:12px'></div>
 				<div class = 'clear' id = 'CharHealthLabel' style = 'top:66px;left:18px;width:36px;height:12px'>Health</div>
 				<div class = 'clear' id = 'CharManaField' style = 'top:84px;left:192px;width:30px;height:12px'></div>
 				<div class = 'clear' id = 'CharManaLabel' style = 'top:84px;left:132px;width:30px;height:12px'>Mana</div>
 				<div class = 'clear' id = 'CharMCDField' style = 'top:84px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:48px;height:12px'>MCD</div>
+				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:48px;height:12px'>Magic Cooldown</div>
 				<div class = 'clear' id = 'CharACDField' style = 'top:66px;left:318px;width:54px;height:12px'></div>
-				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:48px;height:12px'>ACD</div>
+				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:48px;height:12px'>Action Cooldown</div>
 				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px'>Equipped</div>
 				<div class = 'clear' id = 'CharHeadLabel' style = 'top:162px;left:174px;width:54px;height:12px'>Head</div>
 				<div class = 'clear' id = 'CharBodyLabel' style = 'top:180px;left:174px;width:54px;height:12px'>Body</div>
@@ -714,7 +744,7 @@
 			</div>
 			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();" style = 'top:5px;left:86px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Inventory</div>
 			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();" style = 'top:5px;left:166px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Spells</div>
-			<div id = "TargetBox" class = "box" style = "top:85%;left:70%;height:60px;width:240px;background-color:#adc4ff">
+			<div id = "TargetBox" class = "box" style = "top:85%;left:60%;height:60px;width:240px;background-color:#adc4ff">
 				<div class = 'clear' id = 'NameField' style = 'top:6px;left:6px;width:117px;height:12px'></div>
 				<div class = 'clear' id = 'LevelLabel' style = 'top:6px;left:114px;width:54px;height:12px'>Level</div>
 				<div class = 'clear' id = 'LevelField' style = 'top:6px;left:160px;width:27px;height:12px'></div>
