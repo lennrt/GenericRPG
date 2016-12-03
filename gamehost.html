@@ -575,6 +575,7 @@
 		}
 		
 		function CreateResponse(){
+		alert ("here");
 			if (GetValueFromKey("Status") == "Fail"){
 				alert(GetValueFromKey("Reason"));
 				return;
@@ -755,15 +756,15 @@
 			<div id = "TargetBox" class = "box" style = "top:85%;left:60%;height:60px;width:240px;background-color:#adc4ff">
 				<div class = 'clear' id = 'NameField' style = 'top:6px;left:6px;width:117px;height:12px'></div>
 				<div class = 'clear' id = 'LevelLabel' style = 'top:6px;left:114px;width:54px;height:12px'>Level</div>
-				<div class = 'clear' id = 'LevelField' style = 'top:6px;left:160px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'LevelField' style = 'top:6px;left:170px;width:27px;height:12px'></div>
 				<div class = 'clear' id = 'AttackLabel' style = 'top:24px;left:6px;width:45px;height:12px'>Attack</div>
 				<div class = 'clear' id = 'AttackField' style = 'top:24px;left:52px;width:27px;height:12px'></div>
 				<div class = 'clear' id = 'DefenseLabel' style = 'top:24px;left:114px;width:54px;height:12px'>Defense</div>
-				<div class = 'clear' id = 'DefenseField' style = 'top:24px;left:160px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'DefenseField' style = 'top:24px;left:170px;width:27px;height:12px'></div>
 				<div class = 'clear' id = 'HealthLabel' style = 'top:42px;left:6px;width:45px;height:12px'>Health</div>
 				<div class = 'clear' id = 'HealthField' style = 'top:42px;left:52px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'ManaLabel' style = 'top:42px;left:114px;width:45px;height:12px'>Mana</div>
-				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:160px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:170px;width:54px;height:12px'></div>
 			</div>
 			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:10%;left:70%">
 			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button" style = "top:10%;left:80%">
