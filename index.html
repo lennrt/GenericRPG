@@ -356,14 +356,12 @@
 		}
 		
 		function AddTile(NewX, NewY){
-			Debug ("Start Tile");
 			var NewTile = document.createElement("img");
 			NewTile.setAttribute("id", "_" + NewX + "_" + NewY);
 			NewTile.setAttribute("src", MapTiles[Map[NewX][NewY]].src);
 			NewTile.setAttribute("top", (NewX * 50) + "px");
 			NewTile.setAttribute("left",(NewY * 50) + "px");
 			document.getElementById("MapTilesDiv").appendChild(NewTile);
-			Debug ("End Tile");
 		}
 		
 		function MoveMap(NewX,NewY, XInc, YInc, Count){
@@ -385,8 +383,6 @@
 		}
 		
 		function FillMap(Plot, X, Y){
-			Debug ("FillMap");
-			Debug (Plot);
 			var Slot = 0;
 			for (var i = X; i < X + 20; i++){Debug("=");
 				for (var j = Y; j < Y + 20; j++){Debug("+");
@@ -398,7 +394,6 @@
 					}
 				}
 			}
-			Debug ("EndFillMap");
 		}
 		
 		function NewCharacter(){
