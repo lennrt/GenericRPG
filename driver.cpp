@@ -55,6 +55,7 @@ int main(){
 	string Action;
 	string Temp;
 	int User;
+	string Box;
 	
 	//Load maps
 	Map.LoadMap("map.csv");
@@ -71,10 +72,10 @@ int main(){
 		
 		//Check and Process Messages
 		Message = Mailbox.GetNextMessage();
-		if (Message != "") { cout << Message; }
 		getFormData(Message);
 		Action = GetValueFromKey("Action");
-		User = GetPlayerByBox(GetValueFromKey("Box"));
+		Box = GetValueFromKey("Box");
+		if (Box.length() > 0) User = GetPlayerByBox(Box);
 			
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("b")));
@@ -100,8 +101,8 @@ int main(){
 		}
 		
 		if (Action == "GetPlot"){
-			int X = 0;//stoi(GetValueFromKey("X"));
-			int Y = 0;//stoi(GetValueFromKey("Y"));
+			int X = stoi(GetValueFromKey("X"));
+			int Y = stoi(GetValueFromKey("Y"));
 			Temp = "&Op=MapPlot&X=" + GetValueFromKey("X") + "&Y=" + GetValueFromKey("Y") + "&Plot=" + Map.GetPlot(X,Y);
 			Mailbox.SendMessageToBox(Temp, Players[User].Box);
 		}
