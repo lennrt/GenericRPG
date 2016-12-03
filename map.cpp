@@ -20,6 +20,7 @@ void Map::LoadMap(string MapFileName){
 	while ( MapFile >> Temp ){
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
+				cout << Temp << flush;
 				mapArray[X][Y] = (unsigned short int)stoi(Temp.substr(F,i-F));
 				X++;
 				F = i + 1;
