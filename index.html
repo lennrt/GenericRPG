@@ -652,7 +652,7 @@
 			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();">Character</div>
 			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();">Inventory</div>
 			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();">Spells</div>
-			<div id = "TargetBox">
+			<div id = "TargetBox" class = "box" style = "top:70%;left:70%;height:60px;width:170px">
 				<div class = 'clear' id = 'NameField' style = 'top:6;left:6;width:12;height:78'></div>
 				<div class = 'clear' id = 'LevelLabel' style = 'top:6;left:114;width:36;height:12'>Level</div>
 				<div class = 'clear' id = 'LevelField' style = 'top:6;left:150;width:18;height:12'></div>
@@ -665,8 +665,8 @@
 				<div class = 'clear' id = 'ManaLabel' style = 'top:42;left:96;width:30;height:12'>Mana</div>
 				<div class = 'clear' id = 'ManaField' style = 'top:42;left:132;width:36;height:12'></div>
 			</div>
-			<input onClick = "QuitGame();" value="Quit" type= "button">
-			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button">
+			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:10%;left:70%">
+			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button" style = "top:10%;left:80%">
 		</div>
 
 		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
