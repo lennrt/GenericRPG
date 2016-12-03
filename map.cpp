@@ -23,7 +23,7 @@ void Map::LoadMap(string MapFileName){
 				mapArray[X][Y] = (unsigned short int)stoi(Temp.substr(F,i-F));
 				X++;
 				F = i + 1;
-				cout << mapArray[X][Y];
+				cout << mapArray[X][Y] << flush;
 			}
 		}
 		if (X > MaxX){X = 0; Y++;}
