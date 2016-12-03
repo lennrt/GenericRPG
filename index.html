@@ -83,16 +83,16 @@
 			this.Gold = 0;
 			this.X = 0;
 			this.Y = 0;
-			this.Name = ""
-			this.Race = ""
-			this.Class = ""
-			this.Sex = ""
+			this.Name = "";
+			this.Race = "";
+			this.Class = "";
+			this.Sex = "";
 		}
 		
 		function ItemClass(){
 			this.ItemID = 0;
 			this.Name = "";
-			this.Description ="";
+			this.Description = "";
 			this.Rarity = "";
 			this.Type = "";
 			this.Range = 0;
@@ -368,10 +368,10 @@
 				MeImage.style.left = NewX + (9 * 50) + "px";
 				MeImage.style.top = NewY + (9 * 50) + "px";
 			} else {
-				MapImage.offsetLeft += XInc;
-				MapImage.offsetTop += YInc;
-				MeImage.offsetLeft -= XInc;
-				MeImage.offsetTop -= YInc;
+				MapImage.style.left = (parseInt(MapImage.style.left) + XInc) + "px";
+				MapImage.style.top = (parseInt(MapImage.style.top) + YInc) + "px";
+				MeImage.style.left = (parseInt(MeImage.style.left) - XInc) + "px";
+				MeImage.style.top = (parseInt(MeImage.style.top) - YInc) + "px";
 				window.setTimeout(MoveMap(NewX,NewY, XInc, YInc, Count - 1), 100);
 			}			
 		}
