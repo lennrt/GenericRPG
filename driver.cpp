@@ -119,9 +119,11 @@ int main(){
 			int Who = GetPlayerByBox(GetValueFromKey("b"));
 			int X = stoi(GetValueFromKey("XMove"));
 			int Y = stoi(GetValueFromKey("YMove"));
+			cout << "Move";
 			if (Map.Passable(Players[Who].X + X, Players[Who].Y + Y)){
 				string Temp = "&Op=PlayerMove&b=" + GetValueFromKey("b") + "&X=" + GetValueFromKey("XMove") + "&Y=" + GetValueFromKey("YMove");
 				Mailbox.BroadcastMessage(Temp);
+				Mailbox.SendMessageToBox(Temp, Players[Who].Box);
 			}
 		}	
 		
