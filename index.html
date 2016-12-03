@@ -360,8 +360,8 @@
 			NewTile.setAttribute("id", "_" + NewX + "_" + NewY);
 			NewTile.setAttribute("src", MapTiles[Map[NewX][NewY]].src);
 			NewTile.style.position = "absolute";
-			NewTile.setAttribute("top", (NewX * 50) + "px");
-			NewTile.setAttribute("left",(NewY * 50) + "px");
+			NewTile.style.top = (NewX * 50) + 'px';
+			NewTile.style.top = (NewY * 50) + 'px');
 			document.getElementById("MapTilesDiv").appendChild(NewTile);
 		}
 		
