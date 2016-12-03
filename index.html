@@ -225,10 +225,10 @@
 		}
 		
 		function SetMyPosition(){
-			MapPos.X = Me.X - 9;
-			MapPos.Y = Me.Y - 9;
 			Me.X = parseInt(GetValueFromKey("X"));
 			Me.Y = parseInt(GetValueFromKey("Y"));
+			MapPos.X = Me.X - 9;
+			MapPos.Y = Me.Y - 9;
 			ShowMeOnMap();		
 		}
 					
