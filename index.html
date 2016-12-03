@@ -277,8 +277,8 @@
 		function ShowMeOnMap(){
 			var TopCornerX = -((X - 9) * 50);
 			var TopCornerY = -((Y - 9) * 50);
-			var XDiff = (TopCornerX - MapImage.style.left) / MoveStep;
-			var YDiff = (TopCornerY - MapImage.style.top) / MoveStep;
+			var XDiff = (TopCornerX - MapImage.offsetLeft) / MoveStep;
+			var YDiff = (TopCornerY - MapImage.offsetTop) / MoveStep;
 			Debug("ShowMeOnMap");
 			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 		}
