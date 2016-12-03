@@ -28,9 +28,9 @@ void Map::LoadMap(string MapFileName){
 				cout << mapArray[X][Y] << "  " << flush;
 				X++;			
 				F = i + 1;
+		cout << "C = " << C << flush;
 			}
 		}
-		cout << "C = " << C << flush;
 		Y++;
 	}
 	MapFile.close();
