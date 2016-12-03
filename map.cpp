@@ -23,7 +23,7 @@ void Map::LoadMap(string MapFileName){
 				cout << Temp << endl << endl << endl << flush;
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
-				T = Temp.substr(F,i-F);
+				T = Temp.substr(F,i-F-1);
 				cout << "T=" << T << " ";
 				mapArray[X][Y] = (unsigned short int)stoi(T);
 				X++;
