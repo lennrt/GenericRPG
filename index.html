@@ -211,25 +211,19 @@
 		
 		function ParseResponse(xhttp){
 			var Response = xhttp.responseText;
-			var iPR1 = 0;
-			while (Response.substr(iPR1,1) != "^" && iPR1 < 3){iPR1++;}
-			var ResponseText = (iPR1 > 2) ? Response :  Response.substr(iPR1);
 			
-			var Temp = ResponseText.split("^");
+			var Temp = Response.split("^");
 			for (var iPR2 = 0; iPR2 < Temp.length; iPR2++) {
-				CommandsIn.push(Temp[iPR2]);
+				if (Temp[iPR2].length > 2) {CommandsIn.push(Temp[iPR2]);}
 			}
 		}
 		
-		function LoadKeys(Response){Debug ("LOADKEYS");
-			var iLK1 = 0;
-			while (Response.substr(iLK1,1) != "&" && iLK1 < 3){iLK1++;}
-			var ResponseText = (iLK1 > 2) ? Response : Response.substr(iLK1);
+		function LoadKeys(Response){
 			ResponseArray = [];
 			
-			var Temp = ResponseText.split("&");
+			var Temp = Response.split("&");
 			for (var iLK2 = 0; iLK2 < Temp.length; iLK2++) {
-				ResponseArray.push(Temp[iLK2].split("="));
+				if (Temp[iLK2].length > 2) {ResponseArray.push(Temp[iLK2].split("="));}
 			}
 		}
 		
