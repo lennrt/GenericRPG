@@ -200,6 +200,10 @@
 			xhttp.send(Message);
 		}
 		
+		function GetPlot(X,Y){
+			Send("?Op=Play&Action=GetPlot&X=" + X + "&Y=" + Y + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
+		}
+		
 		function ProcessCommands(){
 			if (NextCommandIn){
 				NextCommandIn = false;
@@ -280,6 +284,11 @@
 					document.getElementById("class" + i).innerText = GetValueFromKey("Class" + i);
 				}
 			}
+			
+			GetPlot(0,0);
+			GetPlot(0,20);
+			GetPlot(20,0);
+			GetPlot(20,20);
 		}
 		
 		function ParseResponse(xhttp){

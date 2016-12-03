@@ -54,6 +54,7 @@ int main(){
 	string Message;
 	string Action;
 	string Temp;
+	int User;
 	
 	//Load maps
 	Map.LoadMap("map.csv");
@@ -73,6 +74,7 @@ int main(){
 		if (Message != "") { cout << Message; }
 		getFormData(Message);
 		Action = GetValueFromKey("Action");
+		User = GetPlayerByBox(GetValueFromKey("Box"));
 			
 		if (Action == "EnterGame"){
 			Character NewChar(GetValueFromKey("u"), GetValueFromKey("c"), stoi(GetValueFromKey("b")));
@@ -80,8 +82,6 @@ int main(){
 			NewChar.X = StartingX;
 			NewChar.Y = StartingY;
 			Temp = "&Op=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
-			Mailbox.SendMessageToBox(Temp, NewChar.Box);
-			Temp = "&Op=MapPlot&X=" + to_string(NewChar.X - 9) + "&Y=" + to_string(NewChar.Y - 9) + "&Plot=" + Map.GetPlot(NewChar.X - 9, NewChar.Y - 9);
 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
 			Players.push_back(NewChar);
 		}
@@ -97,6 +97,14 @@ int main(){
 		
 		if (Action == "LeaveGame"){
 			Done = true;
+		}
+		
+		if (Action == "GetPlot"){
+			int X = to_string(GetValueFromKey("X"));
+			int Y = to_string(GetValueFromKey("Y"));
+			string Plot = 
+			Temp = "&Op=MapPlot&X=" + to_string(X) + "&Y=" + to_string(Y) + "&Plot=" + Map.GetPlot(X,Y);
+			Mailbox.SendMessageToBox(Temp, Players[User].Box);
 		}
 		
 		if (Action == "Move"){
