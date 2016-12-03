@@ -235,7 +235,10 @@
 			Me.Y = parseInt(GetValueFromKey("Y"));
 			MapPos.X = Me.X - 9;
 			MapPos.Y = Me.Y - 9;
-			ShowMeOnMap();		
+			ShowMeOnMap();	
+			
+			document.getElementById("MeDiv").style.left = (Me.X * 50) + 'px';
+			document.getElementById("MeDiv").style.top = (Me.Y * 50) + 'px';
 		}
 					
 		function SetDiv(WhichDiv){
@@ -396,10 +399,7 @@
 				GetPlot(0,0);
 				GetPlot(0,20);
 				GetPlot(20,0);
-				GetPlot(20,20);
-				document.getElementById("MeDiv").style.left = (Me.X * 50) + 'px';
-				document.getElementById("MeDiv").style.top = (Me.Y * 50) + 'px';
-				
+				GetPlot(20,20);				
 			}
 		}
 		
