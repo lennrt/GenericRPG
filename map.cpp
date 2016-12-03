@@ -24,7 +24,7 @@ void Map::LoadMap(string MapFileName){
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
 				T = Temp.substr(F,i-F);
-				cout << "T=" << T << " ";
+				cout << "T=" << T << " ";./goto
 				mapArray[X][Y] = (unsigned short int)stoi(T);
 				X++;
 				F = i + 1;
