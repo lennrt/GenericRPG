@@ -24,9 +24,8 @@ void Map::LoadMap(string MapFileName){
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
 				C++;
-				cout << "T=" << T << " ";
 				mapArray[X][Y] = stoi(Temp.substr(F,i-F));
-				cout << mapArray[X][Y] << flush;
+				cout << mapArray[X][Y] << "  " << flush;
 				X++;			
 				F = i + 1;
 			}
