@@ -26,10 +26,10 @@ void Map::LoadMap(string MapFileName){
 				T = Temp.substr(F,i-F);
 				cout << "T=" << T << " ";
 				mapArray[X][Y] = stoi(T);
+				cout << mapArray[X][Y] << flush;
 				X++;			
 				if (X > MaxX){X = 0; Y++;}
 				F = i + 1;
-				cout << mapArray[X][Y] << flush;
 			}
 		}
 	}
