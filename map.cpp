@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <iostream>
 #include "map.h"
 
 using namespace std;
@@ -16,6 +17,7 @@ void Map::LoadMap(string MapFileName){
 	
 	MapFile.open (MapFileName, fstream::in);
 	while ( MapFile >> Temp ){
+		cout << Temp;
 		mapArray[X][Y] = (unsigned short int)stoi(Temp);
 		X++;
 		if (X > MaxX){X = 0; Y++;}
