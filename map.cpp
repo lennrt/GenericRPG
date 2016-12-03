@@ -1,6 +1,5 @@
 #include <string>
 #include <fstream>
-#include <iostream>
 #include "map.h"
 
 using namespace std;
@@ -15,17 +14,12 @@ void Map::LoadMap(string MapFileName){
 	int X = 0;
 	int Y = 0;
 	int F = 0;
-	int C = 0;
 	
 	MapFile.open (MapFileName, fstream::in);
 	while ( MapFile >> Temp ){
-		
-				cout << endl << endl << endl << flush;
 		for (int i = 0; i < Temp.length(); i++){
 			if (Temp[i] == ','){
-				C++;
 				mapArray[X][Y] = stoi(Temp.substr(F,i-F));
-				cout << mapArray[X][Y] << "  " << flush;
 				X++;			
 				F = i + 1;
 			}
@@ -33,7 +27,6 @@ void Map::LoadMap(string MapFileName){
 		Y++; 
 		X = 0;
 		F = 0;
-				cout << "\nC = " << C << flush;
 	}
 	MapFile.close();
 }
