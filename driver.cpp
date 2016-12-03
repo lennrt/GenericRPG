@@ -81,7 +81,7 @@ int main(){
 			NewChar.Y = StartingY;
 			Temp = "&Op=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
-			Temp = "&Op=MapPlot&X=" + to_string(NewChar.X - 9) + "&Y=" + to_string(NewChar.Y - 9) + "Plot=" + Map.GetPlot(NewChar.X - 9, NewChar.Y - 9);
+			Temp = "&Op=MapPlot&X=" + to_string(NewChar.X - 9) + "&Y=" + to_string(NewChar.Y - 9) + "&Plot=" + Map.GetPlot(NewChar.X - 9, NewChar.Y - 9);
 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
 			Players.push_back(NewChar);
 		}
