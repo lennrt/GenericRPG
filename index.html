@@ -42,6 +42,8 @@
 		var Value = 1;
 		var MoveStep = 5;
 		var MapTiles = [];
+		var PlayerTiles = [];
+		var EnemyTiles = [];
 		var BackgroundTimer = false;
 		var NextCommandIn = true;
 		var MapPos = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0, 'X' : 0, 'Y' : 0 };
@@ -49,19 +51,20 @@
 		var MapBool;
 		
 		function EntityClass(){
-			this.Int = 0;
-			this.Str = 0;
-			this.Agi = 0;
-			this.Con = 0;
-			this.Spd = 0;
-			this.Cha = 0;
-			this.End = 0;
-			this.Health = 0;
-			this.Mana = 0;
-			this.Att = 0;
-			this.Def = 0;
-			this.ACD = 0;
-			this.MCD = 0;
+			this.ID = 0;  //Use Box here
+			this.MaxInt = 0;
+			this.MaxStr = 0;
+			this.MaxAgi = 0;
+			this.MaxCon = 0;
+			this.MaxSpd = 0;
+			this.MaxCha = 0;
+			this.MaxEnd = 0;
+			this.MaxHealth = 0;
+			this.MaxMana = 0;
+			this.MaxAtt = 0;
+			this.MaxDef = 0;
+			this.MaxACD = 0;
+			this.MaxMCD = 0;
 			
 			this.CurInt = 0;
 			this.CurStr = 0;
@@ -104,22 +107,6 @@
 			this.Name = " ";
 			this.Description =" ";
 			this.ManaCost = 0;
-		}	
-		
-		function ShowPlayerInfo(){
-			var i = 0;
-		}
-		
-		function ShowEntityInfo(){
-			var i = 0;
-		}
-		
-		function ShowSpellInfo(){
-			var i = 0;
-		}
-		
-		function ShowItemInfo(){
-			var i = 0;
 		}		
 				
 		function Debug(DebugValue){
@@ -130,39 +117,53 @@
 			SetDiv("Splash");
 			HideAllChars();
 			SessionKey = "sdfsd";
-			MapTiles[0] = new Image();
+			for (var ii = 0; ii < 19; ii++){ 
+				if (ii < 16) MapTiles[ii] = new Image();
+				if (ii < 4) PlayerTiles[ii] = new Image();
+				EnemyTiles[ii] = new Image();
+			}
 			MapTiles[0].src = 'images/forest.png';
-			MapTiles[1] = new Image();
 			MapTiles[1].src = 'images/forest.png';    		//Forest
-			MapTiles[2] = new Image();
 			MapTiles[2].src = 'images/orangedesert.png';  		//Desert
-			MapTiles[3] = new Image();
 			MapTiles[3].src = 'images/forest.png';			//Shallow Water
-			MapTiles[4] = new Image();
 			MapTiles[4].src = 'images/greengrassland.png';		//Grassland
-			MapTiles[5] = new Image();
 			MapTiles[5].src = 'images/trail.png';			//Trail
-			MapTiles[6] = new Image();
 			MapTiles[6].src = 'images/whitefloor.png';		//White Floor
-			MapTiles[7] = new Image();
 			MapTiles[7].src = 'images/yellowgrassland.png';			//Hill
-			MapTiles[8] = new Image();
 			MapTiles[8].src = 'images/yellowdesert.png';			//Snow
-			MapTiles[9] = new Image();
 			MapTiles[9].src = 'images/forest.png';			
-			MapTiles[10] = new Image();
 			MapTiles[10].src = 'images/forest.png';		
-			MapTiles[11] = new Image();
 			MapTiles[11].src = 'images/water.png';			//Deep Water
-			MapTiles[12] = new Image();
 			MapTiles[12].src = 'images/whitewall.png';			//White Wall
-			MapTiles[13] = new Image();
 			MapTiles[13].src = 'images/whitewall.png';			//Tree     -NO
-			MapTiles[14] = new Image();
 			MapTiles[14].src = 'images/water.png';			//Mountain -NO
-			MapTiles[15] = new Image();
 			MapTiles[15].src = 'images/forest.png';
+			
+			EnemyTiles[0].src = 'images/cockroach.png';
+			EnemyTiles[1].src = 'images/deadtree.png';
+			EnemyTiles[2].src = 'images/dragon.png';
+			EnemyTiles[3].src = 'images/elf.png';
+			EnemyTiles[4].src = 'images/frog.png';
+			EnemyTiles[5].src = 'images/grubat.png';
+			EnemyTiles[6].src = 'images/hedgehog.png';
+			EnemyTiles[7].src = 'images/horseman.png';
+			EnemyTiles[8].src = 'images/kong.png';
+			EnemyTiles[9].src = 'images/landshark.png';
+			EnemyTiles[10].src = 'images/leviathan.png';
+			EnemyTiles[11].src = 'images/madhatter.png';
+			EnemyTiles[12].src = 'images/madmouse.png';
+			EnemyTiles[13].src = 'images/magician.png';
+			EnemyTiles[14].src = 'images/miner.png';
+			EnemyTiles[15].src = 'images/mole.png';
+			EnemyTiles[16].src = 'images/orc.png';
+			EnemyTiles[17].src = 'images/skeleton.png';
+			EnemyTiles[18].src = 'images/zombie.png';
 
+			PlayerTiles[0].src = 'images/fighter.png';
+			PlayerTiles[0].src = 'images/mage.png';
+			PlayerTiles[0].src = 'images/ranger.png';
+			PlayerTiles[0].src = 'images/thief.png';
+									
 			Map = createArray(100,100);
 			MapBool = createArray(100,100);
 			for (var i = 0; i < 100; i++){
@@ -259,6 +260,53 @@
 			if (Pass.length < 4) {alert("Password too short"); return;}
 			
 			Send("?Op=" + Op + "&u=" + User + "&p=" + Pass);
+		}
+		
+		function SetTargetBox(EntityType, EntityID){
+			TempEntity = GetEntity(EntityType, EntityID);
+			document.getElementById("NameField").innerHTML = TempEntity.Name;
+			document.getElementById("LevelField").innerHTML = TempEntity.Level;
+			document.getElementById("AttackField").innerHTML = (TempEntity.Att == 0) ? "???" : TempEntity.Att;
+			document.getElementById("DefenseField").innerHTML = (TempEntity.Def == 0) ? "???" : TempEntity.Def;
+			document.getElementById("HealthField").innerHTML = TempEntity.CurHealth + " / " + TempEntity.MaxHealth;
+			document.getElementById("ManaField").innerHTML = TempEntity.CurMana + " / " + TempEntity.MaxMana;
+			document.getElementById("TargetBox").style.visibility = 'visible';
+		}
+		
+		GetEntity(EntityType, EntityID){
+			RetVal = new EntityClass();
+			if (EntityType == "Player"){
+				for (var k = 0; k < Players.length; k++){
+					if )Players[k].ID == EntityID){
+						RetVal.Name = Players[k].Name;
+						RetVal.Level = Players[k].Level;
+						RetVal.Att = Players[k].Att;
+						RetVal.Def = Players[k].Def;
+						RetVal.CurHealth = Players[k].CurHealth;
+						RetVal.MaxHealth = Players[k].MaxHealth;
+						RetVal.CurMana = Players[k].CurMana;
+						RetVal.MaxMana = Players[k].MaxMana;
+					}
+				}
+			} else {
+				for (var k = 0; k < Enemies.length; k++){
+					if )Enemies[k].ID == EntityID){
+						RetVal.Name = Enemies[k].Name;
+						RetVal.Level = Enemies[k].Level;
+						RetVal.Att = Enemies[k].Att;
+						RetVal.Def = Enemies[k].Def;
+						RetVal.CurHealth = Enemies[k].CurHealth;
+						RetVal.MaxHealth = Enemies[k].MaxHealth;
+						RetVal.CurMana = Enemies[k].CurMana;
+						RetVal.MaxMana = Enemies[k].MaxMana;
+					}
+				}
+			}
+			return RetVal
+		}
+		
+		function ClearTargetBox(){
+			document.getElementById("TargetBox").style.visibility = 'hidden';
 		}
 		
 		function LoginResponse(){
@@ -601,8 +649,24 @@
 				</div>
 				
 			</div>
-			Main
+			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();">Character</div>
+			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();">Inventory</div>
+			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();">Spells</div>
+			<div id = "TargetBox">
+				<div class = 'clear' id = 'NameField' style = 'top:6;left:6;width:12;height:78'></div>
+				<div class = 'clear' id = 'LevelLabel' style = 'top:6;left:114;width:36;height:12'>Level</div>
+				<div class = 'clear' id = 'LevelField' style = 'top:6;left:150;width:18;height:12'></div>
+				<div class = 'clear' id = 'AttackLabel' style = 'top:24;left:6;width:30;height:12'>Attack</div>
+				<div class = 'clear' id = 'AttackField' style = 'top:24;left:42;width:18;height:12'></div>
+				<div class = 'clear' id = 'DefenseLabel' style = 'top:24;left:102;width:36;height:12'>Defense</div>
+				<div class = 'clear' id = 'DefenseField' style = 'top:24;left:150;width:18;height:12'></div>
+				<div class = 'clear' id = 'HealthLabel' style = 'top:42;left:6;width:30;height:12'>Health</div>
+				<div class = 'clear' id = 'HealthField' style = 'top:42;left:42;width:36;height:12'></div>
+				<div class = 'clear' id = 'ManaLabel' style = 'top:42;left:96;width:30;height:12'>Mana</div>
+				<div class = 'clear' id = 'ManaField' style = 'top:42;left:132;width:36;height:12'></div>
+			</div>
 			<input onClick = "QuitGame();" value="Quit" type= "button">
+			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button">
 		</div>
 
 		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
