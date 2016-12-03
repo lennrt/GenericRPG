@@ -105,7 +105,7 @@ int main(){
 		
 		if (Action == "LeaveGame"){
 			//Done = true;
-			Mailbox.CloseUserBox(stoi(GetValueFromKey("b"));
+			Mailbox.CloseUserBox(stoi(GetValueFromKey("b")));
 		}
 		
 		if (Action == "GetPlot"){
