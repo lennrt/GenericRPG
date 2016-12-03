@@ -32,6 +32,9 @@
 		var Me;
 		var Players = [];
 		var Enemies = [];
+		var Equipped = [];
+		var Inventory = [];
+		var Spells = [];
 		var CommandsIn = [];
 		var MapImage = document.getElementById("MapImageDiv");
 		var MeImage = document.getElementById("MeDiv");
@@ -75,6 +78,9 @@
 			this.CurACD = 0;
 			this.CurMCD = 0;	
 			
+			this.Level = 0;
+			this.Exp = 0;
+			this.Gold = 0;
 			this.X = 0;
 			this.Y = 0;
 			this.Name = ""
@@ -84,6 +90,7 @@
 		}
 		
 		function ItemClass(){
+			this.ItemID = 0;
 			this.Name = "";
 			this.Description ="";
 			this.Rarity = "";
@@ -93,7 +100,24 @@
 			this.StatEffect = "";
 		}
 		
+		function SpellClass(){
+			this.SpellID = 0;
+			this.Name = "";
+			this.Description ="";
+			this.ManaCost = 0;
+		}	
 		
+		function ShowPlayerInfo(){
+		{
+		
+		function ShowEntityInfo(){
+		}
+		
+		function ShowSpellInfo(){
+		}
+		
+		function ShowItemInfo(){
+		}		
 				
 		function Debug(DebugValue){
 			document.getElementById("DebugDiv").innerText += DebugValue;
@@ -145,6 +169,8 @@
 				}
 			}
 			
+			Me = new EntityClass();
+			
 			window.setInterval(BackgroundUpdate, 500);
 		}  
 				
@@ -189,14 +215,18 @@
 					if (Op == "MapPlot"){
 						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
 					}
-					if (Op == "MyPosition"){
-						X = parseInt(GetValueFromKey("X"));
-						Y = parseInt(GetValueFromKey("Y"));
-						ShowMeOnMap();
-					}
+					if (Op == "MyPosition"){SetMyPosition();}
 				}
 				NextCommandIn = true;
 			}
+		}
+		
+		function SetMyPosition(){
+			MapPos.X = Me.X - 9;
+			MapPos.Y = Me.Y - 9;
+			Me.X = parseInt(GetValueFromKey("X"));
+			Me.Y = parseInt(GetValueFromKey("Y"));
+			ShowMeOnMap();		
 		}
 					
 		function SetDiv(WhichDiv){
@@ -317,8 +347,8 @@
 		function ShowMeOnMap(){
 			var TopCornerX = -((X - 9) * 50);
 			var TopCornerY = -((Y - 9) * 50);
-			var XDiff = (TopCornerX - MapImage.offsetLeft) / MoveStep;
-			var YDiff = (TopCornerY - MapImage.offsetTop) / MoveStep;
+			var XDiff = (TopCornerX - MapPos.X) / MoveStep;
+			var YDiff = (TopCornerY - MapPos.Y) / MoveStep;
 			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 		}
 		
