@@ -243,9 +243,11 @@
 		}
 		
 		function PlayerMove(){
-			if (Me.Box == GetValueFromKey("b")){
+			if (Me.ID == GetValueFromKey("b")){
 				Me.X += parseInt(GetValueFromKey("X"));
 				Me.Y += parseInt(GetValueFromKey("Y"));
+				MapPos.X -= parseInt(GetValueFromKey("X"));
+				MapPos.Y -= parseInt(GetValueFromKey("Y"));
 				document.getElementById("MapImageDiv").style.left = (MapPos.X * 50) + "px";
 				document.getElementById("MapImageDiv").style.top = (MapPos.Y * 50) + "px";
 				document.getElementById("MeDiv").style.left = (Me.X * 50) + "px";
