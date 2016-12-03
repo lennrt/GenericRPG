@@ -112,6 +112,13 @@
 		function Debug(DebugValue){
 			document.getElementById("DebugDiv").innerText += DebugValue;
 		}
+				
+		document.addEventListener("keydown", function (e) {
+			if (e.keyCode == '37') {Move(-1,0);}
+			if (e.keyCode == '38') {Move(0,-1);}
+			if (e.keyCode == '39') {Move(1,0);}
+			if (e.keyCode == '40') {Move(0,1);}			
+		});
 		
 		function Setup(){
 			SetDiv("Splash");
@@ -401,12 +408,7 @@
 					for (var j = 0; j < 5; j++){
 						GetPlot(i*20,j*20);
 					}
-				}
-					
-/*				GetPlot(0,0);
-				GetPlot(0,20);
-				GetPlot(20,0);
-				GetPlot(20,20);*/				
+				}				
 			}
 		}
 		
@@ -419,7 +421,7 @@
 			var TopCornerY = -((Me.Y - 9) * 50);
 			var XDiff = (TopCornerX - MapPos.X) / MoveStep;
 			var YDiff = (TopCornerY - MapPos.Y) / MoveStep;
-			//window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
+			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 			document.getElementById("MapImageDiv").style.left = TopCornerX;
 			document.getElementById("MapImageDiv").style.top = TopCornerY;
 		}
@@ -653,6 +655,14 @@
 				}
 				if (!Found) return RetVal;
 			}
+		}
+		
+		function Move (Xpos, Ypos){
+			MapPos.X -= Xpos;
+			MapPos.Y -= Ypos;
+			Me.X += Xpos;
+			Me.Y += YPos;
+			
 		}
 		
 		function QuitGame(){
