@@ -595,6 +595,11 @@
 			ClearChar();
 		}
 		
+		ToggleCharSheet(){
+			var CurrentState = document.getElementById("CharSheetBox").style.visibility;
+			document.getElementById("CharSheetBox").style.visibility = (CurrentState == 'hidden' ? 'visible' : 'hidden');
+		}
+		
 		function GetNewID(){
 			while (true){
 				var Found = false;
@@ -650,20 +655,77 @@
 				
 			</div>
 			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();" style = 'top:5px;left:6px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Character</div>
+			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:250ps;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden">
+				<div class = 'clear' id = 'CharNameField' style = 'top:12px;left:18px;width:96px;height:12px'></div>
+				<div class = 'clear' id = 'CharSexLabel' style = 'top:30px;left:132px;width:30px;height:12px'>Sex</div>
+				<div class = 'clear' id = 'CharSexField' style = 'top:30px;left:192px;width:18px;height:12px'></div>
+				<div class = 'clear' id = 'CharRaceLabel' style = 'top:30px;left:18px;width:36px;height:12px'>Race</div>
+				<div class = 'clear' id = 'CharRaceField' style = 'top:30px;left:66px;width:36px;height:12px'></div>
+				<div class = 'clear' id = 'CharClassLabel' style = 'top:48px;left:132px;width:30px;height:12px'>Class</div>
+				<div class = 'clear' id = 'CharClassField' style = 'top:48px;left:192px;width:42px;height:12px'></div>
+				<div class = 'clear' id = 'CharGoldLabel' style = 'top:84px;left:18px;width:30px;height:12px'>Gold</div>
+				<div class = 'clear' id = 'CharGoldField' style = 'top:84px;left:66px;width:42px;height:12px'></div>
+				<div class = 'clear' id = 'CharLevelField' style = 'top:48px;left:66px;width:36px;height:12px'></div>
+				<div class = 'clear' id = 'CharLevelLabel' style = 'top:48px;left:18px;width:36px;height:12px'>Level</div>
+				<div class = 'clear' id = 'CharExpField' style = 'top:66px;left:192px;width:42px;height:12px'></div>
+				<div class = 'clear' id = 'CharExpLabel' style = 'top:66px;left:132px;width:60px;height:12px'>Experience</div>
+				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:72px;height:12px'>Base Attributes</div>
+				<div class = 'clear' id = 'CharIntField' style = 'top:126px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Int</div>
+				<div class = 'clear' id = 'CharStrField' style = 'top:144px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharStrLabel' style = 'top:144px;left:18px;width:60px;height:12px'>Str</div>
+				<div class = 'clear' id = 'CharAgiField' style = 'top:162px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharAgiLabel' style = 'top:162px;left:18px;width:60px;height:12px'>Agi</div>
+				<div class = 'clear' id = 'CharConField' style = 'top:180px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharConLabel' style = 'top:180px;left:18px;width:60px;height:12px'>Con</div>
+				<div class = 'clear' id = 'CharChaField' style = 'top:216px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharChaLabel' style = 'top:216px;left:18px;width:60px;height:12px'>Cha</div>
+				<div class = 'clear' id = 'CharEndField' style = 'top:234px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharEndLabel' style = 'top:234px;left:18px;width:60px;height:12px'>End</div>
+				<div class = 'clear' id = 'CharSpdField' style = 'top:198px;left:78px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharSpdLabel' style = 'top:198px;left:18px;width:60px;height:12px'>Spd</div>
+				<div class = 'clear' id = 'CharAttackField' style = 'top:30px;left:318px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharAttackLabel' style = 'top:30px;left:258px;width:48px;height:12px'>Att</div>
+				<div class = 'clear' id = 'CharDefenseField' style = 'top:48px;left:318px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharDefenseLabel' style = 'top:48px;left:258px;width:48px;height:12px'>Def</div>
+				<div class = 'clear' id = 'CharHealthField' style = 'top:66px;left:66px;width:36px;height:12px'></div>
+				<div class = 'clear' id = 'CharHealthLabel' style = 'top:66px;left:18px;width:36px;height:12px'>Health</div>
+				<div class = 'clear' id = 'CharManaField' style = 'top:84px;left:192px;width:30px;height:12px'></div>
+				<div class = 'clear' id = 'CharManaLabel' style = 'top:84px;left:132px;width:30px;height:12px'>Mana</div>
+				<div class = 'clear' id = 'CharMCDField' style = 'top:84px;left:318px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:48px;height:12px'>MCD</div>
+				<div class = 'clear' id = 'CharACDField' style = 'top:66px;left:318px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:48px;height:12px'>ACD</div>
+				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px'>Equipped</div>
+				<div class = 'clear' id = 'CharHeadLabel' style = 'top:162px;left:174px;width:54px;height:12px'>Head</div>
+				<div class = 'clear' id = 'CharBodyLabel' style = 'top:180px;left:174px;width:54px;height:12px'>Body</div>
+				<div class = 'clear' id = 'CharLegsLabel' style = 'top:216px;left:174px;width:54px;height:12px'>Legs</div>
+				<div class = 'clear' id = 'CharArmsLabel' style = 'top:198px;left:174px;width:54px;height:12px'>Arms</div>
+				<div class = 'clear' id = 'CharFeetLabel' style = 'top:234px;left:174px;width:54px;height:12px'>Feet</div>
+				<div class = 'clear' id = 'CharLeftHandLabel' style = 'top:126px;left:174px;width:54px;height:12px'>Left Hand</div>
+				<div class = 'clear' id = 'CharRightHandLabel' style = 'top:144px;left:174px;width:54px;height:12px'>Right Hand</div>
+				<div class = 'clear' id = 'CharFeetField' style = 'top:234px;left:252px;width:126px;height:12px'></div>
+				<div class = 'clear' id = 'CharHeadField' style = 'top:162px;left:252px;width:126px;height:12px'></div>
+				<div class = 'clear' id = 'CharBodyField' style = 'top:180px;left:252px;width:126px;height:12px'></div>
+				<div class = 'clear' id = 'CharLegsField' style = 'top:216px;left:252px;width:126px;height:12px'></div>
+				<div class = 'clear' id = 'CharArmsField' style = 'top:198px;left:252px;width:126px;height:12px'></div>
+				<div class = 'clear' id = 'CharLeftHandField' style = 'top:126px;left:252px;width:126px;height:12px'></div>
+				<div class = 'clear' id = 'CharRightHandField' style = 'top:144px;left:252px;width:126px;height:12px'></div>
+			</div>
 			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();" style = 'top:5px;left:86px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Inventory</div>
 			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();" style = 'top:5px;left:166px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Spells</div>
-			<div id = "TargetBox" class = "box" style = "top:85%;left:70%;height:60px;width:200px;background-color:#adc4ff">
+			<div id = "TargetBox" class = "box" style = "top:85%;left:70%;height:60px;width:240px;background-color:#adc4ff">
 				<div class = 'clear' id = 'NameField' style = 'top:6px;left:6px;width:117px;height:12px'></div>
 				<div class = 'clear' id = 'LevelLabel' style = 'top:6px;left:114px;width:54px;height:12px'>Level</div>
-				<div class = 'clear' id = 'LevelField' style = 'top:6px;left:150px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'LevelField' style = 'top:6px;left:160px;width:27px;height:12px'></div>
 				<div class = 'clear' id = 'AttackLabel' style = 'top:24px;left:6px;width:45px;height:12px'>Attack</div>
-				<div class = 'clear' id = 'AttackField' style = 'top:24px;left:42px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'AttackField' style = 'top:24px;left:52px;width:27px;height:12px'></div>
 				<div class = 'clear' id = 'DefenseLabel' style = 'top:24px;left:114px;width:54px;height:12px'>Defense</div>
-				<div class = 'clear' id = 'DefenseField' style = 'top:24px;left:150px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'DefenseField' style = 'top:24px;left:160px;width:27px;height:12px'></div>
 				<div class = 'clear' id = 'HealthLabel' style = 'top:42px;left:6px;width:45px;height:12px'>Health</div>
-				<div class = 'clear' id = 'HealthField' style = 'top:42px;left:42px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'HealthField' style = 'top:42px;left:52px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'ManaLabel' style = 'top:42px;left:114px;width:45px;height:12px'>Mana</div>
-				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:150px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:160px;width:54px;height:12px'></div>
 			</div>
 			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:10%;left:70%">
 			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button" style = "top:10%;left:80%">
