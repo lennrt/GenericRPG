@@ -1,6 +1,6 @@
 cp ../*.cpp .
 cp ../*.h .
-cp ../index.html .
+cp ../*.html .
 git add *
 git commit -m "Work in progress"
 git push origin master

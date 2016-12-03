@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CPSC 362 Generic RPG</title>
+	<style type="text/css">
+		select		{position:absolute}
+		input		{position:absolute}
+		span		{position: absolute}
+		div.clear	{position: absolute;
+				 cursor: default;
+				 border-style: none;
+				 border-width: 0px;
+				 border-color: black} 
+		div.box		{position: absolute;
+				 cursor: default;
+				 border-style: solid;
+				 border-width: 2px;
+				 border-color: black}
+	</style>
+	<script>
+		<!--
+		var Tabs = ["Main", "Splash", "AccountView"];
+		var GameTabs = ["Character", "Inventory", "Spells", "Shop"];
+		var User;
+		var Pass;
+		var CharID;
+		var Box;
+		var SessionKey;
+		var SelectedChar = 0;
+		var MaxChar = 5;		
+		var ResponseArray = [];
+		var Me;
+		var Players = [];
+		var Enemies = [];
+		var Equipped = [];
+		var Inventory = [];
+		var Spells = [];
+		var CommandsIn = [];
+		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
+		var Key = 0;
+		var Value = 1;
+		var MoveStep = 5;
+		var MapTiles = [];
+		var PlayerTiles = [];
+		var EnemyTiles = [];
+		var BackgroundTimer = false;
+		var NextCommandIn = true;
+		var MapPos = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0, 'X' : 0, 'Y' : 0 };
+		var Map;
+		var MapBool;
+		
+		function EntityClass(){
+			this.ID = 0;  //Use Box here
+			this.MaxInt = 0;
+			this.MaxStr = 0;
+			this.MaxAgi = 0;
+			this.MaxCon = 0;
+			this.MaxSpd = 0;
+			this.MaxCha = 0;
+			this.MaxEnd = 0;
+			this.MaxHealth = 0;
+			this.MaxMana = 0;
+			this.MaxAtt = 0;
+			this.MaxDef = 0;
+			this.MaxACD = 0;
+			this.MaxMCD = 0;
+			
+			this.CurInt = 0;
+			this.CurStr = 0;
+			this.CurAgi = 0;
+			this.CurCon = 0;
+			this.CurSpd = 0;
+			this.CurCha = 0;
+			this.CurEnd = 0;
+			this.CurHealth = 0;
+			this.CurMana = 0;
+			this.CurAtt = 0;
+			this.CurDef = 0;
+			this.CurACD = 0;
+			this.CurMCD = 0;	
+			
+			this.Level = 0;
+			this.Exp = 0;
+			this.Gold = 0;
+			this.X = 0;
+			this.Y = 0;
+			this.Name = " ";
+			this.Race = " ";
+			this.Class = " ";
+			this.Sex = " ";
+		}
+		
+		function ItemClass(){
+			this.ItemID = 0;
+			this.Name = " ";
+			this.Description = " ";
+			this.Rarity = " ";
+			this.Type = " ";
+			this.Range = 0;
+			this.Value = 0;
+			this.StatEffect = " ";
+		}
+		
+		function SpellClass(){
+			this.SpellID = 0;
+			this.Name = " ";
+			this.Description =" ";
+			this.ManaCost = 0;
+		}		
+				
+		function Debug(DebugValue){
+			document.getElementById("DebugDiv").innerText += DebugValue;
+		}
+		
+		function Setup(){
+			SetDiv("Splash");
+			HideAllChars();
+			SessionKey = "sdfsd";
+			for (var ii = 0; ii < 19; ii++){ 
+				if (ii < 16) MapTiles[ii] = new Image();
+				if (ii < 4) PlayerTiles[ii] = new Image();
+				EnemyTiles[ii] = new Image();
+			}
+			MapTiles[0].src = 'images/forest.png';
+			MapTiles[1].src = 'images/forest.png';    		//Forest
+			MapTiles[2].src = 'images/orangedesert.png';  		//Desert
+			MapTiles[3].src = 'images/forest.png';			//Shallow Water
+			MapTiles[4].src = 'images/greengrassland.png';		//Grassland
+			MapTiles[5].src = 'images/trail.png';			//Trail
+			MapTiles[6].src = 'images/whitefloor.png';		//White Floor
+			MapTiles[7].src = 'images/yellowgrassland.png';			//Hill
+			MapTiles[8].src = 'images/yellowdesert.png';			//Snow
+			MapTiles[9].src = 'images/forest.png';			
+			MapTiles[10].src = 'images/forest.png';		
+			MapTiles[11].src = 'images/water.png';			//Deep Water
+			MapTiles[12].src = 'images/whitewall.png';			//White Wall
+			MapTiles[13].src = 'images/whitewall.png';			//Tree     -NO
+			MapTiles[14].src = 'images/water.png';			//Mountain -NO
+			MapTiles[15].src = 'images/forest.png';
+			
+			EnemyTiles[0].src = 'images/cockroach.png';
+			EnemyTiles[1].src = 'images/deadtree.png';
+			EnemyTiles[2].src = 'images/dragon.png';
+			EnemyTiles[3].src = 'images/elf.png';
+			EnemyTiles[4].src = 'images/frog.png';
+			EnemyTiles[5].src = 'images/grubat.png';
+			EnemyTiles[6].src = 'images/hedgehog.png';
+			EnemyTiles[7].src = 'images/horseman.png';
+			EnemyTiles[8].src = 'images/kong.png';
+			EnemyTiles[9].src = 'images/landshark.png';
+			EnemyTiles[10].src = 'images/leviathan.png';
+			EnemyTiles[11].src = 'images/madhatter.png';
+			EnemyTiles[12].src = 'images/madmouse.png';
+			EnemyTiles[13].src = 'images/magician.png';
+			EnemyTiles[14].src = 'images/miner.png';
+			EnemyTiles[15].src = 'images/mole.png';
+			EnemyTiles[16].src = 'images/orc.png';
+			EnemyTiles[17].src = 'images/skeleton.png';
+			EnemyTiles[18].src = 'images/zombie.png';
+
+			PlayerTiles[0].src = 'images/fighter.png';
+			PlayerTiles[0].src = 'images/mage.png';
+			PlayerTiles[0].src = 'images/ranger.png';
+			PlayerTiles[0].src = 'images/thief.png';
+									
+			Map = createArray(100,100);
+			MapBool = createArray(100,100);
+			for (var i = 0; i < 100; i++){
+				for (var j = 0; j < 100; j++){
+					Map[i][j] = -2;
+					MapBool[i][j] = 0;
+				}
+			}
+			
+			Me = new EntityClass();
+			
+			window.setInterval(BackgroundUpdate, 500);
+		}  
+				
+		function BackgroundUpdate(){
+			Debug(".");
+			if (BackgroundTimer){
+				Send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
+			}
+			ProcessCommands();
+		}
+				
+		function Send(Message){Debug(" -> ");
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					ParseResponse(xhttp);
+				}
+			};			
+			xhttp.open("POST", SiteURL, true);
+			xhttp.timeout = 1500;
+			xhttp.ontimeout = function () {Send(Message);};
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(Message);
+		}
+		
+		function GetPlot(X,Y){
+			Debug("GP");
+			Send("?Op=Play&Action=GetPlot&X=" + X + "&Y=" + Y + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
+		}
+		
+		function ProcessCommands(){
+			if (NextCommandIn){
+				NextCommandIn = false;
+				
+				if (CommandsIn.length > 0) {
+					LoadKeys(CommandsIn.shift());
+						
+					var Op = GetValueFromKey("Op");
+					
+					if (Op == "Login"){LoginResponse();}
+					if (Op == "NewCharacter"){CreateResponse();}
+					if (Op == "DeleteCharacter"){DeleteResponse();}
+					if (Op == "EnterGame"){EnterGameResponse();}
+					if (Op == "Play"){CheckFail();}
+					if (Op == "Update"){CheckFail();}
+					if (Op == "MapPlot"){
+						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
+					}
+					if (Op == "MyPosition"){SetMyPosition();}
+				}
+				NextCommandIn = true;
+			}
+		}
+		
+		function SetMyPosition(){
+			Me.X = parseInt(GetValueFromKey("X"));
+			Me.Y = parseInt(GetValueFromKey("Y"));
+			MapPos.X = Me.X - 9;
+			MapPos.Y = Me.Y - 9;
+			ShowMeOnMap();		
+		}
+					
+		function SetDiv(WhichDiv){
+			HideAllChars();
+			for (var i = 0, len = Tabs.length; i < len; i++) {
+				document.getElementById(Tabs[i]).style.visibility = 'hidden';
+			}
+			document.getElementById(WhichDiv).style.visibility = 'visible';
+		}
+		
+		function Toggle(Div1){
+			if (document.getElementById(Div1).style.visibility == 'visible'){
+				document.getElementById(Div1).style.visibility = 'hidden';
+			} else {
+				document.getElementById(Div1).style.visibility = 'visible';
+			}
+		}
+		
+		function Login(Op){
+			User = document.getElementById("u").value;
+			Pass = document.getElementById("p").value;
+			if (User.length < 4) {alert("Username too short"); return;}
+			if (Pass.length < 4) {alert("Password too short"); return;}
+			
+			Send("?Op=" + Op + "&u=" + User + "&p=" + Pass);
+		}
+		
+		function SetTargetBox(EntityType, EntityID){
+			TempEntity = GetEntity(EntityType, EntityID);
+			document.getElementById("NameField").innerHTML = TempEntity.Name;
+			document.getElementById("LevelField").innerHTML = TempEntity.Level;
+			document.getElementById("AttackField").innerHTML = (TempEntity.Att == 0) ? "???" : TempEntity.Att;
+			document.getElementById("DefenseField").innerHTML = (TempEntity.Def == 0) ? "???" : TempEntity.Def;
+			document.getElementById("HealthField").innerHTML = TempEntity.CurHealth + " / " + TempEntity.MaxHealth;
+			document.getElementById("ManaField").innerHTML = TempEntity.CurMana + " / " + TempEntity.MaxMana;
+			document.getElementById("TargetBox").style.visibility = 'visible';
+		}
+		
+		function GetEntity(EntityType, EntityID){
+			RetVal = new EntityClass();
+			if (EntityType == "Player"){
+				for (var k = 0; k < Players.length; k++){
+					if (Players[k].ID == EntityID){
+						RetVal.Name = Players[k].Name;
+						RetVal.Level = Players[k].Level;
+						RetVal.Att = Players[k].Att;
+						RetVal.Def = Players[k].Def;
+						RetVal.CurHealth = Players[k].CurHealth;
+						RetVal.MaxHealth = Players[k].MaxHealth;
+						RetVal.CurMana = Players[k].CurMana;
+						RetVal.MaxMana = Players[k].MaxMana;
+					}
+				}
+			} else {
+				for (var k = 0; k < Enemies.length; k++){
+					if (Enemies[k].ID == EntityID){
+						RetVal.Name = Enemies[k].Name;
+						RetVal.Level = Enemies[k].Level;
+						RetVal.Att = Enemies[k].Att;
+						RetVal.Def = Enemies[k].Def;
+						RetVal.CurHealth = Enemies[k].CurHealth;
+						RetVal.MaxHealth = Enemies[k].MaxHealth;
+						RetVal.CurMana = Enemies[k].CurMana;
+						RetVal.MaxMana = Enemies[k].MaxMana;
+					}
+				}
+			}
+			return RetVal
+		}
+		
+		function ClearTargetBox(){
+			document.getElementById("TargetBox").style.visibility = 'hidden';
+		}
+		
+		function LoginResponse(){
+			if (GetValueFromKey("Status") == "Fail"){
+				alert(GetValueFromKey("Reason"));
+				return;
+			}
+			
+			//If login is successful set up the logged in name at the top of the page.
+			document.getElementById("LoginStatus").innerText = User;
+			
+			//Switch to the character management page.
+			SetDiv("AccountView");
+			
+			//On success, will load all characters that exist for player.  The next byte is the count of characters.  (5 max)
+			for (var i = 1; i < 6; i++){
+				if (GetValueFromKey("c" + i) != "Not Found"){
+					document.getElementById("char" + i).style.visibility = "visible";
+					document.getElementById("charID" + i).value = GetValueFromKey("c" + i);
+					document.getElementById("name" + i).innerText = GetValueFromKey("Name" + i);
+					document.getElementById("level" + i).innerText = GetValueFromKey("Level" + i);
+					document.getElementById("race" + i).innerText = GetValueFromKey("Race" + i);					
+					document.getElementById("class" + i).innerText = GetValueFromKey("Class" + i);
+				}
+			}
+		}
+		
+		function ParseResponse(xhttp){
+			var Response = xhttp.responseText;
+			
+			var Temp = Response.split("^");
+			for (var iPR2 = 0; iPR2 < Temp.length; iPR2++) {
+				if (Temp[iPR2].length > 2) {CommandsIn.push(Temp[iPR2]);}
+			}
+		}
+		
+		function LoadKeys(Response){
+			ResponseArray = [];
+			
+			var Temp = Response.split("&");
+			for (var iLK2 = 0; iLK2 < Temp.length; iLK2++) {
+				if (Temp[iLK2].length > 2) {ResponseArray.push(Temp[iLK2].split("="));}
+			}
+		}
+		
+		function GetValueFromKey(SearchKey){
+			for (var i = 0; i < ResponseArray.length; i++) {
+				if (ResponseArray[i][Key] == SearchKey) {
+					return ResponseArray[i][Value];
+				}
+			}
+			return "Not Found";
+		}
+		
+		function HideAllChars(){
+			for (var i = 1; i < 6; i++){
+				document.getElementById("char" + i).style.backgroundColor = "transparent";
+				document.getElementById("char" + i).style.visibility = "hidden";
+				document.getElementById("charID" + i).value = "";
+				document.getElementById("name" + i).innerText = "";
+				document.getElementById("level" + i).innerText = "";
+				document.getElementById("race" + i).innerText = "";
+				document.getElementById("class" + i).innerText = "";
+				SelectedChar = 0;
+			}
+		}
+		
+		function SetChar(num){
+			for (var i = 1; i < 6; i++){
+				document.getElementById("char" + i).style.backgroundColor = "transparent";
+			}
+			document.getElementById("char" + num).style.backgroundColor = "#dcd6ff";
+			SelectedChar = num;
+			CharID = document.getElementById("charID" + num).value;
+		}
+		
+		function EnterGame(){
+			Send("?Op=EnterGame&Action=EnterGame&u=" + User + "&p=" + Pass + "&c=" + CharID + "&s=" + SessionKey);	
+		}
+		
+		function EnterGameResponse(){
+			if (GetValueFromKey("Status") === "Success"){
+				SetDiv("Main");
+				Box = GetValueFromKey("Box");
+				BackgroundTimer = true;			
+				GetPlot(0,0);
+				GetPlot(0,20);
+				GetPlot(20,0);
+				GetPlot(20,20);
+			}
+		}
+		
+		function CheckFail(){
+			if (GetValueFromKey("Status") === "Fail"){alert(GetValueFromKey("Reason"));}
+		}
+		
+		function ShowMeOnMap(){
+			var TopCornerX = -((Me.X - 9) * 50);
+			var TopCornerY = -((Me.Y - 9) * 50);
+			var XDiff = (TopCornerX - MapPos.X) / MoveStep;
+			var YDiff = (TopCornerY - MapPos.Y) / MoveStep;
+			//window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
+			document.getElementById("MapImageDiv").style.left = TopCornerX;
+			document.getElementById("MapImageDiv").style.top = TopCornerY;
+		}
+		
+		function AddTile(NewX, NewY){
+			var NewTile = document.createElement("img");
+			NewTile.setAttribute("id", "_" + NewX + "_" + NewY);
+			NewTile.setAttribute("src", MapTiles[Map[NewX][NewY]].src);
+			NewTile.style.position = 'absolute';
+			NewTile.style.left = (NewX * 50) + 'px';
+			NewTile.style.top = (NewY * 50) + 'px';
+			document.getElementById("MapTilesDiv").appendChild(NewTile);
+		}
+		
+		function MoveMap(NewX,NewY, XInc, YInc, Count){
+			var MapImage = document.getElementById("MapImageDiv");
+			var MeImage = document.getElementById("MeDiv");
+			
+			if (Count === 0 || (NewX = MapImage.style.left && NewY - MapImage.style.top)) {
+				MapImage.style.left = NewX + "px";
+				MapImage.style.top = NewY + "px";
+				MeImage.style.left = NewX + (9 * 50) + "px";
+				MeImage.style.top = NewY + (9 * 50) + "px";
+			} else {
+				MapImage.style.left = (parseInt(MapImage.style.left) + XInc) + "px";
+				MapImage.style.top = (parseInt(MapImage.style.top) + YInc) + "px";
+				MeImage.style.left = (parseInt(MeImage.style.left) - XInc) + "px";
+				MeImage.style.top = (parseInt(MeImage.style.top) - YInc) + "px";
+				window.setTimeout(MoveMap(NewX,NewY, XInc, YInc, Count - 1), 100);
+			}	
+		}
+		
+		function FillMap(Plot, X, Y){
+			var Slot = 0;
+			for (var i = X; i < X + 20; i++){Debug("=");
+				for (var j = Y; j < Y + 20; j++){Debug("+");
+					Map[i][j] = parseInt(Plot.substr(Slot,2));
+					Slot += 2;
+					if (MapBool[i][j] === 0) {
+						AddTile(i,j);
+						MapBool[i][j] = 1;
+					}
+				}
+			}
+		}
+		
+		function NewCharacter(){
+			document.getElementById("NewChar").style.visibility = "visible";
+		}
+		
+		function DeleteCharacter(){
+			if (SelectedChar === 0) {alert("No character selected."); return;}
+			var conf = confirm("Are you sure you want to delete this character?");
+			if (conf === false) {return;}		
+			
+			CharID = document.getElementById("charID" + SelectedChar).value;
+			Send("?Op=DeleteCharacter&u=" + User + "&p=" + Pass + "&c=" + CharID);
+
+		}
+		
+		function DeleteResponse () {
+			if (GetValueFromKey("Status") == "Fail"){
+				alert(GetValueFromKey("Reason"));
+				return;
+			}
+			HideAllChars();
+			Login('Login');			
+		}
+		
+		function Logout(){
+			var conf = confirm("Are you sure you want to logout?");
+			if (conf === true) {
+				SetDiv("Splash");
+				document.getElementById("u").value = "";
+				document.getElementById("p").value = "";
+				HideAllChars();
+			}
+		}
+		
+		function Cancel(){
+			document.getElementById("NewChar").style.visibility = "hidden";
+		}
+		
+		function Rand(High, Low){
+			return parseInt((Math.random() * High % (High - Low + 1) + Low));
+		}
+		
+		function RollStats(){
+			var Int = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Str = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Agi = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Con = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Spd = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var Cha = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			var End = Rand(6,1) + Rand(6,1) + Rand(6,1);
+			
+			document.getElementById("charInt").value = Int;
+			document.getElementById("charStr").value = Str;
+			document.getElementById("charAgi").value = Agi;
+			document.getElementById("charCon").value = Con;
+			document.getElementById("charSpd").value = Spd;
+			document.getElementById("charCha").value = Cha;
+			document.getElementById("charEnd").value = End;
+			
+			document.getElementById("charHealth").value = parseInt(10 + (Con * 0.8) + (End * 0.7) + (Str * 0.3));
+			document.getElementById("charMana").value = parseInt(10 + (Int * 0.8) + (End * 0.5));
+			document.getElementById("charAttack").value = parseInt(10 + (Str * 0.9) + (Agi * 0.3) + (Spd * 0.5) + (End * 0.4));
+			document.getElementById("charDefense").value = parseInt(10 + (Con * 0.8) + (Agi * 0.5) + (Spd * 0.3) + (End * 0.5));
+			document.getElementById("charACD").value = parseInt(100 - (100 * (Spd/60)) - (100 * (End/90)) - (100 * (Agi/60)));
+			document.getElementById("charMCD").value = parseInt(100 -  (100 * (Spd/60)) - (100 * (Int/90)));
+		}
+		
+		function Create(){
+			User = document.getElementById("u").value;
+			Pass = document.getElementById("p").value;
+			CharID = GetNewID();
+			var Name = document.getElementById("charName").value;
+			var Class = document.getElementById("charClass").value;
+			var Race = document.getElementById("charRace").value;
+			var Sex = document.getElementById("charSex").value;
+			var Level = 1;
+			var Int = document.getElementById("charInt").value;
+			var Str = document.getElementById("charStr").value;
+			var Agi = document.getElementById("charAgi").value;
+			var Con = document.getElementById("charCon").value;
+			var Spd = document.getElementById("charSpd").value;
+			var Cha = document.getElementById("charCha").value;
+			var End = document.getElementById("charEnd").value;
+
+			if (Name === "") {alert ("Must specify a name for the character."); return;}
+			if (Int === "") {alert ("Must roll for chracter traits."); return;}
+						
+			var Operation = "?Op=NewCharacter";
+			Operation = "&u=" + User + "&p=" + Pass;
+			Operation += "&c=" + CharID + "&Name=" + Name + "&Class=" + Class + "&Race=" + Race + "&Sex=" + Sex + "&Level=" + Level;
+			Operation += "&Int=" + Int + "&Str=" + Str + "&Agi=" + Agi + "&Con=" + Con + "&Spd=" + Spd + "&Cha=" + Cha + "&End=" + End;
+			Send(Operation);
+		}
+		
+		function ClearChar(){
+			document.getElementById("charName").value = "";
+			document.getElementById("charClass").value = "Fighter";
+			document.getElementById("charRace").value = "Elf";
+			document.getElementById("charSex").value = "Male";
+			document.getElementById("charInt").value = "";
+			document.getElementById("charStr").value = "";
+			document.getElementById("charAgi").value = "";
+			document.getElementById("charCon").value = "";
+			document.getElementById("charSpd").value = "";
+			document.getElementById("charCha").value = "";
+			document.getElementById("charEnd").value = "";
+			
+			document.getElementById("charHealth").value = "";
+			document.getElementById("charMana").value = "";
+			document.getElementById("charAttack").value = "";
+			document.getElementById("charDefense").value = "";
+			document.getElementById("charACD").value = "";
+			document.getElementById("charMCD").value = "";
+		}
+		
+		function CreateResponse(){
+			if (GetValueFromKey("Status") == "Fail"){
+				alert(GetValueFromKey("Reason"));
+				return;
+			}
+				
+			//Add the new character to the list
+			var NextSpot = 0;
+			for (var i = 5; i > 0; i--){
+				if (document.getElementById("char" + i).style.visibility == "hidden") NextSpot = i;
+			}
+			
+			document.getElementById("char" + NextSpot).style.visibility = "visible";
+			document.getElementById("charID" + NextSpot).value = CharID;
+			document.getElementById("name" + NextSpot).innerText = document.getElementById("charName").value;
+			document.getElementById("level" + NextSpot).innerText = "1";
+			document.getElementById("race" + NextSpot).innerText = document.getElementById("charRace").value;					
+			document.getElementById("class" + NextSpot).innerText = document.getElementById("charClass").value;			
+			
+			
+			//Close the character creation screen80
+			Toggle("NewChar");
+			ClearChar();
+		}
+		
+		function GetNewID(){
+			while (true){
+				var Found = false;
+				var RetVal = Rand(99,1);
+				for (var i = 1; i < 6; i++){
+					if (GetValueFromKey("c" + i) != "Not Found"){
+						if (GetValueFromKey("c" + i) == RetVal){
+							Found = true;
+						}
+					}
+				}
+				if (!Found) return RetVal;
+			}
+		}
+		
+		function QuitGame(){
+			Send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey, "LeaveGame");	
+		}
+		
+		function createArray(length) {
+			// This function copied from :
+			// http://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript/966938#966938
+			var arr = new Array(length || 0),
+			i = length;
+
+			if (arguments.length > 1) {
+				var args = Array.prototype.slice.call(arguments, 1);
+				while(i--) arr[length-1 - i] = createArray.apply(this, args);
+			}
+
+			return arr;
+		}
+		-->
+	</script>
+</head>
+
+
+<body onload="Setup();">
+	<div class="clear" style = "top:0%;left:0%;width:100%;height:100%">
+		<div id = "Header" class = "clear" style = "top:3%;left:10%;width:80%;height:4%">
+			<span style = "top:5%;left:5%;width:50%;height:90%;font-size:2em">Generic RPG</span>
+			<div id = "LoginStatus" class = "clear" style = "top:30%;left:75%;width:35%;height:90%;font-size:1.35em">Not Logged In</div>
+		</div>
+
+		<div id = "Main" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			<div id="MapViewPort" class = "clear" style = "top:0%;left0%;width:100%;height:100%;overflow:hidden">
+				<div id = "MapImageDiv" style="top:0px;left:0px;height:5000px;width:5000px">
+					<div id = "MapTilesDiv" style="top:0px;left:0px"></div>
+					<div id = "MeDiv"></div>
+					<div id = "EnemyDiv" style="top:0px;left:0px"></div>
+					<div id = "OtherPlayerDiv" style="top:0px;left:0px"></div>
+				</div>
+				
+			</div>
+			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();" style = 'top:5px;left:6px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Character</div>
+			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();" style = 'top:5px;left:86px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Inventory</div>
+			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();" style = 'top:5px;left:166px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Spells</div>
+			<div id = "TargetBox" class = "box" style = "top:85%;left:70%;height:60px;width:200px;background-color:#adc4ff">
+				<div class = 'clear' id = 'NameField' style = 'top:6px;left:6px;width:117px;height:12px'></div>
+				<div class = 'clear' id = 'LevelLabel' style = 'top:6px;left:114px;width:54px;height:12px'>Level</div>
+				<div class = 'clear' id = 'LevelField' style = 'top:6px;left:150px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'AttackLabel' style = 'top:24px;left:6px;width:45px;height:12px'>Attack</div>
+				<div class = 'clear' id = 'AttackField' style = 'top:24px;left:42px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'DefenseLabel' style = 'top:24px;left:114px;width:54px;height:12px'>Defense</div>
+				<div class = 'clear' id = 'DefenseField' style = 'top:24px;left:150px;width:27px;height:12px'></div>
+				<div class = 'clear' id = 'HealthLabel' style = 'top:42px;left:6px;width:45px;height:12px'>Health</div>
+				<div class = 'clear' id = 'HealthField' style = 'top:42px;left:42px;width:54px;height:12px'></div>
+				<div class = 'clear' id = 'ManaLabel' style = 'top:42px;left:114px;width:45px;height:12px'>Mana</div>
+				<div class = 'clear' id = 'ManaField' style = 'top:42px;left:150px;width:54px;height:12px'></div>
+			</div>
+			<input onClick = "QuitGame();" value="Quit" type= "button" style = "top:10%;left:70%">
+			<input onClick = "SetTargetBox(Me, 0);" value = "test" type = "button" style = "top:10%;left:80%">
+		</div>
+
+		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			<div class = "clear" style = "top:40%;left:35%;width:20%;height:5%">
+				Username:&nbsp; <input id="u" type = "text">
+			</div>
+			<div class = "clear" style = "top:45%;left:35%;width:20%;height:5%">
+				Password:&nbsp;&nbsp; <input id="p" type = "password">
+			</div>
+			
+			<input onClick = 'Login("New");' type = "button" value="New Account" style = "top:50%;left:40%;width:15%">
+			<input onClick = 'Login("Login");' type = "button" value="Login" style = "top:50%;left:55%;width:15%">
+		</div>
+
+		<div id = "AccountView" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
+			<div id = "NewChar" class = "box" style = "top:10%;left:10%;height:60%;width:60%;font-size:1em;visibility:hidden;background-color:#c0e5cd;z-index:100">
+				<!--Input Traits-->
+				<div class="clear"  class="clear" style="top:1%;left:10%">Name <input id="charName" type="text"></div>
+				<div class="clear"  style="top:9%;left:10%">Class 	
+					<select id="charClass">
+						<option value="Fighter">Fighter</option>
+						<option value="Mage">Mage</option>
+						<option value="Ranger">Ranger</option>
+						<option value="Thief">Thief</option>
+					</select>
+				</div>
+				<div class="clear"  style="top:9%;left:50%">Race
+					<select id="charRace">
+						<option value="Elf">Elf</option>
+						<option value="Dwarf">Dwarf</option>
+						<option value="Human">Human</option>
+						<option value="Hobbit">Hobbit</option>
+					</select>
+				</div>
+				<div class="clear"  style="top:1%;left:70%">Sex
+					<select id="charSex">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+					
+				<!--Roll Traits-->
+				<div class="clear"  style="top:20%;left:10%;width:80%"><b>Base Traits</b></div>
+				<div class="clear"  style="top:24%;left:10%;width:80%">Intelligence <input id="charInt" type="text" style="width:20%;left:50%;height:70%;height:70%" disabled></div>
+				<div class="clear"  style="top:28%;left:10%;width:80%">Strength <input id="charStr" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:32%;left:10%;width:80%">Agility <input id="charAgi" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:36%;left:10%;width:80%">Constitution <input id="charCon" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:40%;left:10%;width:80%">Speed <input id="charSpd" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:44%;left:10%;width:80%">Charisma <input id="charCha" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:48%;left:10%;width:80%">Endurance <input id="charEnd" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				
+				<!--Derived Traits-->
+				<div class="clear"  style="top:55%;left:10%;width:80%"><b>Derived Traits</b></div>
+				<div class="clear"  style="top:59%;left:10%;width:80%">Health <input id="charHealth" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:63%;left:10%;width:80%">Mana <input id="charMana" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:67%;left:10%;width:80%">Attack <input id="charAttack" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:71%;left:10%;width:80%">Defense <input id="charDefense" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:75%;left:10%;width:80%">Action Cooldown <input id="charACD" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				<div class="clear"  style="top:79%;left:10%;width:80%">Magic Cooldown <input id="charMCD" type="text" style="width:20%;left:50%;height:70%"  disabled></div>
+				
+				<!--Control Buttons-->
+				
+				<input onClick = "RollStats();" type = "button" value="Roll Stats" style = "top:90%;left:4%;width:20%">
+				<input onClick = "ClearChar();" type = "button" value="Clear" style = "top:90%;left:28%;width:20%">
+				<input onClick = "Cancel();" type = "button" value="Cancel" style = "top:90%;left:52%;width:20%">
+				<input onClick = "Create();" type = "button" value="Create" style = "top:90%;left:76%;width:20%">
+
+				
+			</div>
+			<div id = "CharacterBox" class = "clear" style = "top:10%;left:10%;height:60%;width:60%;font-size:1.5em">
+				<div id = "char1" onClick = "SetChar(1);" class = "box" style = "top:2%;left:5%;width:90%;height:16%">
+					<input id = "charID1" type = "hidden" value = "">
+					<div id = "name1" class = "clear" style="top:5%;left:5%;width:50%;height:45%"></div>
+					<div id = "level1" class = "clear" style="top:5%;left:60%;width:35%;height:45%"></div>
+					<div id = "race1" class = "clear" style="top:50%;left:5%;width:45%;height:45%"></div>
+					<div id = "class1" class = "clear" style="top:50%;left:50%;width:45%;height:45%"></div>
+				</div>
+				<div id = "char2" onClick = "SetChar(2);" class = "box" style = "top:22%;left:5%;width:90%;height:16%">
+					<input id = "charID2" type = "hidden" value = "">
+					<div id = "name2" class = "clear" style="top:5%;left:5%;width:50%;height:45%"></div>
+					<div id = "level2" class = "clear" style="top:5%;left:60%;width:35%;height:45%"></div>
+					<div id = "race2" class = "clear" style="top:50%;left:5%;width:45%;height:45%"></div>
+					<div id = "class2" class = "clear" style="top:50%;left:50%;width:45%;height:45%"></div>
+				</div>				
+				<div id = "char3" onClick = "SetChar(3);" class = "box" style = "top:42%;left:5%;width:90%;height:16%">
+					<input id = "charID3" type = "hidden" value = "">
+					<div id = "name3" class = "clear" style="top:5%;left:5%;width:50%;height:45%"></div>
+					<div id = "level3" class = "clear" style="top:5%;left:60%;width:35%;height:45%"></div>
+					<div id = "race3" class = "clear" style="top:50%;left:5%;width:45%;height:45%"></div>
+					<div id = "class3" class = "clear" style="top:50%;left:50%;width:45%;height:45%"></div>
+				</div>				
+				<div id = "char4" onClick = "SetChar(4);" class = "box" style = "top:62%;left:5%;width:90%;height:16%">
+					<input id = "charID4" type = "hidden" value = "">
+					<div id = "name4" class = "clear" style="top:5%;left:5%;width:50%;height:45%"></div>
+					<div id = "level4" class = "clear" style="top:5%;left:60%;width:35%;height:45%"></div>
+					<div id = "race4" class = "clear" style="top:50%;left:5%;width:45%;height:45%"></div>
+					<div id = "class4" class = "clear" style="top:50%;left:50%;width:45%;height:45%"></div>
+				</div>				
+				<div id = "char5" onClick = "SetChar(5);" class = "box" style = "top:82%;left:5%;width:90%;height:16%">
+					<input id = "charID5" type = "hidden" value = "">
+					<div id = "name5" class = "clear" style="top:5%;left:5%;width:50%;height:45%"></div>
+					<div id = "level5" class = "clear" style="top:5%;left:60%;width:35%;height:45%"></div>
+					<div id = "race5" class = "clear" style="top:50%;left:5%;width:45%;height:45%"></div>
+					<div id = "class5" class = "clear" style="top:50%;left:50%;width:45%;height:45%"></div>
+				</div>
+			</div>
+			<input onClick = "EnterGame();" type = "button" value="Play" style = "top:75%;left:12%;width:16%">
+			<input onClick = "NewCharacter();" type = "button" value="New Character" style = "top:75%;left:32%;width:16%">
+			<input onClick = "DeleteCharacter();" type = "button" value="Delete Character" style = "top:75%;left:52%;width:16%">
+			<input onClick = "Logout();" type = "button" value="Logout" style = "top:75%;left:72%;width:16%">
+			
+
+		</div>
+		<div class = "box" id="DebugDiv" style = "top:82%;left:10%;width:80%;height:14%">
+			Debug
+		</div>
+	</div>
+</body>
+
+</html>
