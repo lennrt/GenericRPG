@@ -243,7 +243,7 @@
 		}
 		
 		function PlayerMove(){
-			if (Me.ID == GetValueFromKey("b")){
+			if (Me.ID == parseIntGetValueFromKey("b")){
 				Me.X += parseInt(GetValueFromKey("X"));
 				Me.Y += parseInt(GetValueFromKey("Y"));
 				MapPos.X -= parseInt(GetValueFromKey("X"));
