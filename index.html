@@ -37,7 +37,6 @@
 		var Y;
 		var MapImage = document.getElementById("MapImageDiv");
 		var MeImage = document.getElementById("MeDiv");
-		var TEST = 0;
 		var SiteURL="http://www.ctr-online.com/cgi-bin/accman.cgi";
 		var Key = 0;
 		var Value = 1;
@@ -45,7 +44,6 @@
 		var MapTiles = [];
 		var BackgroundTimer = false;
 		var NextCommandIn = true;
-		var NextCommandOut = true;
 		var RefreshBounds = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0};
 		
 		var Map = [];
@@ -92,23 +90,22 @@
 			MapTiles[15] = new Image();
 			MapTiles[15].src = 'images/forest.png';
 
+			Map = createArray(100,100);
+			MapBool = createArray(100,100);
 			for (var i = 0; i < 100; i++){
-				Map[i] = [];
-				MapBool[i] = [];
 				for (var j = 0; j < 100; j++){
 					Map[i][j] = -2;
 					MapBool[i][j] = 0;
 				}
 			}
 			
-			window.setInterval(BackgroundUpdate, 10000);
+			window.setInterval(BackgroundUpdate, 500);
 		}  
 				
 		function BackgroundUpdate(){
 			Debug(".");
 			if (BackgroundTimer){
 				Send("?Op=Update&u=" + User + "&p=" + Pass + "&c=" + CharID + "&b=" + Box + "&s=" + SessionKey);
-				Debug("|");
 			}
 			ProcessCommands();
 		}
@@ -129,15 +126,13 @@
 		}
 		
 		function ProcessCommands(){
-			Debug(" PC ");
 			if (NextCommandIn){
-				NextCommandIn = false;Debug("CMDLen:" + CommandsIn.length);
+				NextCommandIn = false;
 				
 				if (CommandsIn.length > 0) {
 					LoadKeys(CommandsIn.shift());
 						
 					var Op = GetValueFromKey("Op");
-					Debug(Op);
 					
 					if (Op == "Login"){LoginResponse();}
 					if (Op == "NewCharacter"){CreateResponse();}
@@ -149,7 +144,6 @@
 						FillMap(GetValueFromKey("Plot"), parseInt(GetValueFromKey("X")), parseInt(GetValueFromKey("Y")));
 					}
 					if (Op == "MyPosition"){
-						Debug("Detect MyPosition Command");
 						X = parseInt(GetValueFromKey("X"));
 						Y = parseInt(GetValueFromKey("Y"));
 						ShowMeOnMap();
@@ -175,7 +169,7 @@
 			}
 		}
 		
-		function Login(Op){Debug("Login");
+		function Login(Op){
 			User = document.getElementById("u").value;
 			Pass = document.getElementById("p").value;
 			if (User.length < 4) {alert("Username too short"); return;}
@@ -279,7 +273,6 @@
 			var TopCornerY = -((Y - 9) * 50);
 			var XDiff = (TopCornerX - MapImage.offsetLeft) / MoveStep;
 			var YDiff = (TopCornerY - MapImage.offsetTop) / MoveStep;
-			Debug("ShowMeOnMap");
 			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 		}
 		
@@ -322,15 +315,6 @@
 		
 		function NewCharacter(){
 			document.getElementById("NewChar").style.visibility = "visible";
-		}
-		
-		function TestFunction(){
-			Debug("In the test\n");
-			//-----------------------------------TEST------------
-			Send("?Op=Play&Action=RepeatMessage&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey + "&Message=" + "Blah" + TEST);	
-			TEST++;
-			
-			//-----------------------------------END TEST---------------
 		}
 		
 		function DeleteCharacter(){
@@ -485,6 +469,20 @@
 		
 		function QuitGame(){
 			Send("?Op=Play&Action=LeaveGame&u=" + User + "&p=" + Pass + "&b=" + Box + "&c=" + CharID + "&s=" + SessionKey, "LeaveGame");	
+		}
+		
+		function createArray(length) {
+			// This function copied from :
+			// http://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript/966938#966938
+			var arr = new Array(length || 0),
+			i = length;
+
+			if (arguments.length > 1) {
+				var args = Array.prototype.slice.call(arguments, 1);
+				while(i--) arr[length-1 - i] = createArray.apply(this, args);
+			}
+
+			return arr;
 		}
 		-->
 	</script>
