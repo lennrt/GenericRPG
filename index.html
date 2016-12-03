@@ -332,11 +332,6 @@
 					document.getElementById("class" + i).innerText = GetValueFromKey("Class" + i);
 				}
 			}
-			
-			GetPlot(0,0);
-			GetPlot(0,20);
-			GetPlot(20,0);
-			GetPlot(20,20);
 		}
 		
 		function ParseResponse(xhttp){
@@ -396,7 +391,11 @@
 			if (GetValueFromKey("Status") === "Success"){
 				SetDiv("Main");
 				Box = GetValueFromKey("Box");
-				BackgroundTimer = true;
+				BackgroundTimer = true;			
+				GetPlot(0,0);
+				GetPlot(0,20);
+				GetPlot(20,0);
+				GetPlot(20,20);
 			}
 		}
 		
