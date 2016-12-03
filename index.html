@@ -352,7 +352,9 @@
 			var TopCornerY = -((Me.Y - 9) * 50);
 			var XDiff = (TopCornerX - MapPos.X) / MoveStep;
 			var YDiff = (TopCornerY - MapPos.Y) / MoveStep;
-			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
+			//window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
+			document.getElementById("MapImageDiv").style.left = TopCornerX;
+			document.getElementById("MapImageDiv").style.top = TopCornerY;
 		}
 		
 		function AddTile(NewX, NewY){
@@ -381,7 +383,6 @@
 				MeImage.style.top = (parseInt(MeImage.style.top) - YInc) + "px";
 				window.setTimeout(MoveMap(NewX,NewY, XInc, YInc, Count - 1), 100);
 			}	
-			Debug("hwew");
 		}
 		
 		function FillMap(Plot, X, Y){
