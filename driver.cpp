@@ -44,7 +44,7 @@ vector<FormInfo> FormData;
 void getFormData(string Env);
 string GetValueFromKey(string FindKey);
 int GetPlayerByBox(string BoxNumber);
-string GetNewCharInfo(Entity& Character);
+string GetNewCharInfo(Character& Character);
 
 int main(){
 	//Setup Game state
