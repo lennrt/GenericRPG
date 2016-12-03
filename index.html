@@ -45,9 +45,8 @@
 		var BackgroundTimer = false;
 		var NextCommandIn = true;
 		var RefreshBounds = {'MaxX' : 0, 'MaxY' : 0, 'MinX' : 0, 'MinY' : 0};
-		
-		var Map = [];
-		var MapBool = [];
+		var Map;
+		var MapBool;
 				
 		function Debug(DebugValue){
 			document.getElementById("DebugDiv").innerText += DebugValue;
@@ -276,11 +275,12 @@
 			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
 		}
 		
-		function AddTile(X, Y){
+		function AddTile(NewX, NewY){
 			var NewTile = document.createElement("img");
-			NewTile.setAttribute("src", MapTiles[Map[X][Y]].src);
-			NewTile.setAttribute("top", (X * 50) + "px");
-			NewTile.setAttribute("left",(Y * 50) + "px");
+			NewTile.setAttribute("id", "_" + NewX + "_" + NewY);
+			NewTile.setAttribute("src", MapTiles[Map[NewX][NewY]].src);
+			NewTile.setAttribute("top", (NewX * 50) + "px");
+			NewTile.setAttribute("left",(NewY * 50) + "px");
 			document.getElementById("MapTilesDiv").appendChild(NewTile);
 		}
 		
