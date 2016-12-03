@@ -350,8 +350,8 @@
 		}
 		
 		function ShowMeOnMap(){
-			var TopCornerX = -((X - 9) * 50);
-			var TopCornerY = -((Y - 9) * 50);
+			var TopCornerX = -((Me.X - 9) * 50);
+			var TopCornerY = -((Me.Y - 9) * 50);
 			var XDiff = (TopCornerX - MapPos.X) / MoveStep;
 			var YDiff = (TopCornerY - MapPos.Y) / MoveStep;
 			window.setTimeout(MoveMap(TopCornerX,TopCornerY, XDiff, YDiff, MoveStep), 100);
