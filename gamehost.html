@@ -749,8 +749,8 @@
 			document.getElementById("CharRaceField").innerHTML = Me.Race;			
 			document.getElementById("CharClassField").innerHTML = Me.Class;			
 			document.getElementById("CharGoldField").innerHTML = Me.Gold;			
-			document.getElementById("CharLevelField").innerHTML = Me.Level;			
-			document.getElementById("CharExpField").innerHTML = Me.Exp;			
+			document.getElementById("CharLevelField").innerHTML = (isNan(Me.Level) ? "1" : Me.Level);			
+			document.getElementById("CharExpField").innerHTML = (isNan(Me.Exp) ? "100" : Me.Level);			
 			document.getElementById("CharIntField").innerHTML = ColorStat(Me.CurInt, Me.MaxInt);			
 			document.getElementById("CharStrField").innerHTML = ColorStat(Me.CurStr, Me.MaxStr);			
 			document.getElementById("CharAgiField").innerHTML = ColorStat(Me.CurAgi, Me.MaxAgi);			
@@ -858,7 +858,7 @@
 					<div id = "MeDiv" class = "clear" style = "z-index:100"><img id="MeImg" src="/images/mage.png" style="top:0px;left:0px;z-index:100"></div>
 					<div id = "EnemyDiv" style="top:0px;left:0px;z-index:100">
 					<img id="MeImg" src="/images/skeleton.png" style="top:200px;left:3500px;z-index:100">
-					<img id="MeImg" src="/images/zombie.png style="top:400px;left:400px;z-index:100"">
+					<img id="MeImg" src="/images/zombie.png style="top:400px;left:400px;z-index:100">
 					</div>
 					<div id = "OtherPlayerDiv" style="top:0px;left:0px"></div>
 				</div>
@@ -866,7 +866,7 @@
 			</div>
 			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();" style = 'top:5px;left:6px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Character</div>
 			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:300px;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden;font-family:tahoma;font-size:9pt">
-				<div class = 'clear' id = 'CharNameField' style = 'top:12px;left:18px;width:96px;height:12px'></div>
+				<div class = 'clear' id = 'CharNameField' style = 'top:12px;left:18px;width:96px;height:12px;font-size:14pt;color:#9606a0;font-weight:bold'></div>
 				<div class = 'clear' id = 'CharSexLabel' style = 'top:30px;left:132px;width:30px;height:12px'>Sex</div>
 				<div class = 'clear' id = 'CharSexField' style = 'top:30px;left:192px;width:18px;height:12px'></div>
 				<div class = 'clear' id = 'CharRaceLabel' style = 'top:30px;left:18px;width:36px;height:12px'>Race</div>
@@ -879,7 +879,7 @@
 				<div class = 'clear' id = 'CharLevelLabel' style = 'top:48px;left:18px;width:36px;height:12px'>Level</div>
 				<div class = 'clear' id = 'CharExpField' style = 'top:66px;left:192px;width:42px;height:12px'></div>
 				<div class = 'clear' id = 'CharExpLabel' style = 'top:66px;left:132px;width:60px;height:12px'>Experience</div>
-				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px'>Base Attributes</div>
+				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px;font-size:14pt;color:#a03406;font-weight:bold'>Base Attributes</div>
 				<div class = 'clear' id = 'CharIntField' style = 'top:126px;left:120px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Intelligence</div>
 				<div class = 'clear' id = 'CharStrField' style = 'top:144px;left:120px;width:54px;height:12px'></div>
@@ -906,7 +906,7 @@
 				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:60px;height:12px'>MCD</div>
 				<div class = 'clear' id = 'CharACDField' style = 'top:66px;left:318px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:60px;height:12px'>ACD</div>
-				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px'>Equipped</div>
+				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px;font-size:14pt;color:#a03406;font-weight:bold'>Equipped</div>
 				<div class = 'clear' id = 'CharHeadLabel' style = 'top:162px;left:174px;width:54px;height:12px'>Head</div>
 				<div class = 'clear' id = 'CharBodyLabel' style = 'top:180px;left:174px;width:54px;height:12px'>Body</div>
 				<div class = 'clear' id = 'CharLegsLabel' style = 'top:216px;left:174px;width:54px;height:12px'>Legs</div>
