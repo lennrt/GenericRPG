@@ -858,8 +858,8 @@
 					<div id = "MapTilesDiv" class = "clear" style="top:0px;left:0px"></div>
 					<div id = "MeDiv" class = "clear" style = "z-index:100"><img id="MeImg" src="/images/mage.png" style="top:0px;left:0px;z-index:100"></div>
 					<div id = "EnemyDiv" style="top:0px;left:0px;z-index:100">
-					<img id="MeImg" src="/images/skeleton.png" style="top:200px;left:3500px;z-index:100">
-					<img id="MeImg" src="/images/zombie.png style="top:400px;left:400px;z-index:100">
+					<img id="MeImg" src="/images/skeleton.png" style="top:200px;left:3500px;z-index:100;position:absolute">
+					<img id="MeImg" src="/images/zombie.png style="top:400px;left:400px;z-index:100;position:absolute">
 					</div>
 					<div id = "OtherPlayerDiv" style="top:0px;left:0px"></div>
 				</div>
@@ -880,7 +880,7 @@
 				<div class = 'clear' id = 'CharLevelLabel' style = 'top:48px;left:18px;width:36px;height:12px'>Level</div>
 				<div class = 'clear' id = 'CharExpField' style = 'top:66px;left:192px;width:42px;height:12px'></div>
 				<div class = 'clear' id = 'CharExpLabel' style = 'top:66px;left:132px;width:60px;height:12px'>Experience</div>
-				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px;font-size:14pt;color:#a03406;font-weight:bold'>Base Attributes</div>
+				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px;font-size:12pt;color:#a03406;font-weight:bold'>Base Attributes</div>
 				<div class = 'clear' id = 'CharIntField' style = 'top:126px;left:120px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Intelligence</div>
 				<div class = 'clear' id = 'CharStrField' style = 'top:144px;left:120px;width:54px;height:12px'></div>
@@ -907,7 +907,7 @@
 				<div class = 'clear' id = 'CharMCDLabel' style = 'top:84px;left:258px;width:60px;height:12px'>MCD</div>
 				<div class = 'clear' id = 'CharACDField' style = 'top:66px;left:318px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'CharACDLabel' style = 'top:66px;left:258px;width:60px;height:12px'>ACD</div>
-				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px;font-size:14pt;color:#a03406;font-weight:bold'>Equipped</div>
+				<div class = 'clear' id = 'CharEquippedLabel' style = 'top:108px;left:174px;width:48px;height:12px;font-size:12pt;color:#a03406;font-weight:bold'>Equipped</div>
 				<div class = 'clear' id = 'CharHeadLabel' style = 'top:162px;left:174px;width:54px;height:12px'>Head</div>
 				<div class = 'clear' id = 'CharBodyLabel' style = 'top:180px;left:174px;width:54px;height:12px'>Body</div>
 				<div class = 'clear' id = 'CharLegsLabel' style = 'top:216px;left:174px;width:54px;height:12px'>Legs</div>
@@ -926,7 +926,7 @@
 			<div id = "InvSheetButton" class = "box" onClick="ToggleInvSheet();" style = 'top:5px;left:86px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Inventory</div>
 			<div id = "InvSheetBox">
 			</div>
-			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();" style = 'top:5px;left:166px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Spells</div>
+			<div id = "SpellsSheetButton" class = "box" onClick="ToggleSpellsSheet();" style = 'top:5px;left:166px;width:80px;height:18px;t<span style="position:relative">ext-align:center;background-color:#d9baff'>Spells</div>
 			<div id = "SpellSheetBox">
 			</div>
 			<div id = "TargetBox" class = "box" style = "top:85%;left:60%;height:60px;width:240px;background-color:#adc4ff">
@@ -962,13 +962,13 @@
 
 		<div id = "AccountView" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
 			<div id = "NewChar" class = "box" style = "top:10%;left:10%;height:60%;width:60%;font-size:1em;visibility:hidden;background-color:#c0e5cd;z-index:100">
-				<!--Input Traits-->
+				<!--Input Traits--><span style="position:relative">
 				<div class="clear"  class="clear" style="top:1%;left:10%">Name <input id="charName" type="text"></div>
 				<div class="clear"  style="top:9%;left:10%">Class 	
 					<select id="charClass">
 						<option value="Fighter">Fighter</option>
 						<option value="Mage">Mage</option>
-						<option value="Ranger">Ranger</option>
+						<option value="Ranger">Ranger</option><span style="position:relative">
 						<option value="Thief">Thief</option>
 					</select>
 				</div>
