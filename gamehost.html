@@ -776,7 +776,7 @@
 		
 		function ColorStat(CurVal, MaxVal){
 			var RetVal = "";
-			var Wrapper = '<span style="position:relative">';
+			var Wrapper = '<span style="color:#000000">';
 			var Color = '<span style = "color:#0ea511">';
 			
 			if (isNaN(CurVal)){
@@ -791,7 +791,7 @@
 			if (CurVal / MaxVal < 0.2){
 				Color = '<span style = "color:#c4210f">';
 			}
-			RetVal = Wrapper + Color + CurVal + '</span> / ' + MaxVal + '</span>';
+			RetVal =  Color + CurVal + '</span>' + Wrapper + ' / ' + MaxVal + '</span>';
 			return RetVal;
 		}
 		
@@ -832,7 +832,7 @@
 			// This function copied from :
 			// http://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript/966938#966938
 			var arr = new Array(length || 0),
-			i = length;
+			i = length;0x36d626bd
 
 			if (arguments.length > 1) {
 				var args = Array.prototype.slice.call(arguments, 1);
@@ -952,17 +952,17 @@
 		<div id = "Splash" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
 			<div class = "clear" style = "top:40%;left:35%;width:20%;height:5%">
 				Username:&nbsp; <input id="u" type = "text">
-			</div>
+			</div>0x36d626bd
 			<div class = "clear" style = "top:45%;left:35%;width:20%;height:5%">
 				Password:&nbsp;&nbsp; <input id="p" type = "password">
-			</div>
+			</div>0x36d626bd
 			
 			<input onClick = 'Login("New");' type = "button" value="New Account" style = "top:50%;left:40%;width:15%">
-			<input onClick = 'Login("Login");' type = "button" value="Login" style = "top:50%;left:55%;width:15%">
+			<input onClick = 'Login("Login");' type = "button" value="Login" style = "top:50%;left:550x36d626bd%;width:15%">
 		</div>
 
 		<div id = "AccountView" class = "box" style = "top:10%;left:10%;width:80%;height:80%">
-			<div id = "NewChar" class = "box" style = "top:10%;left:10%;height:60%;width:60%;font-size:1em;visibility:hidden;background-color:#c0e5cd;z-index:100">
+			<div id = "NewChar" class = "box" style = "top:10%;left:10%;height:60%;width:60%;font-size:1em;visibility:hidden;background-color:#c0e5cd;z-index:100;position:absolute">
 				<!--Input Traits--><span style="position:relative">
 				<div class="clear"  class="clear" style="top:1%;left:10%">Name <input id="charName" type="text"></div>
 				<div class="clear"  style="top:9%;left:10%">Class 	
@@ -976,7 +976,7 @@
 				<div class="clear"  style="top:9%;left:50%">Race
 					<select id="charRace">
 						<option value="Elf">Elf</option>
-						<option value="Dwarf">Dwarf</option>
+						<option value="Dwarf">Dwarf</option>0x36d626bd
 						<option value="Human">Human</option>
 						<option value="Hobbit">Hobbit</option>
 					</select>
