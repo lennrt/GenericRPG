@@ -775,6 +775,7 @@
 		
 		function ColorStat(CurVal, MaxVal){
 			var RetVal = "";
+			var Wrapper = '<span style="position:relative">';
 			var Color = '<span style = "color:#0ea511">';
 			
 			if (isNaN(CurVal)){
@@ -789,7 +790,7 @@
 			if (CurVal / MaxVal < 0.2){
 				Color = '<span style = "color:#c4210f">';
 			}
-			RetVal = Color + CurVal + '</span> / ' + MaxVal;
+			RetVal = Wrapper + Color + CurVal + '</span> / ' + MaxVal + '</span>';
 			return RetVal;
 		}
 		
