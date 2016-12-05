@@ -751,17 +751,17 @@
 			document.getElementById("CharGoldField").innerHTML = Me.Gold;			
 			document.getElementById("CharLevelField").innerHTML = Me.Level;			
 			document.getElementById("CharExpField").innerHTML = Me.Exp;			
-			document.getElementById("CharIntField").innerHTML = Me.CurInt + " / " + Me.MaxInt;			
-			document.getElementById("CharStrField").innerHTML = Me.CurStr + " / " + Me.MaxStr;			
-			document.getElementById("CharAgiField").innerHTML = Me.CurAgi + " / " + Me.MaxAgi;			
-			document.getElementById("CharConField").innerHTML = Me.CurCon + " / " + Me.MaxCon;
-			document.getElementById("CharSpdField").innerHTML = Me.CurSpd + " / " + Me.MaxSpd;			
-			document.getElementById("CharChaField").innerHTML = Me.CurCha + " / " + Me.MaxCha;
-			document.getElementById("CharEndField").innerHTML = Me.CurEnd + " / " + Me.MaxEnd;
-			document.getElementById("CharAttackField").innerHTML = Me.CurAtt + " / " + Me.MaxAtt;			
-			document.getElementById("CharDefenseField").innerHTML = Me.CurDef + " / " + Me.MaxDef;
-			document.getElementById("CharManaField").innerHTML = Me.CurMana + " / " + Me.MaxMana;
-			document.getElementById("CharHealthField").innerHTML = Me.CurHealth + " / " + Me.MaxHealth;
+			document.getElementById("CharIntField").innerHTML = ColorStat(Me.CurInt, Me.MaxInt);			
+			document.getElementById("CharStrField").innerHTML = ColorStat(Me.CurStr, Me.MaxStr);			
+			document.getElementById("CharAgiField").innerHTML = ColorStat(Me.CurAgi, Me.MaxAgi);			
+			document.getElementById("CharConField").innerHTML = ColorStat(Me.CurCon, Me.MaxCon);
+			document.getElementById("CharSpdField").innerHTML = ColorStat(Me.CurSpd, Me.MaxSpd);			
+			document.getElementById("CharChaField").innerHTML = ColorStat(Me.CurCha, Me.MaxCha);
+			document.getElementById("CharEndField").innerHTML = ColorStat(Me.CurEnd, Me.MaxEnd);
+			document.getElementById("CharAttackField").innerHTML = ColorStat(Me.CurAtt, Me.MaxAtt);			
+			document.getElementById("CharDefenseField").innerHTML = ColorStat(Me.CurDef, Me.MaxDef);
+			document.getElementById("CharManaField").innerHTML = ColorStat(Me.CurMana, Me.MaxMana);
+			document.getElementById("CharHealthField").innerHTML = ColorStat(Me.CurHealth, Me.MaxHealth);
 			document.getElementById("CharACDField").innerHTML = Me.MaxACD;
 			document.getElementById("CharMCDField").innerHTML = Me.MaxMCD;	
 			document.getElementById("CharLeftHandLabel").innerHTML = "";			
@@ -771,6 +771,26 @@
 			document.getElementById("CharBodyHandLabel").innerHTML = "";			
 			document.getElementById("CharLegsHandLabel").innerHTML = "";			
 			document.getElementById("CharArmsHandLabel").innerHTML = "";			
+		}
+		
+		function ColorStat(CurVal, MaxVal){
+			var RetVal = "";
+			var Color = '<span style = "color:#0ea511">';
+			
+			if (CurVal == NaN){
+				return RetVal;
+			}
+			if (CurVal / MaxVal < .6){
+				Color = '<span style = "color:#d5db29">';
+			}
+			if (CurVal / MaxVal < .4){
+				Color = '<span style = "color:#f2aa4d">';
+			}
+			if (CurVal / MaxVal < .2){
+				Color = '<span style = "color:#c4210f">';
+			}
+			RetVal = Color + CurVal + '</span> / ' + MaxVal;
+			return RetVal;
 		}
 		
 		function GetNewID(){
@@ -842,7 +862,7 @@
 				
 			</div>
 			<div id = "CharSheetButton" class = "box" onClick="ToggleCharSheet();" style = 'top:5px;left:6px;width:80px;height:18px;text-align:center;background-color:#d9baff'>Character</div>
-			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:300px;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden;font-family:tahoma;font-size:10pt">
+			<div id = "CharSheetBox" class = "box" style="top:25px;left:6px;height:300px;width:400px;position:absolute;background-color:#bdd6bc;visibility:hidden;font-family:tahoma;font-size:9pt">
 				<div class = 'clear' id = 'CharNameField' style = 'top:12px;left:18px;width:96px;height:12px'></div>
 				<div class = 'clear' id = 'CharSexLabel' style = 'top:30px;left:132px;width:30px;height:12px'>Sex</div>
 				<div class = 'clear' id = 'CharSexField' style = 'top:30px;left:192px;width:18px;height:12px'></div>
