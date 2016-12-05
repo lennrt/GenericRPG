@@ -51,6 +51,8 @@ int main(){
 	TimeTable TimeTable;
 	Mailbox Mailbox;
 	Map Map;
+	vector<Item> Items;
+	vector<Spell> Spells;
 	bool Done = false;
 	string Message;
 	string Action;
@@ -70,6 +72,8 @@ int main(){
 		Action = "";
 		
 		//Check Time table.  Perform function for all expired times
+		TimeTable.SelectNextItem();
+		TimeTable.Pop();
 		
 		//Check and Process Messages
 		Message = Mailbox.GetNextMessage();
@@ -121,39 +125,39 @@ int main(){
 			int X = stoi(GetValueFromKey("XMove"));
 			int Y = stoi(GetValueFromKey("YMove"));
 			cout << "Move";
-			//if (Map.Passable(Players[Who].X + X, Players[Who].Y + Y)){
+			if (Map.Passable(Players[Who].X + X, Players[Who].Y + Y)){
 				string Temp = "&Op=PlayerMove&b=" + GetValueFromKey("b") + "&X=" + GetValueFromKey("XMove") + "&Y=" + GetValueFromKey("YMove");
 				Mailbox.BroadcastMessage(Temp);
-				//Mailbox.SendMessageToBox(Temp, Players[Who].Box);
-			//}
+				Mailbox.SendMessageToBox(Temp, Players[Who].Box);
+			}
 		}	
 		
 		if (Action == "CastSpell"){
+			if (GetValueFromKey("enemyID") != "Not Found"){
+				Spells[stoi(GetValueFromKey("SpellID"))].cast_spell(Players[stoi(GetPlayerByBox("b"))], SpawnedEnemies[stoi(GetValueFromKey("enemyID"))]);
+			} else {
+				
+				Spells[stoi(GetValueFromKey("SpellID"))].cast_spell(Players[stoi(GetPlayerByBox("b"))], Players[stoi(GetPlayerByBox(GetValueFromKey("targetB"))]);
+			}
 		}	
 		
 		if (Action == "EquipItem"){
+			Players[GetPlayerByBox(GetValueFromKey("b"))].EquipItem(stoi(GetValueFromKey("ItemID")));
 		}		
 		
 		if (Action == "UseItem"){
+			Items[stoi(GetValueFromKey("ItemID"))].Use(Players[stoi(GetValueFromKey("b"))], Players[stoi(GetValueFromKey("targetB"))];
 		}		
 
 		if (Action == "Attack"){
+			Players[stoi(GetValueFromKey("b"))].Damage(SpawnedEnemies[stoi(GetValueFromKey("enemyID"))]);
 		}
-		//Game in progress action
-
-		//Perform a character action
-
-		//Perform an inventory action
-
-		//Perform a world action
-
-		//Perform targetting action
-	
 
 		if (Action != ""){
 			cout << "Number of Open Boxes:" << Mailbox.BoxCount() << "\n";
 			cout << "Number of Messages:" << Mailbox.MessageCount() << "\n";
 		}
+		
 	}
 }
 
