@@ -83,9 +83,9 @@ int main(){
 			Mailbox.OpenUserBox(NewChar.Box);
 			NewChar.X = StartingX;
 			NewChar.Y = StartingY;
-			Temp = "&Op=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
-			Mailbox.SendMessageToBox(Temp, NewChar.Box);
-			Mailbox.BroadcastMessage("&Op=Con&Message=" + NewChar.Name + " has entered the game.");
+// 			Temp = "&Op=MyPosition&X=" + to_string(StartingX) + "&Y=" + to_string(StartingY);
+// 			Mailbox.SendMessageToBox(Temp, NewChar.Box);
+			Mailbox.SendMessageToBox("&Op=Con&Message=" + NewChar.Name + " has entered the game.", NewChar.Box);
 			Temp = GetNewCharInfo(NewChar);
 			Mailbox.BroadcastMessage(GetNewCharInfo(NewChar));
 			Mailbox.SendMessageToBox(GetNewCharInfo(NewChar), NewChar.Box);
