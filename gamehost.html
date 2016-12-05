@@ -479,6 +479,7 @@
 		
 		function ParseResponse(xhttp){
 			var Response = xhttp.responseText;
+			console.log(Response);
 			
 			var Temp = Response.split("^");
 			for (var iPR2 = 0; iPR2 < Temp.length; iPR2++) {
@@ -880,7 +881,7 @@
 				<div class = 'clear' id = 'CharLevelLabel' style = 'top:48px;left:18px;width:36px;height:12px'>Level</div>
 				<div class = 'clear' id = 'CharExpField' style = 'top:66px;left:192px;width:42px;height:12px'></div>
 				<div class = 'clear' id = 'CharExpLabel' style = 'top:66px;left:132px;width:60px;height:12px'>Experience</div>
-				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px;font-size:12pt;color:#a03406;font-weight:bold'>Base Attributes</div>
+				<div class = 'clear' id = 'CharBaseAttribLabel' style = 'top:108px;left:18px;width:102px;height:12px;font-size:12pt;color:#a03406;font-weight:bold'>Attributes</div>
 				<div class = 'clear' id = 'CharIntField' style = 'top:126px;left:120px;width:54px;height:12px'></div>
 				<div class = 'clear' id = 'CharIntLabel' style = 'top:126px;left:18px;width:60px;height:12px'>Intelligence</div>
 				<div class = 'clear' id = 'CharStrField' style = 'top:144px;left:120px;width:54px;height:12px'></div>
