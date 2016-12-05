@@ -777,16 +777,16 @@
 			var RetVal = "";
 			var Color = '<span style = "color:#0ea511">';
 			
-			if (CurVal == NaN){
+			if (isNaN(CurVal)){
 				return RetVal;
 			}
-			if (CurVal / MaxVal < .6){
+			if (CurVal / MaxVal < 0.6){
 				Color = '<span style = "color:#d5db29">';
 			}
-			if (CurVal / MaxVal < .4){
+			if (CurVal / MaxVal < 0.4){
 				Color = '<span style = "color:#f2aa4d">';
 			}
-			if (CurVal / MaxVal < .2){
+			if (CurVal / MaxVal < 0.2){
 				Color = '<span style = "color:#c4210f">';
 			}
 			RetVal = Color + CurVal + '</span> / ' + MaxVal;
